@@ -15,6 +15,9 @@
     			<thead>
     				<tr>
     					<th>Curso</th>
+                        <th>Estado</th>
+                        <th width="200px">Grupos por inciciar</th>
+                        <th width="200px">Grupos iniciados</th>
     					<th>Estado</th>
     					<th colspan="2"></th>
     				</tr>
@@ -30,6 +33,32 @@
                             @if ($curso->estado == 1)
                                 {{ 'Activo' }}
                             @endif
+                        </td>
+                        <td>{{-- grupos por iniciar --}}
+                            @php 
+                            $gru_pini = 0
+                            @endphp
+                            @foreach ($curso->grupos as $grupo)
+                                @if ($grupo->estado == 0)
+                                    @php
+                                     $gru_pini++ 
+                                    @endphp
+                                 @endif  
+                            @endforeach
+                            {{ $gru_pini }}
+                        </td>
+                        <td>{{-- grupos iniciados --}}
+                            @php
+                            $gru_ini = 0
+                            @endphp
+                            @foreach ($curso->grupos as $grupo)
+                                @if ($grupo->estado == 1)
+                                    @php
+                                     $gru_ini++ 
+                                    @endphp
+                                 @endif  
+                            @endforeach
+                            {{ $gru_ini }}
                         </td>
     				  	<td width="10px">
     				  		<a href="{{ route('admin.cursos.edit', $curso) }}" class="btn btn-sm btn-primary" >Editar</a>

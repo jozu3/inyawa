@@ -264,6 +264,12 @@ return [
             'icon'        => 'fas fa-users-cog',
             'can'  =>   'admin.roles.index'
         ],
+        [
+            'text'        => 'Profesores',
+            'route'         => 'admin.profesores.index',
+            'icon'        => 'fas fa-users-cog',
+            'can'  =>   'admin.profesores.index'
+        ],
 
         ['header' => 'Ventas'],
         [
@@ -278,18 +284,15 @@ return [
             'icon' => 'fas fa-paper-plane',
             'can'  =>   'admin.seguimientos.index'
         ],
-        ['header' => 'Académico'],
+        [
+            'header' => 'Académico',
+            'can'  =>   'admin.cursos.index'
+        ],
         [
             'text' => 'Cursos',
             'route'  => 'admin.cursos.index',
             'icon' => 'fas fa-fw fa-user',
             'can'  =>   'admin.cursos.index'
-        ],
-        [
-            'text' => 'Comentarios',
-            'route'  => 'admin.seguimientos.index',
-            'icon' => 'fas fa-paper-plane',
-            'can'  =>   'admin.seguimientos.index'
         ],
       /*  [
             'text'    => 'Ventas',

@@ -31,7 +31,7 @@
 		<div class="card-header">
 			Notas
 		</div>
-        @livewire('admin.nota-index', [ 'unidad' => $unidad])
+        @livewire('admin.notas-index', [ 'unidad' => $unidad])
 	</div>
 @stop
 

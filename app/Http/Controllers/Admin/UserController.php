@@ -51,30 +51,38 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $empleado_id = $request->empleado_id;
-        $empleado = Empleado::where('id', $empleado_id)->first();
-
         $request->validate([
             'email' => ['required', 'email'],
             'password' => $this->passwordRules(),
         ]);
 
+        $name = '';
+
+
+
         try {
+            if (isset($request->empleado_id)) {
+                
+                $empleado_id = $request->empleado_id;
+                $empleado = Empleado::where('id', $empleado_id)->first();            
+                $name = $empleado->nombres.' '.$empleado->apellidos;
             
-            $name = $empleado->nombres.' '.$empleado->apellidos;
+            }
+
             $user = User::create([
                     'name' => $name,
                     'email' => $_POST['email'],
                     'password' => Hash::make($_POST['password']),
                 ]);
+            
 
-            if ($user) {
+            if (isset($request->empleado_id) && $user) {
                 
                 if ($empleado->update(['user_id' => $user->id])) {
                     return redirect()->route('admin.users.index')->with('info', 'El usuario se creó correctamente');
-                    
                 }
             }
+
 
         } catch (\PDOException $e) {
             return view('admin.users.create', [

@@ -82,5 +82,11 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.notas.edit', 'description' => 'Editar notas'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'admin.notas.destroy', 'description' => 'Eliminar notas'])->syncRoles([$role1, $role2]);
 
+        //Permisos Profesore
+        Permission::create(['name' => 'admin.profesores.index', 'description' => 'Ver listado de profesores'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'admin.profesores.create', 'description' => 'Crear profesores'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'admin.profesores.edit', 'description' => 'Editar profesores'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'admin.profesores.destroy', 'description' => 'Eliminar profesores'])->syncRoles([$role1, $role2]);
+
     }
 }

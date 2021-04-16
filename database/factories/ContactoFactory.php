@@ -27,7 +27,9 @@ class ContactoFactory extends Factory
         return [
             'nombres' => $nombres,
             'apellidos' => $this->faker->word(8),
+            'telefono' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail,
+            'estado' => $this->faker->numberBetween($min = 0, $max = 3),
             'empleado_id' => $this->faker->numberBetween($min = 1, $max = 2)
         ];
     }

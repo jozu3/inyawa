@@ -1,7 +1,7 @@
 <div>
     <div class="card">
     	<div class="card-header">
-    		<input wire:model="search" class="form-control" placeholder="Ingrese nombre, correo, grado academico o telefono de un contacto">
+    		<input wire:model="search" class="form-control" placeholder="Ingrese nombre, apellido o telefono de un contacto">
     	</div>
         @if ($contactos->count())
     	<div class="card-body">
@@ -11,10 +11,8 @@
     					<th>Nombre</th>
     					<th>Apellidos</th>
     					<th>Telefono</th>
-    					<th>Email</th>
                         <th>Asignado a:</th>
-{{--     					<th>DNI</th> 
-    					<th>Grado académico</th>--}}
+                        <th>Veces contactadas por su vendedor actual</th>
     					<th colspan="2"></th>
     				</tr>
     			</thead>
@@ -24,7 +22,6 @@
                     	<td>{{ $contacto->nombres }}</td>
                     	<td>{{ $contacto->apellidos }}</td>
                     	<td>{{ $contacto->telefono }}</td>
-                    	<td>{{ $contacto->email }}</td>
                         @foreach (Auth::user()->roles as $role)
                             @if ($role->id == 1)
 
@@ -46,20 +43,52 @@
                                 </span>
                                 <span>
                                     
-                                    {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+                                    {!! Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) !!}
                                 </span>
                             {!! Form::close() !!}
                            </td> 
+                            <td>
+                                @php
+                                    $vcp_mi = 0
+                                @endphp 
+                                @foreach($contacto->seguimientos as $segui)
+                                    @php
+                                        if ($segui->empleado->id == $contacto->empleado->id){
+                                            $vcp_mi++;
+                                        }
+                                    @endphp
+                                @endforeach
+                                @if ($vcp_mi == 0)
+                                    <b class="alert-warning">No contactado</b>
+                                @else
+                                    <b>{{ $vcp_mi }}</b>
+                                @endif
+                            </td>
 
                             @else
                             <td>
                                 {{ $contacto->empleado->user->name }}
                             </td>
+                            <td>
+                                @php
+                                    $vcp_mi = 0
+                                @endphp 
+                                @foreach($contacto->seguimientos as $segui)
+                                    @php
+                                        if ($segui->empleado->id == auth()->user()->empleado->id){
+                                            $vcp_mi++;
+                                        }
+                                    @endphp
+                                @endforeach
+                                @if ($vcp_mi == 0)
+                                    <b class="alert-warning">No contactado</b>
+                                @else
+                                    <b>{{ $vcp_mi }}</b>
+                                @endif
+                            </td>   
                             @endif
                         @endforeach
-                        
-{{--                     	<td>{{ $contacto->doc }}</td> 
-                    	<td>{{ $contacto->grado_academico }}</td>--}}
+                                            
                         <td width="10px">
                     		<a href="{{ route('admin.contactos.show', $contacto) }}" class="btn btn-success" ><i class="fas fa-file-signature"></i></a>
                     	</td>

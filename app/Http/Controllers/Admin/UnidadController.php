@@ -102,8 +102,13 @@ class UnidadController extends Controller
      */
     public function destroy(Unidad $unidad)
     {
+
+        foreach ($unidad->notas as $nota){
+            $nota->delete();
+        }
+
         $unidad->delete();
 
-        return redirect()->route('admin.cursos.edit', $unidad->curso)->with('info', 'La unidad se eliminó con éxito'); 
+        return redirect()->route('admin.grupos.edit', $unidad->grupo)->with('info', 'La unidad se eliminó con éxito'); 
     }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Unidad;
+use App\Models\User;
 
 class Profesore extends Model
 {
@@ -13,5 +14,9 @@ class Profesore extends Model
 
     public function unidad(){
         return $this->hasOne(Unidad::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

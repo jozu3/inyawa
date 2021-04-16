@@ -8,9 +8,15 @@
     		<table class="table table-striped">
     			<thead>
     				<tr>
-                        <th>Fecha</th>
-    					<th>Contacto</th>
-    					<th>Curso</th>
+                        <th wire:click="sortBy('fecha')" style="cursor:pointer">Fecha
+                            @include('partials._sort-icon', ['field' => 'fecha'])
+                        </th>
+    					<th wire:click="sortBy('nombres')" style="cursor:pointer;">Contacto
+                            @include('partials._sort-icon', ['field' => 'nombres'])
+                        </th>
+    					<th wire:click="sortBy('cursos.nombre')" style="cursor:pointer">Curso
+                            @include('partials._sort-icon', ['field' => 'cursos.nombre'])
+                        </th>
                         <th>Comentario</th>
                         <th>Usuario</th>
     					<th></th>
@@ -20,10 +26,10 @@
     				@foreach($seguimientos as $seguimiento)
     				  <tr>
                         <td>{{ $seguimiento->fecha }}</td>
-    				  	<td>{{ $seguimiento->nombres }}</td>
+    				  	<td> <b> {{ $seguimiento->nombres }}</b></td>
                         <td>{{ $seguimiento->nombre }}</td>
                         <td>{{ $seguimiento->comentario }}</td>
-    				  	<td>{{ $seguimiento->empleado->user->name }}</td>
+    				  	<td>{{ $seguimiento->empleado->user->name}}</td>
     				  	<td width="10px">
     				  		<a href="{{ route('admin.contactos.show', $seguimiento->contacto) }}" class="btn btn-primary" >Editar</a>
     				  	</td>

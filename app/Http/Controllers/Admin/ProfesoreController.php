@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Profesore;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProfesoreController extends Controller
@@ -18,7 +20,7 @@ class ProfesoreController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.profesores.index');
     }
 
     /**
@@ -28,7 +30,7 @@ class ProfesoreController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.profesores.create');
     }
 
     /**
@@ -39,7 +41,28 @@ class ProfesoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombres' => 'required',
+            'apellidos' => 'required',
+            'telefono' => 'required',
+            'email' => 'required',
+        ]);
+
+        $name = $request->nombres . ' ' . $request->apellidos;
+        
+        $user = User::create([
+                    'name' => $name,
+                    'email' => $_POST['email'],
+                    'password' => Hash::make('password'),
+                ]);
+
+        $request['user_id'] = $user->id;
+
+        //dd($request);
+        $profesore = Profesore::create($request->all());
+
+
+        return redirect()->route('admin.profesores.index')->with('info', 'El profesor se creó correctamente.');
     }
 
     /**
@@ -61,7 +84,7 @@ class ProfesoreController extends Controller
      */
     public function edit(Profesore $profesore)
     {
-        //
+        return view('admin.profesores.edit');
     }
 
     /**

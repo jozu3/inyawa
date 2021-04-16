@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Seguimiento;
 use App\Models\Empleado;
 
 class UserSeeder extends Seeder
@@ -42,6 +43,9 @@ class UserSeeder extends Seeder
             'user_id' => 2,
         ]);
 
+        
         $users = User::factory(3)->create();
+
+
     }
 }

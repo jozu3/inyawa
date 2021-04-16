@@ -31,6 +31,7 @@ class ContactosIndex extends Component
         		->orWhere('email', 'like','%'.$this->search.'%')
         		->paginate();
 
+            //vendedor
         if (auth()->user()->roles[0]->id == 3) {
             $that = $this;
 
@@ -38,8 +39,8 @@ class ContactosIndex extends Component
                                 ->where(function($query) use ($that) {
                                       $query->orWhere('nombres', 'like','%'.$that->search.'%')
                                             ->orWhere('apellidos', 'like','%'.$that->search.'%')
-                                            ->orWhere('telefono', 'like','%'.$that->search.'%')
-                                            ->orWhere('email', 'like','%'.$that->search.'%');
+                                            ->orWhere('telefono', 'like','%'.$that->search.'%');
+                                           // ->orWhere('email', 'like','%'.$that->search.'%');
                                 })->paginate();            
         }
 

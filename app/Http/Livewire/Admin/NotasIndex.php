@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\Unidad;
 use App\Models\Nota;
 
-class NotaIndex extends Component
+class NotasIndex extends Component
 {
 	public $unidad;
 	public $descripcion;
@@ -63,6 +63,6 @@ class NotaIndex extends Component
 
     	$notas = $this->unidad->notas;//Nota::where('unidad_id', $this->unidad->id)->get();
 
-        return view('livewire.admin.nota-index', compact('notas'));
+        return view('livewire.admin.notas-index', compact('notas'));
     }
 }

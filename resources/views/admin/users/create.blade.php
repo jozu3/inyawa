@@ -20,7 +20,9 @@
     <div class="card">
     	<dic class="card-body">
     		{!! Form::open(['route' => 'admin.users.store']) !!}
+                @if (isset($empleado))
                 <input type="hidden" name="empleado_id" value="{{ $empleado }}">
+                @endif
                 <div class="form-group">
                     {!! Form::label('email', 'Email:') !!}
                     {!! Form::text('email', null, ['class' => 'form-control']) !!}
