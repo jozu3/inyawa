@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Contacto;
+use App\Models\Matricula;
 
 class Alumno extends Model
 {
@@ -18,5 +19,9 @@ class Alumno extends Model
 
     public function contacto(){
     	return $this->belongsTo(Contacto::class);
+    }
+
+    public function matriculas(){
+    	return $this->hasMany(Matricula::class);
     }
 }

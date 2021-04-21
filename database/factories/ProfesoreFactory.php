@@ -22,7 +22,7 @@ class ProfesoreFactory extends Factory
     public function definition()
     {
         return [
-            'nombres' => $this->faker->name(),
+            'nombres' => $this->faker->firstName(),
             'apellidos' => $this->faker->lastName(),
             'telefono' => $this->faker->phoneNumber(),
             'user_id' => $this->faker->numberBetween($min = 3, $max = 5),

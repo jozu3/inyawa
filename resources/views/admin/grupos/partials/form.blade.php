@@ -69,7 +69,8 @@
 	{!! Form::label('estado', 'Estado') !!}
 	{!! Form::select('estado', [
 			'0' => 'Por iniciar',
-			'1' => 'iniciado',
+			'1' => 'Iniciado',
+			'2' => 'Terminado',
 		], null, ['class' => 'form-control', 'placeholder' => 'Escoge']); !!}
 	@error('estado')
 		<small class="text-danger">{{ $message }}</small>

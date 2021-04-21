@@ -25,11 +25,6 @@ class ContactosIndex extends Component
         $empleados = Empleado::all();
         $vendedor = null;
 
-        $contactos = Contacto::where('nombres', 'like','%'.$this->search.'%')
-        		->orWhere('apellidos', 'like','%'.$this->search.'%')
-        		->orWhere('telefono', 'like','%'.$this->search.'%')
-        		->orWhere('email', 'like','%'.$this->search.'%')
-        		->paginate();
 
             //vendedor
         if (auth()->user()->roles[0]->id == 3) {
@@ -42,6 +37,13 @@ class ContactosIndex extends Component
                                             ->orWhere('telefono', 'like','%'.$that->search.'%');
                                            // ->orWhere('email', 'like','%'.$that->search.'%');
                                 })->paginate();            
+        } else {
+            
+            $contactos = Contacto::where('nombres', 'like','%'.$this->search.'%')
+            		->orWhere('apellidos', 'like','%'.$this->search.'%')
+            		->orWhere('telefono', 'like','%'.$this->search.'%')
+            		->orWhere('email', 'like','%'.$this->search.'%')
+            		->paginate();
         }
 
 

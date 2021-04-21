@@ -84,7 +84,7 @@ class ProfesoreController extends Controller
      */
     public function edit(Profesore $profesore)
     {
-        return view('admin.profesores.edit');
+        return view('admin.profesores.edit', compact('profesore'));
     }
 
     /**
@@ -96,7 +96,9 @@ class ProfesoreController extends Controller
      */
     public function update(Request $request, Profesore $profesore)
     {
-        //
+        $profesore->update($request->all());
+
+        return redirect()->route('admin.profesore.edit', compact('profesore'))->with('info', 'Los datos se guardaron correctamente');
     }
 
     /**

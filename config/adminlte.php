@@ -267,7 +267,7 @@ return [
         [
             'text'        => 'Profesores',
             'route'         => 'admin.profesores.index',
-            'icon'        => 'fas fa-users-cog',
+            'icon'        => 'fas fa-chalkboard-teacher',
             'can'  =>   'admin.profesores.index'
         ],
 
@@ -291,8 +291,20 @@ return [
         [
             'text' => 'Cursos',
             'route'  => 'admin.cursos.index',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fab fa-leanpub',
             'can'  =>   'admin.cursos.index'
+        ],
+        [
+            'text' => 'Matriculas',
+            'route'  => 'admin.matriculas.index',
+            'icon' => 'fas fa-address-card',
+            'can'  =>   'admin.matriculas.index'
+        ],
+        [
+            'text' => 'Alumnos',
+            'route'  => 'admin.alumnos.index',
+            'icon' => 'fas fa-user-graduate',
+            'can'  =>   'admin.alumnos.index'
         ],
       /*  [
             'text'    => 'Ventas',

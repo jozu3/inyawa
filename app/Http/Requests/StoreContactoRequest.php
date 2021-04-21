@@ -13,7 +13,7 @@ class StoreContactoRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->user_id == auth()->user()->id ) {
+        if ($this->empleado_id_logged == auth()->user()->empleado->id ) {
             return true;
         } else {
             return false;
@@ -29,7 +29,7 @@ class StoreContactoRequest extends FormRequest
     {
         if ($this->asignar == 'true') {
             $rules = [
-                'user_id' => 'required',
+                'empleado_id_logged' => 'required',
                 'empleado_id' => 'required',
             ];
 
@@ -38,7 +38,7 @@ class StoreContactoRequest extends FormRequest
             $rules = [
                 'nombres' => 'required',
                 'telefono' => 'required',
-                //'email' => ['required', 'email'],
+                'estado' => 'required|in:1,2,3,4,5',
             ];
 
             if ($this->grado_academico) {

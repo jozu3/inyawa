@@ -22,11 +22,11 @@ class ContactoFactory extends Factory
      */
     public function definition()
     {
-        $nombres = $this->faker->word(8);
+        $nombres = $this->faker->firstName();
 
         return [
             'nombres' => $nombres,
-            'apellidos' => $this->faker->word(8),
+            'apellidos' => $this->faker->lastName().' '.$this->faker->lastName(),
             'telefono' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail,
             'estado' => $this->faker->numberBetween($min = 0, $max = 3),

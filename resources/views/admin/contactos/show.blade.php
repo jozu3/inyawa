@@ -3,7 +3,7 @@
 @section('title', 'Inyawa')
 
 @section('content_header')
-	<a href="{{ route('admin.contactos.create') }}" class="btn btn-success btn-sm float-right">Matricular</a>
+	<a href="{{ route('admin.matriculas.create', 'idcontacto='.$contacto->id) }}" class="btn btn-success btn-sm float-right">Matricular</a>
     <h1>Contacto: {{ $contacto->nombres.' '.$contacto->apellidos }}</h1>
 @stop
 
@@ -31,52 +31,7 @@
 				{!! Form::submit('Actualizar datos', ['class' => 'btn btn-primary']) !!}
 				</div>
 				{!! Form::close() !!}
-				{{-- <div class="row">
-					<div class="col-md-6">
-						<h5>Nombres</h5>
-						<p class="form-control">{{ $contacto->nombres }}</p>
-					</div>
-					<div class="col-md-6">
-						<h5>Apellidos</h5>
-						<p class="form-control">{{ $contacto->apellidos }}</p>
-					</div>
-					<div class="col-md-4">
-						<h5>Teléfono</h5>
-						<p class="form-control">{{ $contacto->telefono }}</p>
-					</div>
-					<div class="col-md-4">
-						<h5>Email</h5>
-						<p class="form-control">{{ $contacto->email }}</p>
-					</div>
-					<div class="col-md-4">
-						<h5>DNI/CE</h5>
-						<p class="form-control">{{ $contacto->doc }}</p>
-					</div>
-					<div class="col-md-12">
-						<h5>Grado acádemico</h5>
-						<p class="form-control">
-							@switch($contacto->grado_academico)
-							    @case(1)
-							        {{ 'Educación primaria' }}
-							        @break
-						        @case(2)
-							        {{ 'Educación secundaria' }}
-							        @break
-							    @case(3)
-							        {{ 'Técnico superior' }}
-							        @break
-							    @case(4)
-							        {{ 'Univesitario' }}
-							        @break
-							
-							    @default
-							        {{ '' }}
-							@endswitch
-							
-						</p>
-					</div>
-
-				</div> --}}
+				
 			</div>
 		</div>
 		

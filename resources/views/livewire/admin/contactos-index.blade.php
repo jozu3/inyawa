@@ -27,7 +27,7 @@
 
                             <td>
                             {!! Form::model($contacto, ['route' => ['admin.contactos.update', $contacto], 'method' => 'put']) !!}
-                                {!! Form::hidden('user_id', auth()->user()->id) !!}
+                                {!! Form::hidden('empleado_id_logged', auth()->user()->empleado->id) !!}
                                 {!! Form::hidden('asignar', 'true') !!}
                                 <span>
     

@@ -4,15 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Contacto;
-use App\Models\Seguimiento;
-use App\Http\Requests\StoreSeguimientoRequest;
+use App\models\Obligacione;
 
-class SeguimientoController extends Controller
+class ObligacioneController extends Controller
 {
-    public function __construct(){
-        $this->middleware('can:admin.seguimientos.index');//->only('index');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +15,7 @@ class SeguimientoController extends Controller
      */
     public function index()
     {
-        return view('admin.seguimientos.index');
+        //
     }
 
     /**
@@ -28,7 +23,7 @@ class SeguimientoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Contacto $contacto)
+    public function create()
     {
         //
     }
@@ -39,21 +34,18 @@ class SeguimientoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSeguimientoRequest $request)
+    public function store(Request $request)
     {
-        $seguimiento = Seguimiento::create($request->all());
-        $contacto = Contacto::find($request->contacto_id);
-
-        return redirect()->route('admin.contactos.show', compact('contacto'))->with('info', 'Comentario creado con éxito');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  Obligacione $obligacione
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Obligacione $obligacione)
     {
         //
     }
@@ -61,10 +53,10 @@ class SeguimientoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  Obligacione $obligacione
      * @return \Illuminate\Http\Response
      */
-    public function edit(Seguimiento $seguimiento)
+    public function edit(Obligacione $obligacione)
     {
         //
     }
@@ -73,10 +65,10 @@ class SeguimientoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  Obligacione $obligacione
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Obligacione $obligacione)
     {
         //
     }
@@ -84,10 +76,10 @@ class SeguimientoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  Obligacione $obligacione
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Obligacione $obligacione)
     {
         //
     }

@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\UnidadController;
 use App\Http\Controllers\Admin\NotaController;
 use App\Http\Controllers\Admin\GrupoController;
 use App\Http\Controllers\Admin\ProfesoreController;
+use App\Http\Controllers\Admin\MatriculaController;
+use App\Http\Controllers\Admin\ObligacioneController;
 
 
 Route::resource('', HomeController::class)->names('admin');
@@ -28,6 +30,8 @@ Route::resource('unidads', UnidadController::class)->names('admin.unidads');
 Route::resource('notas', NotaController::class)->names('admin.notas');
 Route::resource('profesores', ProfesoreController::class)->names('admin.profesores');
 Route::resource('grupos', GrupoController::class)->names('admin.grupos');
+Route::resource('matriculas', MatriculaController::class)->names('admin.matriculas');
+Route::resource('obligaciones', ObligacioneController::class)->names('admin.obligaciones');
 
 
 
