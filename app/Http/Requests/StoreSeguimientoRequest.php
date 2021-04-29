@@ -13,7 +13,7 @@ class StoreSeguimientoRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->user_id == auth()->user()->id ) {
+        if ($this->empleado_id == auth()->user()->empleado->id ) {
             return true;
         } else {
             return false;
@@ -31,7 +31,9 @@ class StoreSeguimientoRequest extends FormRequest
             'contacto_id' => 'required',
             'curso_id' => 'required',
             'user_id' => 'required',
+            'empleado_id' => 'required',
             'comentario' => 'required',
+            'estado' => 'required',
         ];;
 
 

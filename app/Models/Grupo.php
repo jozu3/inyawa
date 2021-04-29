@@ -18,4 +18,8 @@ class Grupo extends Model
     public function curso(){
         return $this->belongsTo(Curso::class);
     }
+
+    public function matriculas(){
+    	return $this->hasMany(Matriculas::class);
+    }
 }

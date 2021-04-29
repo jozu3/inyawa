@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CursoSeeder::class);
         $this->call(ProfesoreSeeder::class);
         Seguimiento::factory(50)->create();
+        $this->call(GrupoSeeder::class);
     }
 }

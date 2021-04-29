@@ -4,13 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Alumno;
+use App\Models\Pago;
 
-class AlumnoController extends Controller
+class PagoController extends Controller
 {
-    public function __construct(){
-        $this->middleware('can:admin.alumnos.index');//->only('index');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +15,7 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-       
-        return view('admin.alumnos.index');
+        //
     }
 
     /**
@@ -46,10 +42,10 @@ class AlumnoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  Alumno $alumno
+     * @param  int  Pago $pago
      * @return \Illuminate\Http\Response
      */
-    public function show(Alumno $alumno)
+    public function show(Pago $pago)
     {
         //
     }
@@ -57,22 +53,22 @@ class AlumnoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  Alumno $alumno
+     * @param  int  Pago $pago
      * @return \Illuminate\Http\Response
      */
-    public function edit(Alumno $alumno)
+    public function edit(Pago $pago)
     {
-        return view('admin.alumnos.edit', compact('alumno'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  Alumno $alumno
+     * @param  int  Pago $pago
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Alumno $alumno)
+    public function update(Request $request, Pago $pago)
     {
         //
     }
@@ -80,10 +76,10 @@ class AlumnoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  Alumno $alumno
+     * @param  int  Pago $pago
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alumno $alumno)
+    public function destroy(Pago $pago)
     {
         //
     }

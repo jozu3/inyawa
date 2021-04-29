@@ -34,7 +34,7 @@ class StoreMatriculaRequest extends FormRequest
                 'doc' => 'required',
                 'grado_academico' => 'required',
                 'email' => ['required', 'email'],
-                'estado' => 'required|in:1,2,3,4,5',
+                //'estado' => 'required|in:1,2,3,4,5',
                 'tipomatricula' => 'required',
                 'curso_id' => 'required',
                 'grupo_id' => 'required',

@@ -41,8 +41,10 @@ class SeguimientoController extends Controller
      */
     public function store(StoreSeguimientoRequest $request)
     {
+        $request['fecha'] = date('Y-m-d');
         $seguimiento = Seguimiento::create($request->all());
         $contacto = Contacto::find($request->contacto_id);
+        $contacto->update(['estado' => $request->estado]);
 
         return redirect()->route('admin.contactos.show', compact('contacto'))->with('info', 'Comentario creado con éxito');
     }

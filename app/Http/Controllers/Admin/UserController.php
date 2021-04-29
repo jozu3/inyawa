@@ -71,7 +71,8 @@ class UserController extends Controller
 
             $user = User::create([
                     'name' => $name,
-                    'email' => $_POST['email'],
+                    'email' => $request->email,
+                    'estado' => $request->estado,
                     'password' => Hash::make($_POST['password']),
                 ]);
             
@@ -129,10 +130,16 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $request->validate([
+            'email' => ['required', 'email'],
+            'estado' => ['required', 'numeric', 'min:0', 'max:1']
+        ]);
+
+
         $user->roles()->sync($request->roles);
         $user->update($request->all());
 
-        return redirect()->route('admin.users.edit', $user)->with('info', 'Se asigno los roles correctamente');
+        return redirect()->route('admin.users.edit', $user)->with('info', 'Se actualizó y asigno los roles correctamente');
     }
 
     /**

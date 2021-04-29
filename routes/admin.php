@@ -16,6 +16,9 @@ use App\Http\Controllers\Admin\GrupoController;
 use App\Http\Controllers\Admin\ProfesoreController;
 use App\Http\Controllers\Admin\MatriculaController;
 use App\Http\Controllers\Admin\ObligacioneController;
+use App\Http\Controllers\Admin\PagoController;
+use App\Http\Controllers\Admin\CuentaController;
+use App\Http\Controllers\PDFController;
 
 
 Route::resource('', HomeController::class)->names('admin');
@@ -32,8 +35,12 @@ Route::resource('profesores', ProfesoreController::class)->names('admin.profesor
 Route::resource('grupos', GrupoController::class)->names('admin.grupos');
 Route::resource('matriculas', MatriculaController::class)->names('admin.matriculas');
 Route::resource('obligaciones', ObligacioneController::class)->names('admin.obligaciones');
+Route::resource('pagos', PagoController::class)->names('admin.pagos');
+Route::resource('cuentas', CuentaController::class)->names('admin.cuentas');
 
+  
 
+Route::get('generate-pdf', [PDFController::class, 'generatePDF']);
 
 /*Route::resource('grupos', GrupoController::class, ['except' => ['create']])->names('admin.grupos');
 Route::get('grupos/create/{id}', [GrupoController::class, 'create'])->name('admin.grupos.create');

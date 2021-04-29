@@ -38,7 +38,7 @@ class StoreContactoRequest extends FormRequest
             $rules = [
                 'nombres' => 'required',
                 'telefono' => 'required',
-                'estado' => 'required|in:1,2,3,4,5',
+                //'estado' => 'required|in:1,2,3,4,5', //el estado se actuliza solo
             ];
 
             if ($this->grado_academico) {

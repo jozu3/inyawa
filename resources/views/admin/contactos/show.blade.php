@@ -25,7 +25,19 @@
 				{!! Form::model($contacto, ['route' => ['admin.contactos.update', $contacto], 'method' => 'put']) !!}
 
 				@include('admin.contactos.partials.form')
-
+				<div class="row">
+					
+				<div class="col-md-12">
+						{!! Form::label('estado', 'Estado') !!}
+						{!! Form::select('estado', [
+								'1' => 'No contactado',
+								'2' => 'Contactado',
+								'3' => 'Probable',
+								'4' => 'Confirmado',
+								'5' => 'Matriculado',
+							], null, ['class' => 'form-control', 'placeholder' => 'Escoge', 'disabled' => 'disabled', 'style' => 'appearance: none; ']); !!}
+				</div>
+				</div>
 				<br>
 				<div class="form-group">
 				{!! Form::submit('Actualizar datos', ['class' => 'btn btn-primary']) !!}
@@ -48,7 +60,9 @@
 							<th>Fecha</th>
 							<th>Curso</th>
 							<th>Comentario</th>
-							<th colspan="2">Usuario</th>
+							<th>Usuario</th>
+							<th>Estado del contacto</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -58,6 +72,7 @@
 								<td>{{$seg->curso->nombre}}</td>
 								<td>{{$seg->comentario}}</td>
 								<td colspan="2">{{$seg->empleado->user->name}}</td>
+								<td></td>
 							</tr>
 						@endforeach
                         <tr>
@@ -68,7 +83,7 @@
 							{!! Form::hidden('empleado_id', auth()->user()->empleado->id) !!}
 
                             <td width="100px">
-								{!! Form::date('fecha', date('Y-m-d'), ['class' => 'form-control', 'placeholder' => 'Ingrese un comentario']) !!}
+								{!! Form::date('', date('Y-m-d'), ['class' => 'form-control', 'disabled' => 'disabled']) !!}
                             </td>
                             <td>
                             	{!! Form::select('curso_id', $cursos, null, ['class' => 'form-control', 'placeholder' => 'Escoge un curso']); !!}
@@ -85,6 +100,16 @@
                             <td width="200px">
                                 {!! Form::text('user', auth()->user()->empleado->user->name, ['class' => 'form-control', 'disabled' => 'disabled']) !!}
                             </td>
+                            <td>
+								{!! Form::select('estado', [
+										'2' => 'Contactado',
+										'3' => 'Probable',
+										'4' => 'Confirmado',
+									], null, ['class' => 'form-control', 'placeholder' => 'Escoge', 'style' => '']); !!}
+								@error('estado')
+									<small class="text-danger">{{ $message }}</small>
+								@enderror
+                            </td>	
                             <td>
                             	{!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
                             </td>

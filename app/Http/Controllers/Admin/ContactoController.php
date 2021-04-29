@@ -45,6 +45,7 @@ class ContactoController extends Controller
      */
     public function store(StoreContactoRequest $request)
     {
+        $request['estado'] = 1;
         $contacto = Contacto::create($request->all());
 
         return redirect()->route('admin.contactos.show', compact('contacto'))->with('info', 'Contacto creado con éxito');
@@ -92,6 +93,11 @@ class ContactoController extends Controller
         if ($request->asignar == 'true'){
             return redirect()->route('admin.contactos.index')->with('info', 'Contacto actualizado con éxito');
         }
+
+        if ($request->updt_alumno == 'true'){
+            $alumno = $contacto->alumno;
+            return redirect()->route('admin.alumnos.edit', compact('alumno') )->with('info', 'Contacto actualizado con éxito');
+        }        
         
 
         return redirect()->route('admin.contactos.show', compact('contacto'))->with('info', 'Contacto actualizado con éxito');

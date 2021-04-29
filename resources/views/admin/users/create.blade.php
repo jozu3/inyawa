@@ -23,6 +23,7 @@
                 @if (isset($empleado))
                 <input type="hidden" name="empleado_id" value="{{ $empleado }}">
                 @endif
+                <input type="hidden" name="estado" value="1">
                 <div class="form-group">
                     {!! Form::label('email', 'Email:') !!}
                     {!! Form::text('email', null, ['class' => 'form-control']) !!}

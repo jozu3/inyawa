@@ -8,12 +8,12 @@
 
 @section('content')
     <div class="card">
-    	<dic class="card-body">
+    	<div class="card-body">
     		{!! Form::model($contacto, ['route' => 'admin.matriculas.store']) !!}
                 @include('admin.matriculas.partials.form')
                 {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}
     		{!! Form::close() !!}
-    	</dic>
+    	</div>
     </div>
 @stop
 

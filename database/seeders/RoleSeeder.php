@@ -100,5 +100,17 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.obligaciones.edit', 'description' => 'Editar obligaciones'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'admin.obligaciones.destroy', 'description' => 'Eliminar obligaciones'])->syncRoles([$role1, $role2]);
 
+         //Permisos Pagos
+        Permission::create(['name' => 'admin.pagos.index', 'description' => 'Ver listado de pagos'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'admin.pagos.create', 'description' => 'Crear pagos'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'admin.pagos.edit', 'description' => 'Editar pagos'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'admin.pagos.destroy', 'description' => 'Eliminar pagos'])->syncRoles([$role1, $role2]);
+
+         //Permisos Cuentas
+        Permission::create(['name' => 'admin.cuentas.index', 'description' => 'Ver listado de cuentas'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'admin.cuentas.create', 'description' => 'Crear cuentas'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'admin.cuentas.edit', 'description' => 'Editar cuentas'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'admin.cuentas.destroy', 'description' => 'Eliminar cuentas'])->syncRoles([$role1, $role2]);
+
     }
 }

@@ -12,6 +12,7 @@
             {{ session('info') }}
         </div>
     @endif
+    @livewire('admin.matriculas-index')
 @stop
 
 @section('css')

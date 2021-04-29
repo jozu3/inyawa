@@ -29,10 +29,4 @@ class CursoFactory extends Factory
     }
 }
 /*
-            'matricula' => $this->faker->numberBetween($min = 1500, $max = 6000),
-            'matricula2' => $this->faker->numberBetween($min = 1500, $max = 6000),
-            'ncuotas' => $this->faker->numberBetween($min = 1, $max = 10),
-            'cuota' => $this->faker->numberBetween($min = 1500, $max = 6000),
-            'cuota2' => $this->faker->numberBetween($min = 1500, $max = 6000),
-            'certificacion' => $this->faker->numberBetween($min = 1500, $max = 6000),
-            'certificacion2' => $this->faker->numberBetween($min = 1500, $max = 6000),*/
+            */

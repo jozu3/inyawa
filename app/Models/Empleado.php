@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Seguimiento;
 use App\Models\Contacto;
 use App\Models\User;
+use App\Models\Matricula;
 
 class Empleado extends Model
 {
@@ -24,5 +25,9 @@ class Empleado extends Model
 
     public function contactos(){
         return $this->hasMany(Contacto::class);
+    }
+    
+    public function matriculas(){
+        return $this->hasMany(Matricula::class);
     }
 }

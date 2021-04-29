@@ -1,4 +1,3 @@
-{!! Form::hidden('user_id', auth()->user()->id) !!}
 {!! Form::hidden('empleado_id', auth()->user()->empleado->id) !!}
 {!! Form::hidden('empleado_id_logged', auth()->user()->empleado->id) !!}
 <div class="row">
@@ -40,7 +39,7 @@
 		<small class="text-danger">{{ $message }}</small>
 @enderror
 </div>
-<div class="col-md-6">
+<div class="col-md-12">
 	{!! Form::label('grado_academico', 'Grado académico') !!}
 	{!! Form::select('grado_academico', [
 			'1' => 'Educación primaria',
@@ -53,7 +52,7 @@
 	@enderror
 
 </div> 
-<div class="col-md-6">
+{{-- <div class="col-md-6">
 	{!! Form::label('estado', 'Estado') !!}
 	{!! Form::select('estado', [
 			'1' => 'No contactado',
@@ -64,6 +63,6 @@
 		], null, ['class' => 'form-control', 'placeholder' => 'Escoge']); !!}
 	@error('estado')
 		<small class="text-danger">{{ $message }}</small>
-	@enderror
-</div> 
+	@enderror 
+</div> --}}
 </div> 

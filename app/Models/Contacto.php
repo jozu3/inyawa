@@ -20,7 +20,12 @@ class Contacto extends Model
     public function alumno(){
         return $this->hasOne(Alumno::class);
     }
+    
     public function empleado(){
         return $this->belongsTo(Empleado::class);
+    }
+
+    public function seguimientosVendedor(){
+        
     }
 }

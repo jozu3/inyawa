@@ -19,6 +19,14 @@
             {!! Form::model($user, ['route' => ['admin.users.update', $user], 'method' => 'put']) !!}
                 <p class="h5">Correo electrónico:</p>
                 {!! Form::text('email',null, ['class' => 'form-control']) !!}
+                @error('email')
+                        <small class="text-danger">{{ $message }}</small>
+                @enderror
+                <p class="h5">Estado:</p>
+                {!! Form::select('estado',['0' => 'Deshabilitado', '1' => 'Habilitado'],null, ['class' => 'form-control', 'placeholder' => '- Escoge una opción -']) !!}
+                @error('estado')
+                        <small class="text-danger">{{ $message }}</small>
+                @enderror
                 <h2 class="h5 mt-3">Listado de roles</h2>
                 @foreach ($roles as $role)
                     <div>

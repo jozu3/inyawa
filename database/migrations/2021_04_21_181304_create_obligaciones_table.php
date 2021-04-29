@@ -15,6 +15,13 @@ class CreateObligacionesTable extends Migration
     {
         Schema::create('obligaciones', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('matricula_id')->constrained();
+            $table->string('concepto');
+            $table->date('fechalimite');
+            $table->double('monto', 8, 2);
+            $table->double('descuento', 8, 2);
+            $table->double('montofinal', 8, 2);
+            $table->tinyInteger('estado');
             $table->timestamps();
         });
     }

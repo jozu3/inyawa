@@ -21,7 +21,11 @@
     				  	<td>{{ $empleado->apellidos }}</td>
                         <td>{{ $empleado->telefono }}</td>
     				  	<td>
+                            @if ( $empleado->user)
                             {{ $empleado->user->email }}
+                            @else
+                            <a href="{{ route('admin.users.create', ['empleado' => $empleado]) }}" class="btn btn-primary" >Crear usuario</a>
+                            @endif
                         </td>
     				  	<td width="10px">
     				  		<a href="{{ route('admin.empleados.edit', $empleado) }}" class="btn btn-primary" >Editar</a>

@@ -1,56 +1,48 @@
 <div>
-	@if ($cursos->count())
-		<div class="form-group">
-			{!! Form::label('curso_id', 'Curso') !!}
-			{!! Form::select('curso_id', $cursos, null, ['class' => 'form-control', 'placeholder' => 'Escoge un curso', 'wire:model' => 'curso_id']); !!}
-			@error('curso_id')
-				<small class="text-danger">{{ $message }}</small>
-			@enderror
-		</div> 
-		<div class="form-group">
-			{!! Form::label('grupo_id', 'Grupo') !!}
-			{!! Form::select('grupo_id', $grupos, null, ['class' => 'form-control', 'placeholder' => 'Escoga grupo según fecha de inicio', 'wire:model' => 'grupo_id']); !!}
-			@error('grupo_id')
-				<small class="text-danger">{{ $message }}</small>
-			@enderror
-		</div> 
+    <div class="card">
+    	<div class="card-header">
+    		<input wire:model="search" class="form-control" placeholder="Ingrese nombre de un matricula">
+    	</div>
+        @if ($matriculas->count())
+    	<div class="card-body">
+    		<table class="table table-striped">
+    			<thead>
+    				<tr>
+                        <th>Fecha</th>
+                        <th>Curso</th>
+                        <th>Grupo</th>
+    					<th>Nombres</th>
+    					<th>Apellidos</th>
+                        <th>Telefono</th>
+                        <th>Empleado</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				@foreach($matriculas as $matricula)
+    				  <tr>
+                        <td>{{ $matricula->fecha}}</td>
+                        <td>{{ $matricula->grupo->curso->nombre }}</td>
+                        <td>{{ $matricula->grupo->fecha }}</td>
+    				  	<td>{{ $matricula->alumno->contacto->nombres }}</td>
+    				  	<td>{{ $matricula->alumno->contacto->apellidos }}</td>
+                        <td>{{ $matricula->alumno->contacto->telefono }}</td>
+                        <td>{{ $matricula->empleado->user->name }}</td>
+    				  	<td width="10px">
+    				  		<a href="{{ route('admin.matriculas.show', $matricula) }}" class="btn btn-primary">Ver</a>
+    				  	</td>
+    				  </tr>
+    				@endforeach
 
-	@else
-	    <div class="">
-	        <b>No hay cursos disponibles</b>        
-	    </div>
-	@endif
-	@if ($grupo_seleccionado)
-	<table class="table table-striped">
-		<thead>
-			<th></th>
-			<th>Alumno nuevo</th>
-			<th>Alumno antiguo</th>
-		</thead>
-		<tbody>
-			<tr>
-				<td><b>Precio de matrícula</b></td>
-				<td>S/ {{ $grupo_seleccionado->matricula }}</td>
-				<td>S/ {{ $grupo_seleccionado->matricula2 }}</td>
-			</tr>
-			<tr>
-				<td><b>Cantidad de cuotas</b></td>
-				<td> {{ $grupo_seleccionado->ncuotas }}</td>
-				<td>{{ $grupo_seleccionado->ncuotas }}</td>
-			</tr>
-			<tr>
-				<td><b>Precio de cuota</b></td>
-				<td>S/ {{ $grupo_seleccionado->cuota }}</td>
-				<td>S/ {{ $grupo_seleccionado->cuota2 }}</td>
-			</tr>
-			<tr>
-				<td><b>Precio de certificación</b></td>
-				<td>S/ {{ $grupo_seleccionado->certificacion }}</td>
-				<td>S/ {{ $grupo_seleccionado->certificacion2 }}</td>
-			</tr>
-		</tbody>
-	</table>
-    
-    @endif
-   
+    			</tbody>
+    		</table>
+    	</div>
+        <div class="card-footer">
+            {{ $matriculas->links() }}
+        </div>
+        @else
+            <div class="card-body">
+                <b>No hay matriculas</b>        
+            </div>
+        @endif
+    </div>
 </div>

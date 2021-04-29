@@ -1,22 +1,18 @@
 @extends('adminlte::page')
 
-@section('title', 'Editar contacto')
+@section('title', 'Alumnos')
 
 @section('content_header')
-    <h1>Editar contacto</h1>
+    <h1>Lista de alumnos</h1>
 @stop
 
 @section('content')
 	@if (session('info'))
-		<div class="alert alert-success">
-			{{ session('info') }}
-		</div>
-	@endif
-    <div class="card">
-		<div class="card-body">
-			
-		</div>
-	</div>
+        <div class="alert alert-success">
+            {{ session('info') }}
+        </div>
+    @endif
+    @livewire('admin.alumnos-index')
 @stop
 
 @section('css')
