@@ -103,9 +103,9 @@ class CursoController extends Controller
     {
 
 
-        if ($curso->unidads->count()) {
-            return $curso->unidads->count();
-               
+        if (count($curso->grupos) || count($curso->seguimientos)) {
+            //return count($curso->grupos);
+            return redirect()->route('admin.cursos.index')->with('error', 'No puede borrar si tiene grupos o comentarios acerca de este curso');    
         } else {
             $curso->delete();
             return redirect()->route('admin.cursos.index')->with('info', 'El curso se eliminó con éxito'); 

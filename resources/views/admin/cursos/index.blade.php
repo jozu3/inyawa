@@ -13,6 +13,11 @@
             {{ session('info') }}
         </div>
     @endif
+     @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     @livewire('admin.cursos-index')
 @stop
 
