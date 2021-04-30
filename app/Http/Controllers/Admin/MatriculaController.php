@@ -191,7 +191,12 @@ class MatriculaController extends Controller
      */
     public function update(Request $request, Matricula $matricula)
     {
-             
+        $matricula->update([
+            'tipomatricula' => $request->tipomatricula,
+            'grupo_id' => $request->grupo_id
+        ]);
+        
+        return redirect()->route('admin.matriculas.edit', compact('matricula'))->with('info','Se actualizaron los datos correctamente');
     }
 
     /**
@@ -203,9 +208,5 @@ class MatriculaController extends Controller
     public function destroy(Matricula $matricula)
     {
         //
-    }
-
-    private function codigoalumno(){
-        //return $codigo;
     }
 }

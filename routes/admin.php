@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\MatriculaController;
 use App\Http\Controllers\Admin\ObligacioneController;
 use App\Http\Controllers\Admin\PagoController;
 use App\Http\Controllers\Admin\CuentaController;
-use App\Http\Controllers\PDFController;
+use App\Http\Controllers\Admin\PDFController;
 
 
 Route::resource('', HomeController::class)->names('admin');
@@ -37,10 +37,11 @@ Route::resource('matriculas', MatriculaController::class)->names('admin.matricul
 Route::resource('obligaciones', ObligacioneController::class)->names('admin.obligaciones');
 Route::resource('pagos', PagoController::class)->names('admin.pagos');
 Route::resource('cuentas', CuentaController::class)->names('admin.cuentas');
+//Route::resource('pdfs', PDFController::class)->names('pdfs');
 
   
 
-Route::get('generate-pdf', [PDFController::class, 'generatePDF']);
+Route::get('recibo-matricula/{idmatricula}', [PDFController::class, 'reciboMatricula'])->name('admin.print');
 
 /*Route::resource('grupos', GrupoController::class, ['except' => ['create']])->names('admin.grupos');
 Route::get('grupos/create/{id}', [GrupoController::class, 'create'])->name('admin.grupos.create');

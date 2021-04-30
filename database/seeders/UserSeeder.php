@@ -16,31 +16,36 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $nom_admin_1 = 'Sebastian';
+        $ape_admin_1 = 'Cruz';
+
+        $nom_admin_2 = 'Brickson';
+        $ape_admin_2 = 'Alarcon ';
 
         User::create([
-            'name' => 'Josué Vitate',
-            'email' => 'josue.vitate@gmail.com',
+            'name' => $nom_admin_1.' '.$ape_admin_1,
+            'email' => $nom_admin_1.'.'.$ape_admin_1.'@admin.org',
             'estado' => 1,
-            'password' => bcrypt('12345678j')
+            'password' => bcrypt('password')
         ])->assignRole('Admin');
 
         User::create([
-            'name' => 'Brckson',
-            'email' => 'brik@gmail.com',
+            'name' => $nom_admin_2.' '.$ape_admin_2,
+            'email' => $nom_admin_2.'.'.$ape_admin_2.'@admin.org',
             'estado' => 1,
-            'password' => bcrypt('12345678j')
+            'password' => bcrypt('password')
         ])->assignRole('Vendedor');
 
         Empleado::create([
-            'nombres' => 'Josué',
-            'apellidos' => 'Vitate',
+            'nombres' => $nom_admin_1,
+            'apellidos' => $ape_admin_1,
             'telefono' => '987564321',
             'user_id' => 1,
         ]);
         
         Empleado::create([
-            'nombres' => 'Brikson',
-            'apellidos' => 'Perez',
+            'nombres' => $nom_admin_2,
+            'apellidos' => $ape_admin_2,
             'telefono' => '987564321',
             'user_id' => 2,
         ]);

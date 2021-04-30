@@ -70,7 +70,15 @@ class ObligacioneController extends Controller
      */
     public function update(Request $request, Obligacione $obligacione)
     {
-        //
+        $obligacione->update([
+            'fecha' => $request->fechalimite,
+            'descuento' => $request->descuento,
+            'montofinal' => $obligacione->monto - $request->descuento,
+        ]);
+
+        $matricula = $obligacione->matricula;
+
+        return redirect()->route('admin.matriculas.edit', compact('matricula'))->with('obl-actualizada', 'Se guardó correctamente.');
     }
 
     /**

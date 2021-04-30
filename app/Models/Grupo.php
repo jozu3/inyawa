@@ -23,3 +23,9 @@ class Grupo extends Model
     	return $this->hasMany(Matriculas::class);
     }
 }
+/*
+'0' => 'Por iniciar',
+'1' => 'Iniciado',
+'2' => 'Terminado',
+
+*/

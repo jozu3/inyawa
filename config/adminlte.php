@@ -295,6 +295,12 @@ return [
             'can'  =>   'admin.cursos.index'
         ],
         [
+            'text' => 'Grupos',
+            'route'  => 'admin.grupos.index',
+            'icon' => 'fab fa-leanpub',
+            'can'  =>   'admin.grupos.index'
+        ],
+        [
             'text' => 'Matriculas',
             'route'  => 'admin.matriculas.index',
             'icon' => 'fas fa-address-card',

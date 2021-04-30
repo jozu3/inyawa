@@ -19,7 +19,9 @@ class GrupoController extends Controller
      */
     public function index()
     {
-        //
+        $grupos = Grupo::all();
+        
+        return view('admin.grupos.index', compact('grupos'));
     }
 
     /**

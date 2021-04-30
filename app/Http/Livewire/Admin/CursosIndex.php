@@ -25,7 +25,7 @@ class CursosIndex extends Component
         $cursos = Curso::where('nombre', 'like','%'.$this->search.'%');
 
         if ($est == 1) {
-			$cursos = $cursos->Where('estado', $est);
+			$cursos = $cursos->where('estado', $est);
         }
 
 		$cursos = $cursos->paginate();

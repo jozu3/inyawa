@@ -3,7 +3,8 @@
 @section('title', 'Detalle de Matricula')
 
 @section('content_header')
-<a href="{{ route('admin.matriculas.edit', $matricula) }}" class="btn btn-success btn-sm float-right">Editar matrícula</a>
+	<a href="{{ route('admin.matriculas.edit', $matricula) }}" class="btn btn-success btn-sm float-right">Editar matrícula</a>
+	<a href="{{ route('admin.print', 'recibo-matricula?idmatricula='.$matricula->id) }}" class="btn btn-danger btn-sm float-right mr-2"><i class="fas fa-file-pdf"></i> Imprimir recibo</a>
     <h1>Alumno: {{ $matricula->alumno->contacto->nombres.' '.$matricula->alumno->contacto->apellidos }}</h1>
 @stop
 

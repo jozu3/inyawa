@@ -7,6 +7,11 @@
 @stop
 
 @section('content')
+    @if (session('info'))
+        <div class="alert alert-success">
+            {{ session('info') }}
+        </div>
+    @endif
     <div class="card">
         <div class="card-header">
             <b>Detalle de la matrícula</b>
@@ -23,8 +28,14 @@
     <div class="card">  
         <div class="card-header">
                 <b>Obligaciones por pagar</b>
-            </div>
+        </div>
         <div class="card-body">
+            @if (session('obl-actualizada'))
+                <div class="alert alert-success">
+                    {{ session('obl-actualizada') }}
+                </div>
+            @endif
+            
             <table class="table table-striped">
                     <thead>
                         <tr>
@@ -39,8 +50,11 @@
                     <tbody>
                         @foreach ($matricula->obligaciones as $obligacione)
                             <tr>
+                                {!! Form::model( $obligacione, ['route' => ['admin.obligaciones.update', $obligacione], 'method' => 'put']) !!}
                                 <td>{{$obligacione->concepto}}</td>
-                                <td>{{$obligacione->fechalimite}}</td>
+                                <td>
+                                    {!! Form::date('fechalimite', null,['class' => 'form-control']) !!}
+                                </td>
                                 <td>
                                     @switch ($obligacione->estado)
                                         @case(0)
@@ -57,8 +71,7 @@
                                             @break
                                     @endswitch
                                 </td>
-                                <td>{{$obligacione->montofinal}}</td>
-                                {!! Form::model( $obligacione, ['route' => ['admin.obligaciones.update', $obligacione], 'method' => 'put']) !!}
+                                <td>{{$obligacione->monto}}</td>
                                 <td>
                                     {!! Form::number('descuento',null,['class' => 'form-control', 'style' => 'max-width:100px', 'min' => '0', 'step' => '0.01']) !!}
                                 </td>

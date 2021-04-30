@@ -89,7 +89,7 @@
                             @endswitch
                         </td>
                         @foreach (Auth::user()->roles as $role)
-                            @if ($role->id == 1)
+                            @if ($role->id == 1 || $role->id == 2)
                                 <td>
                                 {!! Form::model($contacto, ['route' => ['admin.contactos.update', $contacto], 'method' => 'put']) !!}
                                     {!! Form::hidden('empleado_id_logged', auth()->user()->empleado->id) !!}
