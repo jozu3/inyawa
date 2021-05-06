@@ -32,7 +32,11 @@
     		<table class="table table-striped">
     			<thead>
     				<tr>
-    					<th wire:click="sortBy('nombres')" style="cursor:pointer">Nombre
+                        <!--https://web.whatsapp.com/send?phone=584141849565-->
+    					<th wire:click="sortBy('codigo_c')" style="cursor:pointer">Código
+                            @include('partials._sort-icon', ['field' => 'codigo_c'])
+                        </th>
+                        <th wire:click="sortBy('nombres')" style="cursor:pointer">Nombre
                             @include('partials._sort-icon', ['field' => 'nombres'])
                         </th>
     					<th wire:click="sortBy('apellidos')" style="cursor:pointer">Apellidos
@@ -57,6 +61,7 @@
     			<tbody>
     				@foreach($contactos as $contacto)
                     <tr>
+                        <td>{{ $contacto->codigo_c }}</td>
                     	<td>{{ $contacto->nombres }}</td>
                     	<td>{{ $contacto->apellidos }}</td>
                     	<td>{{ $contacto->telefono }}</td>

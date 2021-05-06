@@ -20,13 +20,13 @@ class AlumnosIndex extends Component
 
     public function render()
     {
-    	 $alumnos = Alumno::join('contactos', 'alumnos.contacto_id', '=', 'contactos.id')
+    	 $alumnos = Alumno::select('*','alumnos.id as id', 'contactos.id as idcontacto')->join('contactos', 'alumnos.contacto_id', '=', 'contactos.id')
     	 			->where('contactos.nombres', 'like','%'.$this->search.'%')
             		->orWhere('contactos.apellidos', 'like','%'.$this->search.'%')
             		->orWhere('contactos.telefono', 'like','%'.$this->search.'%')
             		->orWhere('contactos.email', 'like','%'.$this->search.'%')
             		->paginate();
-            		
+            		//dd($alumnos);
         return view('livewire.admin.alumnos-index', compact('alumnos'));
     }
 }

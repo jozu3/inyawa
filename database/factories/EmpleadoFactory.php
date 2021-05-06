@@ -21,10 +21,11 @@ class EmpleadoFactory extends Factory
      */
     public function definition()
     {
-        /*return [
-            'nombres' => $this->faker->word(4),
-            'apellidos' => $this->faker->word(4),
+        return [
+            'nombres' => $this->faker->firstName().' '.$this->faker->firstName(),
+            'apellidos' => $this->faker->lastName().' '.$this->faker->lastName(),
             'telefono' => $this->faker->phoneNumber(),
-        ];*/
+            'user_id' => $this->faker->unique()->numberBetween(6,12)
+        ];
     }
 }

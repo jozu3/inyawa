@@ -27,12 +27,9 @@
 			{!! Form::close() !!}
 		</div>
 	</div>
-	<div class="card">
-		<div class="card-header">
-			Notas
-		</div>
-        @livewire('admin.notas-index', [ 'unidad' => $unidad])
-	</div>
+	
+    @livewire('admin.notas-index', [ 'unidad' => $unidad])
+	
 @stop
 
 @section('css')

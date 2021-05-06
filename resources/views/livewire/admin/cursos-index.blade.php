@@ -17,8 +17,8 @@
     					<th>Curso</th>
                         <th>Estado</th>
                         <th width="200px">Grupos por inciciar</th>
-                        <th width="200px">Grupos iniciados</th>
-    					<th>Estado</th>
+                        <th width="200px">Grupos por inciciar</th>
+                        <th width="200px">Grupos terminados</th>
     					<th colspan="2"></th>
     				</tr>
     			</thead>
@@ -59,6 +59,19 @@
                                  @endif  
                             @endforeach
                             {{ $gru_ini }}
+                        </td>
+                         <td>{{-- grupos terminados --}}
+                            @php
+                            $gru_termin = 0
+                            @endphp
+                            @foreach ($curso->grupos as $grupo)
+                                @if ($grupo->estado == 2)
+                                    @php
+                                     $gru_termin++ 
+                                    @endphp
+                                 @endif  
+                            @endforeach
+                            {{ $gru_termin }}
                         </td>
     				  	<td width="10px">
     				  		<a href="{{ route('admin.cursos.edit', $curso) }}" class="btn btn-sm btn-primary" >Editar</a>

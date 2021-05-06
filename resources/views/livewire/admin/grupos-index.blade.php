@@ -1,7 +1,9 @@
 <div>
     <div class="card">
     	<div class="card-header">
+            @if (!isset($curso_id))
     		<input wire:model="search" class="form-control" placeholder="Ingrese nombre de un curso">
+            @endif
             <div class="form-check mr-3 d-inline">
               <input class="form-check-input" wire:model= "poriniciar" type="checkbox" value="" id="poriniciar">
               <label class="form-check-label" for="poriniciar">
@@ -22,7 +24,7 @@
             </div>
     	</div>
         @if ($grupos->count())
-    	<div class="card-body">
+    	<div class="card-body overflow-auto">
     		<table class="table table-striped">
     			<thead>
     				<tr>
@@ -49,8 +51,11 @@
                             @endif
                         </td>
     				  	<td width="10px">
-    				  		<a href="{{ route('admin.grupos.edit', $grupo) }}" class="btn btn-sm btn-primary" >Editar</a>
-    				  	</td>
+                            <a href="{{ route('admin.grupos.edit', $grupo) }}" class="btn btn-sm btn-primary" >Editar</a>
+                        </td>
+                        <td width="10px">
+                            <a href="{{ route('admin.grupos.show', $grupo) }}" class="btn btn-sm btn-primary" >Alumnos</a>
+                        </td>
     				  	<td width="10px">
 							<form method="POST" action="{{ route('admin.grupos.destroy', $grupo) }}">
 								@csrf

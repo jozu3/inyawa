@@ -1,14 +1,21 @@
 {!! Form::hidden('empleado_id', auth()->user()->empleado->id) !!}
 {!! Form::hidden('empleado_id_logged', auth()->user()->empleado->id) !!}
 <div class="row">
-<div class="col-md-6">
+<div class="col-md-4">
+	{!! Form::label('codigo_c', 'Código de contacto') !!}
+	{!! Form::text('codigo_c', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el codigo para el nuevo contacto']) !!}
+	@error('codigo_c')
+		<small class="text-danger">{{ $message }}</small>
+	@enderror
+</div>
+<div class="col-md-4">
 	{!! Form::label('nombres', 'Nombre') !!}
 	{!! Form::text('nombres', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre del nuevo contacto']) !!}
 	@error('nombres')
 		<small class="text-danger">{{ $message }}</small>
 	@enderror
 </div>
-					<div class="col-md-6">
+<div class="col-md-4">
 	{!! Form::label('apellidos', 'Apellidos') !!}
 	{!! Form::text('apellidos', null, ['class' => 'form-control', 'placeholder' => 'Ingrese los apellidos del nuevo contacto']) !!}
 	@error('apellidos')
@@ -46,7 +53,7 @@
 			'2' => 'Educación secundaria',
 			'3' => 'Técnico superior',
 			'4' => 'Universitario',
-		], null, ['class' => 'form-control', 'placeholder' => 'Escoge']); !!}
+		], null, ['class' => 'form-control', 'placeholder' => '-- Escoge un grado académico --']); !!}
 	@error('grado_academico')
 		<small class="text-danger">{{ $message }}</small>
 	@enderror

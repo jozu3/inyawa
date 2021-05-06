@@ -63,7 +63,8 @@ class ContactosIndex extends Component
                                 ->where('estado', '<=', '4')
                                 ->whereIn('estado', $states)
                                 ->where(function($query) use ($that) {
-                                      $query->orWhere('nombres', 'like','%'.$that->search.'%')
+                                      $query->orWhere('codigo_c', 'like','%'.$that->search.'%')
+                                            ->orWhere('nombres', 'like','%'.$that->search.'%')
                                             ->orWhere('apellidos', 'like','%'.$that->search.'%')
                                             ->orWhere('telefono', 'like','%'.$that->search.'%');
                                            // ->orWhere('email', 'like','%'.$that->search.'%');
@@ -117,7 +118,8 @@ class ContactosIndex extends Component
                                 ->where('estado', '<=', '4')
                                 ->whereIn('estado', $states)
                                 ->where(function($query) use ($that) {
-                                      $query->orWhere('nombres', 'like','%'.$that->search.'%')
+                                      $query->orWhere('codigo_c', 'like','%'.$that->search.'%')
+                                            ->orWhere('nombres', 'like','%'.$that->search.'%')
                                             ->orWhere('apellidos', 'like','%'.$that->search.'%')
                                             ->orWhere('telefono', 'like','%'.$that->search.'%');
                                            // ->orWhere('email', 'like','%'.$that->search.'%');

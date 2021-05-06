@@ -18,10 +18,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
-        $this->call(ContactoSeeder::class);
+        $this->call(EmpleadoSeeder::class);
         $this->call(CursoSeeder::class);
+        $this->call(ContactoSeeder::class);
         $this->call(ProfesoreSeeder::class);
-        Seguimiento::factory(50)->create();
+        $this->call(SeguimientoSeeder::class);
         $this->call(GrupoSeeder::class);
     }
 }

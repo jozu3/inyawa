@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Nota;
+use App\Http\Requests\UpdateNotaRequest;
+
 
 class NotaController extends Controller
 {
@@ -71,13 +73,10 @@ class NotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nota $nota)
+    public function update(UpdateNotaRequest $request, Nota $nota)
     {
-        $request->validate([
-            'descripcion' => 'required',
-            'valor' => 'required',
-        ]);
-         
+        
+                 
         $nota->update($request->all());
 
         return redirect()->route('admin.notas.edit', compact('nota'))->with('info', 'Se actualizaron los datos');

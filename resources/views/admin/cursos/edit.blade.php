@@ -26,7 +26,7 @@
 			{!! Form::close() !!}
 		</div>
 	</div>
-	<div class="card">
+	<!--div class="card">
 		<div class="card-header">
 			Grupos
      		<a href="{{ route('admin.grupos.create', 'idcurso='.$curso->id) }}" class="btn btn-success btn-sm float-right">Nuevo grupo</a>
@@ -36,7 +36,8 @@
     			<thead>
     				<tr>
     					<th>Grupo</th>
-    					<th>Fecha de inicio</th>
+                        <th>Fecha de inicio</th>
+    					<th>Estado</th>
     					<th colspan="2"></th>
     				</tr>
     			</thead>
@@ -44,7 +45,18 @@
     				@foreach($curso->grupos as $grupo)
     				  <tr>
     				  	<td>{{ $grupo->curso->nombre }}</td>
-    				  	<td>{{ $grupo->fecha }}</td>
+                        <td>{{ $grupo->fecha }}</td>
+    				  	<td>
+                            @if ($grupo->estado == 0)
+                                {{ 'Por iniciar' }}
+                            @endif
+                            @if ($grupo->estado == 1)
+                                {{ 'Iniciado' }}
+                            @endif
+                            @if ($grupo->estado == 2)
+                                {{ 'Terminado' }}
+                            @endif
+                        </td>
     				  	<td width="10px">
     				  		<a href="{{ route('admin.grupos.edit', $grupo) }}" class="btn btn-sm btn-primary" >Editar</a>
     				  	</td>
@@ -61,7 +73,10 @@
     			</tbody>
     		</table>
     	</div>
-	</div>
+	</div-->
+    <h4>Listado de grupos</h4>
+    @livewire('admin.grupos-index', ['curso_id' => $curso->id, 'terminado' => false])
+
 @stop
 
 @section('css')

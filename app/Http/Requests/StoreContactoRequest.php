@@ -36,7 +36,8 @@ class StoreContactoRequest extends FormRequest
         } else {
 
             $rules = [
-                'nombres' => 'required',
+                'codigo_c' => 'required',
+                //'nombres' => 'required',
                 'telefono' => 'required',
                 //'estado' => 'required|in:1,2,3,4,5', //el estado se actuliza solo
             ];

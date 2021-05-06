@@ -72,9 +72,9 @@ class GrupoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Grupo $grupo)
     {
-        //
+        return view('admin.grupos.show', compact('grupo'));
     }
 
     /**

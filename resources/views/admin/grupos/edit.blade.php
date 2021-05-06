@@ -33,6 +33,13 @@
         @livewire('admin.unidad-index', [ 'grupo' => $grupo])
 		
 	</div>
+	<div class="card">
+		<div class="card-header">
+			Clases
+		</div>
+        @livewire('admin.clases-index', [ 'grupo' => $grupo])
+		
+	</div>
 @stop
 
 @section('css')

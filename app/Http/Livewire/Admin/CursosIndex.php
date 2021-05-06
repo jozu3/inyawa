@@ -28,7 +28,7 @@ class CursosIndex extends Component
 			$cursos = $cursos->where('estado', $est);
         }
 
-		$cursos = $cursos->paginate();
+		$cursos = $cursos->paginate(50);
 
         return view('livewire.admin.cursos-index', compact('cursos', 'est'));
     }

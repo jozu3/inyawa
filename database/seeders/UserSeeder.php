@@ -19,8 +19,8 @@ class UserSeeder extends Seeder
         $nom_admin_1 = 'Sebastian';
         $ape_admin_1 = 'Cruz';
 
-        $nom_admin_2 = 'Brickson';
-        $ape_admin_2 = 'Alarcon ';
+        $nom_admin_2 = 'Brikson';
+        $ape_admin_2 = 'Alarcon';
 
         User::create([
             'name' => $nom_admin_1.' '.$ape_admin_1,
@@ -51,7 +51,7 @@ class UserSeeder extends Seeder
         ]);
 
         
-        $users = User::factory(3)->create();
+        $users = User::factory(10)->create();
 
 
     }

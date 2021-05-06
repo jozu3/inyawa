@@ -3,9 +3,11 @@
 		<thead>
 			<tr>
 				<th>Unidad</th>
+				<th>Fecha de inicio</th>
+				<th>Cantidad de clases</th>
 				<th>Profesor</th>
 				<th>Notas</th>
-				<th></th>
+				<th>Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -13,15 +15,29 @@
 			@foreach($unidads as $unidad)
 			  <tr>
 			  	<td width="250px">{{ $unidad->descripcion }}</td>
+			  	<td width="250px">{{ $unidad->fechainicio }}</td>
+			  	<td width="250px">{{ $unidad->cantidad_clases }}</td>
 			  	<td width="250px">{{ $unidad->profesore->nombres.' '.$unidad->profesore->apellidos }}</td>
 			  	<td>
 			  		<div>
 							@foreach ($unidad->notas as $nota)
+							@if ($nota->tipo == 0)
 							<ul class="list-group list-group-horizontal">
+							  <li class="list-group-item list-nota">{{ 'Nota Regular' }}</li>
 							  <li class="list-group-item list-nota">{{$nota->valor*100}} %</li>
 							  <li class="list-group-item list-nota list-nota2">{{$nota->descripcion}}</li>
 							</ul>
-							@endforeach					
+							@endif
+							@endforeach
+							@foreach ($unidad->notas as $nota)
+							@if ($nota->tipo == 1)
+							<ul class="list-group list-group-horizontal">
+							  <li class="list-group-item list-nota">{{'Nota Recuperatoria'}}</li>
+							  <li class="list-group-item list-nota">Reemplaza a la nota más baja</li>
+							  <li class="list-group-item list-nota list-nota2">{{$nota->descripcion}}</li>
+							</ul>
+							@endif
+							@endforeach
 					</div>
 			  	</td>
 			  	<td width="10px">
@@ -40,6 +56,9 @@
 		    <tr>
 		    	<td>No hay unidades</td>		                
 		    	<td></td>
+		    	<td></td>
+		    	<td></td>
+		    	<td></td>
 		    </tr>
 		@endif
 			<tr>
@@ -48,15 +67,21 @@
 					<input type="text" name="descripcion" wire:model="descripcion" class="form-control">
 				</td>
 				<td>
+					<input type="date" name="fechainicio" wire:model="fechainicio" class="form-control">
+				</td>
+				<td>
+					<input type="number" min="1" name="cantidad_clases" wire:model="cantidad_clases" class="form-control">
+				</td>
+				<td>
 					<select name="profesore_id" wire:model="profesore_id" class="form-control">
 						<option value="-1">- Seleccione -</option>
 						@foreach ($profesores as $profesore)
-						<option value="{{ $profesore->id }}">{{ $profesore->nombres }}</option>
+						<option value="{{ $profesore->id }}">{{ $profesore->nombres.' '.$profesore->apellidos }}</option>
 						@endforeach
 					</select>
 				</td>
 				<td>
-					<input type="submit" value="Guardar" class="btn btn-sm btn-primary">
+					<input type="submit" value="Guardar"  wire:loading.attr="disabled" wire:target="submit" class="btn btn-sm btn-primary disabled:opacity-25">
 				</td>
 				</form>
 			</tr>

@@ -23,7 +23,7 @@ class CursoFactory extends Factory
     {
 
         return [
-            'nombre' => $this->faker->word(8),
+            'nombre' => $this->faker->word(),
             'estado' => $this->faker->numberBetween($min = 0, $max = 1),
         ];
     }

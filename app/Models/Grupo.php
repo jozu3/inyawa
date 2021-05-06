@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Curso;
+use App\Models\Matricula;
 
 class Grupo extends Model
 {
@@ -20,7 +21,7 @@ class Grupo extends Model
     }
 
     public function matriculas(){
-    	return $this->hasMany(Matriculas::class);
+    	return $this->hasMany(Matricula::class);
     }
 }
 /*

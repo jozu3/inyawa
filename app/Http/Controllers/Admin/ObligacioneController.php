@@ -71,7 +71,7 @@ class ObligacioneController extends Controller
     public function update(Request $request, Obligacione $obligacione)
     {
         $obligacione->update([
-            'fecha' => $request->fechalimite,
+            'fechalimite' => $request->fechalimite,
             'descuento' => $request->descuento,
             'montofinal' => $obligacione->monto - $request->descuento,
         ]);

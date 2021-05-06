@@ -13,6 +13,9 @@
 		</div>
 	@endif
     <div class="card">
+        <div class="card-header">
+            <h4>Código de alumno: {{ $alumno->codigo }}</h4>
+        </div>
 		<div class="card-body">
 			{!! Form::model($alumno->contacto, ['route' => ['admin.contactos.update', $alumno->contacto], 'method' => 'put']) !!}
 				{!! Form::hidden('updt_alumno','true') !!}
