@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\ObligacioneController;
 use App\Http\Controllers\Admin\PagoController;
 use App\Http\Controllers\Admin\CuentaController;
 use App\Http\Controllers\Admin\PDFController;
+use App\Http\Controllers\Admin\ClaseController;
 
 
 Route::resource('', HomeController::class)->names('admin');
@@ -37,6 +38,7 @@ Route::resource('matriculas', MatriculaController::class)->names('admin.matricul
 Route::resource('obligaciones', ObligacioneController::class)->names('admin.obligaciones');
 Route::resource('pagos', PagoController::class)->names('admin.pagos');
 Route::resource('cuentas', CuentaController::class)->names('admin.cuentas');
+Route::resource('clases', ClasesController::class)->names('admin.clases');
 //Route::resource('pdfs', PDFController::class)->names('pdfs');
 
   

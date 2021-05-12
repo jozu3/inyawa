@@ -4,10 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePagoRequest;
 use App\Models\Pago;
+use App\Models\Cuenta;
+use App\Models\Obligacione;
 
 class PagoController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:admin.pagos.index');//->only('index');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,7 @@ class PagoController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pagos.index');
     }
 
     /**
@@ -25,7 +31,10 @@ class PagoController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', Pago::class);
+
+        $cuentas = Cuenta::all()->pluck('cuenta', 'id');
+        return view('admin.pagos.create', compact('cuentas'));
     }
 
     /**
@@ -34,9 +43,12 @@ class PagoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePagoRequest $request)
     {
-        //
+
+        Pago::create($request->all());
+
+        return redirect()->route('admin.pagos.index')->with('info', 'El pago se registro correctamente.');
     }
 
     /**
@@ -47,7 +59,6 @@ class PagoController extends Controller
      */
     public function show(Pago $pago)
     {
-        //
     }
 
     /**
@@ -58,7 +69,9 @@ class PagoController extends Controller
      */
     public function edit(Pago $pago)
     {
-        //
+        $cuentas = Cuenta::all()->pluck('cuenta', 'id');
+        return view('admin.pagos.edit', compact('pago' ,'cuentas'));
+        
     }
 
     /**
@@ -68,9 +81,12 @@ class PagoController extends Controller
      * @param  int  Pago $pago
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pago $pago)
+    public function update(StorePagoRequest $request, Pago $pago)
     {
-        //
+        $this->authorize('update', $pago);
+        $pago->update($request->all());
+
+        return redirect()->route('admin.pagos.index')->with('info', 'El pago se registro correctamente.');
     }
 
     /**

@@ -20,6 +20,7 @@ class CreateObligacionesTable extends Migration
             $table->date('fechalimite');
             $table->double('monto', 8, 2);
             $table->double('descuento', 8, 2);
+            $table->double('montopagado', 8, 2);
             $table->double('montofinal', 8, 2);
             $table->tinyInteger('estado');
             $table->timestamps();

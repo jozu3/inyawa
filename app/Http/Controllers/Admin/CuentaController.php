@@ -8,6 +8,9 @@ use App\Models\Cuenta;
 
 class CuentaController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:admin.cuentas.index');//->only('index');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +18,7 @@ class CuentaController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.cuentas.index');
     }
 
     /**

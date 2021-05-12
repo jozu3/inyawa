@@ -36,7 +36,11 @@ class ClaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*$grupo = Grupo::find($request->grupo_id);
+
+        foreach ($grupo->unidads as $unidad){
+
+        }*/
     }
 
     /**

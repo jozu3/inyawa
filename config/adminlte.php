@@ -51,7 +51,7 @@ return [
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'InyawaLTE',
 
     /*
     |--------------------------------------------------------------------------
@@ -312,6 +312,22 @@ return [
             'route'  => 'admin.alumnos.index',
             'icon' => 'fas fa-user-graduate',
             'can'  =>   'admin.alumnos.index'
+        ],
+        [
+            'header' => 'Finanzas',
+            'can'  =>   'admin.pagos.index'
+        ],
+        [
+            'text' => 'Pagos',
+            'route'  => 'admin.pagos.index',
+            'icon' => 'fas fa-credit-card',
+            'can'  =>   'admin.pagos.index'
+        ],
+        [
+            'text' => 'Cuentas',
+            'route'  => 'admin.cuentas.index',
+            'icon' => 'fas fa-credit-card',
+            'can'  =>   'admin.cuentas.index'
         ],
       /*  [
             'text'    => 'Ventas',

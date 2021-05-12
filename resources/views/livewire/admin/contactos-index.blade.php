@@ -32,6 +32,7 @@
     		<table class="table table-striped">
     			<thead>
     				<tr>
+                        <th>ID</th>
                         <!--https://web.whatsapp.com/send?phone=584141849565-->
     					<th wire:click="sortBy('codigo_c')" style="cursor:pointer">Código
                             @include('partials._sort-icon', ['field' => 'codigo_c'])
@@ -61,6 +62,7 @@
     			<tbody>
     				@foreach($contactos as $contacto)
                     <tr>
+                        <td>{{ $contacto->id }}</td>
                         <td>{{ $contacto->codigo_c }}</td>
                     	<td>{{ $contacto->nombres }}</td>
                     	<td>{{ $contacto->apellidos }}</td>
@@ -93,8 +95,8 @@
                                 @break
                             @endswitch
                         </td>
-                        @foreach (Auth::user()->roles as $role)
-                            @if ($role->id == 1 || $role->id == 2)
+                       {{-- @foreach (Auth::user()->roles as $role)--}}
+                            @if (Auth::user()->hasRole(['Admin','Asistente'])) {{-- == 1 || $role->id == 2)--}}
                                 <td>
                                 {!! Form::model($contacto, ['route' => ['admin.contactos.update', $contacto], 'method' => 'put']) !!}
                                     {!! Form::hidden('empleado_id_logged', auth()->user()->empleado->id) !!}
@@ -104,9 +106,9 @@
                                     <select name="empleado_id" class="form-control" style="max-width: 150px; display: inline-block">
                                         @foreach ( $empleados as $empleado)
                                         @if ($empleado->id == $contacto->empleado->id)
-                                            <option value="{{$empleado->id }}" selected>{{$empleado->user->name }}</option>
+                                            <option value="{{$empleado->id }}" selected>{{$empleado->nombres.' '.$empleado->apellidos }}</option>
                                         @else
-                                            <option value="{{$empleado->id }}">{{$empleado->user->name }}</option>
+                                            <option value="{{$empleado->id }}">{{$empleado->nombres.' '.$empleado->apellidos }}</option>
                                         @endif
                                         @endforeach
                                     </select>
@@ -119,7 +121,7 @@
                                 </td>
                             @else
                                 <td>
-                                    {{ $contacto->empleado->user->name }}
+                                    {{ $contacto->empleado->nombres.' '.$empleado->apellidos }}
                                 </td>
                             @endif
                                 <td>
@@ -143,7 +145,8 @@
                                 <td>
                                     {{ count($contacto->seguimientos) }}
                                 </td> 
-                        @endforeach
+                          {{--  @break
+                        @endforeach--}}
                                             
                         <td width="10px">
                     		<a href="{{ route('admin.contactos.show', $contacto) }}" class="btn btn-success" ><i class="fas fa-file-signature"></i></a>

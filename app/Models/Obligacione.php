@@ -20,3 +20,20 @@ class Obligacione extends Model
     	return $this->hasMany(Pago::class);
     }
 }
+
+/*
+@switch ($obligacione->estado)
+    @case(0)
+        Exonerado
+        @break
+    @case(1)
+        Por pagar
+        @break
+    @case(2)
+        Parcial
+        @break
+    @case(3)
+        Pagado
+        @break
+@endswitch
+*/

@@ -18,6 +18,7 @@ class GruposIndex extends Component
     public $terminado = true;
 
 	protected $paginationTheme = 'bootstrap';
+	public $cant = 15;
 
 
 	public function updatingSearch(){
@@ -41,7 +42,7 @@ class GruposIndex extends Component
 		$grupos = $grupos->where('cursos.nombre', 'like','%'.$this->search.'%')
 			->whereIn('grupos.estado', $states)
 			->orderby('grupos.fecha', 'desc')
-		    ->paginate();
+		    ->paginate($this->cant);
     				    
 		$this->resetPage();
 

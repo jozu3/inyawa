@@ -61,18 +61,6 @@ class MatriculaController extends Controller
 
         if (!count($alumno_existe)){//entra si el alumno no existe
     
-            //obtener el ultimo codigo de alumno y asignar el nuevo
-            $ultimo = Alumno::orderBy('created_at', 'desc')->first();
-            $newcodigo = 1000;
-
-            if (!isset($ultimo->codigo) || $ultimo->codigo == 0 || $ultimo->codigo == null){
-                $request['codigo'] = 1000;
-            } else {
-                $newcodigo = $ultimo->codigo;
-                $newcodigo++;
-                $request['codigo'] = $newcodigo;
-            }
-
             //crear el usuario y asignarlo al request
             $user = User::create([
                 'name' => $contacto->nombres . ' ' . $contacto->apellidos,
@@ -83,6 +71,8 @@ class MatriculaController extends Controller
 
             $request['user_id'] = $user->id;
 
+            //obtener el ultimo codigo de alumno y asignar el nuevo
+            //AlumnoObserver / creating
             //crear el alumno 
             $alumno = Alumno::create($request->all());
 
@@ -98,64 +88,8 @@ class MatriculaController extends Controller
         //registrar la matrícula
         $matricula = Matricula::create($request->all());
 
-        //generar las obligaciones por pagar
-        $precio_matricula = $matricula->grupo->matricula;
-        $precio_cuota = $matricula->grupo->cuota;
-        $precio_certificacion = $matricula->grupo->certificacion;
+        //generar las obligaciones por pagar MatriculaObserver
         
-        switch ($matricula->tipomatricula) {
-            case 0:
-                $precio_matricula = $matricula->grupo->matricula;
-                $precio_cuota = $matricula->grupo->cuota;
-                $precio_certificacion = $matricula->grupo->certificacion;
-                break;
-            case 1:
-                $precio_matricula = $matricula->grupo->matricula2;
-                $precio_cuota = $matricula->grupo->cuota2;
-                $precio_certificacion = $matricula->grupo->certificacion2;
-                break;
-            default:
-                $precio_matricula = 15555;
-                $precio_cuota = 0;
-                $precio_certificacion = 0;
-                break;
-        }
-
-        //generar obligacion pago de matricula
-        Obligacione::create([
-            'matricula_id' => $matricula->id,
-            'concepto' => 'Matricula',
-            'fechalimite' => date('Y-m-d'),
-            'monto' => $precio_matricula,
-            'descuento' => 0,
-            'montofinal' => $precio_matricula,
-            'estado' => 1
-        ]);
-
-        //generar obligacion de cuotas por pagar
-        for ($i = 1; $i <= $matricula->grupo->ncuotas; $i++) {
-            Obligacione::create([
-                'matricula_id' => $matricula->id,
-                'concepto' => 'Cuota '.$i,
-                'fechalimite' => date('Y-m-d'),
-                'monto' => $precio_cuota,
-                'descuento' => 0,
-                'montofinal' => $precio_cuota,
-                'estado' => 1
-            ]);
-        }
-
-        //generar obligacion de certificacion
-        Obligacione::create([
-            'matricula_id' => $matricula->id,
-            'concepto' => 'Certificación',
-            'fechalimite' => date('Y-m-d'),
-            'monto' => $precio_certificacion,
-            'descuento' => 0,
-            'montofinal' => $precio_certificacion,
-            'estado' => 1
-        ]);
-
         return redirect()->route('admin.matriculas.show', $matricula)->with('info', 'Matrícula registrada correctamente.');
     }
 

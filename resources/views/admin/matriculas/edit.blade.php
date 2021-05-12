@@ -39,17 +39,20 @@
             <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Concepto</th>
                             <th>Fecha</th>
                             <th>Estado</th>
                             <th>Monto</th>
                             <th>Descuento</th>
+                            <th>Monto pagado</th>
                             <th>Monto final</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($matricula->obligaciones as $obligacione)
                             <tr>
+                                <td>{{ $obligacione->id }}</td>
                                 {!! Form::model( $obligacione, ['route' => ['admin.obligaciones.update', $obligacione], 'method' => 'put']) !!}
                                 <td>{{$obligacione->concepto}}</td>
                                 <td>
@@ -75,6 +78,7 @@
                                 <td>
                                     {!! Form::number('descuento',null,['class' => 'form-control', 'style' => 'max-width:100px', 'min' => '0', 'step' => '0.01']) !!}
                                 </td>
+                                <td>{{$obligacione->montopagado}}</td>
                                 <td>{{$obligacione->montofinal}}</td>
                                 <td>
                                     {!! Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) !!}

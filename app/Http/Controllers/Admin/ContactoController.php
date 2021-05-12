@@ -34,6 +34,8 @@ class ContactoController extends Controller
      */
     public function create()
     {
+        $this->authorize('crear', Contacto::class);
+
         return view('admin.contactos.create');
     }
 
@@ -59,6 +61,9 @@ class ContactoController extends Controller
      */
     public function show(Contacto $contacto)
     {
+        //dd($contacto->id);
+        $this->authorize('vendiendo', $contacto);
+
         $seguimientos = Seguimiento::where('contacto_id', $contacto->id)->get();
         $cursos = Curso::pluck('nombre', 'id');
 
@@ -71,9 +76,10 @@ class ContactoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Contacto $contacto)
     {
-        //
+        $this->authorize('vendiendo', $contacto);
+     
     }
 
     /**
@@ -85,6 +91,7 @@ class ContactoController extends Controller
      */
     public function update(StoreContactoRequest $request, Contacto $contacto)
     {
+        $this->authorize('vendiendo', $contacto);
 
         if (!$contacto->update($request->all())) {
             return redirect()->route('admin.contactos.show', compact('contacto'))->with('error', 'Hubo un error al actualizar');
@@ -110,8 +117,12 @@ class ContactoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Contacto $contacto)
     {
-        //
+        $this->authorize('vendiendo', $contacto);
+        
+        $contacto->delete();
+
+        return redirect()->route('admin.contactos.index')->with('info', 'Contacto eliminado con éxito');
     }
 }

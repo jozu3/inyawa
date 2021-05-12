@@ -6,7 +6,6 @@
 				<th>Fecha de inicio</th>
 				<th>Cantidad de clases</th>
 				<th>Profesor</th>
-				<th>Notas</th>
 				<th>Acciones</th>
 			</tr>
 		</thead>
@@ -14,32 +13,13 @@
         @if ($unidads->count())
 			@foreach($unidads as $unidad)
 			  <tr>
-			  	<td width="250px">{{ $unidad->descripcion }}</td>
+			  	<td width="250px">
+					<a class="btn dropdown-toggle" data-toggle="collapse" href="#list-notas{{ $unidad->id }}" role="button" aria-expanded="false" aria-controls="list-notas{{ $unidad->id }}">{{ $unidad->descripcion }}  </a>
+			  	</td>
 			  	<td width="250px">{{ $unidad->fechainicio }}</td>
 			  	<td width="250px">{{ $unidad->cantidad_clases }}</td>
 			  	<td width="250px">{{ $unidad->profesore->nombres.' '.$unidad->profesore->apellidos }}</td>
-			  	<td>
-			  		<div>
-							@foreach ($unidad->notas as $nota)
-							@if ($nota->tipo == 0)
-							<ul class="list-group list-group-horizontal">
-							  <li class="list-group-item list-nota">{{ 'Nota Regular' }}</li>
-							  <li class="list-group-item list-nota">{{$nota->valor*100}} %</li>
-							  <li class="list-group-item list-nota list-nota2">{{$nota->descripcion}}</li>
-							</ul>
-							@endif
-							@endforeach
-							@foreach ($unidad->notas as $nota)
-							@if ($nota->tipo == 1)
-							<ul class="list-group list-group-horizontal">
-							  <li class="list-group-item list-nota">{{'Nota Recuperatoria'}}</li>
-							  <li class="list-group-item list-nota">Reemplaza a la nota más baja</li>
-							  <li class="list-group-item list-nota list-nota2">{{$nota->descripcion}}</li>
-							</ul>
-							@endif
-							@endforeach
-					</div>
-			  	</td>
+			 
 			  	<td width="10px">
 			  		<a href="{{ route('admin.unidads.edit', $unidad) }}" class="btn btn-sm btn-primary" >Editar</a>
 			  	</td>
@@ -50,6 +30,44 @@
 						<button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
 					</form>
 				</td>
+			  </tr>
+			  <tr>
+			  	<td colspan="6">
+			  		<div class="row">
+					  <div class="col">
+					    <div class="collapse multi-collapse" id="list-notas{{ $unidad->id }}">
+					      <div class="">
+					        <div>
+					        	<ul class="list-group list-group-horizontal">
+								  <li class="list-group-item list-nota"><b>{{ 'Notas' }}</b></li>
+								  <li class="list-group-item list-nota"></li>
+								  <li class="list-group-item list-nota list-nota2"></li>
+								</ul>
+								@foreach ($unidad->notas as $nota)
+								@if ($nota->tipo == 0)
+								<ul class="list-group list-group-horizontal">
+								  <li class="list-group-item list-nota">{{ 'Nota Regular' }}</li>
+								  <li class="list-group-item list-nota">{{$nota->valor*100}} %</li>
+								  <li class="list-group-item list-nota list-nota2">{{$nota->descripcion}}</li>
+								</ul>
+								@endif
+								@endforeach
+								@foreach ($unidad->notas as $nota)
+								@if ($nota->tipo == 1)
+								<ul class="list-group list-group-horizontal">
+								  <li class="list-group-item list-nota">{{'Nota Recuperatoria'}}</li>
+								  <li class="list-group-item list-nota">Reemplaza a la nota más baja</li>
+								  <li class="list-group-item list-nota list-nota2">{{$nota->descripcion}}</li>
+								</ul>
+								@endif
+								@endforeach
+							</div>
+					      </div>
+					    </div>
+					  </div>
+					  
+					</div>
+			  	</td>
 			  </tr>
 			@endforeach
 		@else
@@ -65,12 +83,15 @@
 				<form wire:submit.prevent="submit">
 				<td>
 					<input type="text" name="descripcion" wire:model="descripcion" class="form-control">
+					@error('descripcion')<small class="text-danger">{{ $message }}</small> @enderror
 				</td>
 				<td>
 					<input type="date" name="fechainicio" wire:model="fechainicio" class="form-control">
+					@error('fechainicio')<small class="text-danger">{{ $message }}</small> @enderror
 				</td>
 				<td>
 					<input type="number" min="1" name="cantidad_clases" wire:model="cantidad_clases" class="form-control">
+					@error('cantidad_clases')<small class="text-danger">{{ $message }}</small> @enderror
 				</td>
 				<td>
 					<select name="profesore_id" wire:model="profesore_id" class="form-control">
@@ -79,6 +100,7 @@
 						<option value="{{ $profesore->id }}">{{ $profesore->nombres.' '.$profesore->apellidos }}</option>
 						@endforeach
 					</select>
+					@error('profesore_id')<small class="text-danger">{{ $message }}</small> @enderror
 				</td>
 				<td>
 					<input type="submit" value="Guardar"  wire:loading.attr="disabled" wire:target="submit" class="btn btn-sm btn-primary disabled:opacity-25">

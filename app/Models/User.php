@@ -14,6 +14,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\Alumno;
 use App\Models\Empleado;
+use App\Models\Profesore;
 
 class User extends Authenticatable
 {

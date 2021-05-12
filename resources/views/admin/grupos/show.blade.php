@@ -51,13 +51,8 @@
 				@include('admin.grupos.partials.register-notas')
 		  </div>
 		  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-		  	
 		  </div>
-		</div>
-
-
-
-		
+		</div>		
 	</div>
 </div>
 @stop

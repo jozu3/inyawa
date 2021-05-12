@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
             'email' => $nom_admin_2.'.'.$ape_admin_2.'@admin.org',
             'estado' => 1,
             'password' => bcrypt('password')
-        ])->assignRole('Vendedor');
+        ])->assignRole('Asistente');
 
         Empleado::create([
             'nombres' => $nom_admin_1,
@@ -51,8 +51,16 @@ class UserSeeder extends Seeder
         ]);
 
         
-        $users = User::factory(10)->create();
+        $profesores = User::factory(3)->create();
+        $vendedores = User::factory(7)->create();
 
+        foreach ($profesores as $profesor){
+            $profesor->assignRole('Profesor');
+        }
+
+        foreach ($vendedores as $vendedor){
+            $vendedor->assignRole('Vendedor');
+        }
 
     }
 }

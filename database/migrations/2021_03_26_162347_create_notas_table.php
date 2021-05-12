@@ -17,7 +17,7 @@ class CreateNotasTable extends Migration
             $table->id();
             $table->foreignId('unidad_id')->constrained();
             $table->string('descripcion', 150);
-            $table->unsignedDecimal('valor', 2, 2);
+            $table->unsignedDecimal('valor', 3, 2);
             $table->tinyInteger('tipo');//0-> regular, 1->recuperatoria
             $table->timestamps();
         });

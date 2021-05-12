@@ -45,7 +45,7 @@ class SeguimientoFactory extends Factory
             'curso_id' => $this->faker->randomElement($ids_cursos),
             'tipo' => 0,
             'comentario' => $this->faker->sentence(),
-            'empleado_id' => $this->faker->numberBetween($min = 1, $max = 2),
+            'empleado_id' => $this->faker->numberBetween($min = 6, $max = 12),
         ];
     }
 }

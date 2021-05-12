@@ -55,7 +55,6 @@ class ContactosIndex extends Component
         $this->confirmado == true ? array_push($states, "4") : '';
 
 
-
         if (auth()->user()->roles[0]->id == 3) {//vendedor
 
             $contactos = Contacto::where('empleado_id', '=', auth()->user()->empleado->id)
@@ -73,7 +72,7 @@ class ContactosIndex extends Component
                                 ->paginate();            
         } 
 
-        if (auth()->user()->roles[0]->id == 1 || auth()->user()->roles[0]->id == 2) {//admin o asistente
+        if (auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Asistente')) {//admin o asistente
             
 /*
             $contactos_1 = Contacto::select('contactos.id')

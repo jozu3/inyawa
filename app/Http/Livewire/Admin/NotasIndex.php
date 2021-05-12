@@ -68,7 +68,7 @@ class NotasIndex extends Component
 
 		if ($this->notas_completas >= 1) {
 			$this->addError('notas_completas', 'Las notas están completas.');
-			if($this->tiene_nota_recuperatoria == 0){
+			if($this->tiene_nota_recuperatoria == 0 && $this->tipo == 1){
 				$registrar = true;
 				$this->valor = 0;
 			}

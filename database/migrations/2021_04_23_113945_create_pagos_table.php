@@ -19,6 +19,7 @@ class CreatePagosTable extends Migration
             $table->foreignId('obligacione_id')->constrained();
             $table->double('monto');
             $table->date('fechapago');
+            $table->foreignId('empleado_id')->constrained();
             $table->timestamps();
         });
     }

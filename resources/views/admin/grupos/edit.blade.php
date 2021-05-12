@@ -29,6 +29,10 @@
 	<div class="card">
 		<div class="card-header">
 			Unidades
+			{{-- {!! Form::open(['route' => 'admin.clases.store']) !!}
+			{!! Form::hidden('grupo_id', $grupo->id) !!}
+			{!! Form::submit('Crear clases', ['class' =>'btn btn-primary float-right']) !!}
+			{!! Form::close() !!}  --}}
 		</div>
         @livewire('admin.unidad-index', [ 'grupo' => $grupo])
 		
@@ -48,10 +52,14 @@
     	.list-nota{
     		width: 20%;
     		padding: 0.15rem 1.25rem;
+    		border: 0;
     	}
     	.list-nota2{
-    		width: 80%;
+    		width: 60%;
     	}
+    	.list-group-horizontal {
+		    border-bottom: 1px solid #bbbbbb;
+		}
     </style>
 @stop
 

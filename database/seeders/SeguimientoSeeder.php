@@ -14,6 +14,6 @@ class SeguimientoSeeder extends Seeder
      */
     public function run()
     {
-        Seguimiento::factory(5000)->create();
+        Seguimiento::factory(2000)->create();
     }
 }

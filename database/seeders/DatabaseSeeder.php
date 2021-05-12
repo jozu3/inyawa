@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Seguimiento;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,5 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProfesoreSeeder::class);
         $this->call(SeguimientoSeeder::class);
         $this->call(GrupoSeeder::class);
+        $this->call(UnidadSeeder::class);
+        $this->call(CuentaSeeder::class);
     }
 }

@@ -16,6 +16,7 @@ class CreateCuentasTable extends Migration
         Schema::create('cuentas', function (Blueprint $table) {
             $table->id();
             $table->string('cuenta');
+            $table->double('saldo');
             $table->timestamps();
         });
     }
