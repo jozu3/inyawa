@@ -65,9 +65,31 @@
 		    border-color: #FFF #dee2e6 #dee2e6;
 		    border-radius: 0px 0px 0.25rem 0.25rem;
     	}
+    	.una-fila{
+    		flex-wrap:nowrap;
+    	}
+    	.nombre-fijo{
+		  position:absolute;
+		    width:11em;
+		    left:0;
+
+    	}
+    	.card-body{
+    		padding-left:0
+    	}
+
+    	.cont-table-div {
+		  overflow-x:scroll;  
+		  margin-left:11em;
+		    }
+		.alturatd-dis {
+			height:4em;
+			color: #00000050;
+    	}
     </style>
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script> 
+    </script>
 @stop

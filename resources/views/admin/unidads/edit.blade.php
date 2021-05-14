@@ -30,6 +30,13 @@
 	
     @livewire('admin.notas-index', [ 'unidad' => $unidad])
 	
+	<div class="card">
+		<div class="card-header">
+			Clases
+		</div>
+        @livewire('admin.clases-index', [ 'unidad' => $unidad])
+		
+	</div>
 @stop
 
 @section('css')

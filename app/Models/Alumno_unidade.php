@@ -13,10 +13,14 @@ class Alumno_unidade extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function unidad(){
-    	return $this->belongsTo(Unidad::class));
+    	return $this->belongsTo(Unidad::class);
     }
     
-    public function alumno(){
-    	return $this->belongsTo(Alumno::class));
+    public function matricula(){
+    	return $this->belongsTo(Matricula::class);
+    }
+
+    public function alumnoNotas(){
+    	return $this->hasMany(Alumno_nota::class);
     }
 }

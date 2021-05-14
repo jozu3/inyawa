@@ -25,7 +25,7 @@ class EmpleadoFactory extends Factory
             'nombres' => $this->faker->firstName().' '.$this->faker->firstName(),
             'apellidos' => $this->faker->lastName().' '.$this->faker->lastName(),
             'telefono' => $this->faker->phoneNumber(),
-            'user_id' => $this->faker->unique()->numberBetween(6,12)
+            'user_id' => $this->faker->unique()->numberBetween(13,19)
         ];
     }
 }

@@ -14,7 +14,7 @@ class ProfesoreSeeder extends Seeder
      */
     public function run()
     {
-        Profesore::factory(3)->create();
+        Profesore::factory(10)->create();
         
     }
 }

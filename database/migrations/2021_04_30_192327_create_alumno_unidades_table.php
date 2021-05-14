@@ -16,7 +16,7 @@ class CreateAlumnoUnidadesTable extends Migration
         Schema::create('alumno_unidades', function (Blueprint $table) {
             $table->id();
             $table->foreignId('unidad_id')->constrained();
-            $table->foreignId('alumno_id')->constrained();
+            $table->foreignId('matricula_id')->constrained();
             $table->integer('nota');
             $table->timestamps();
         });

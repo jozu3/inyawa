@@ -27,7 +27,7 @@ class ProfesoreFactory extends Factory
             'nombres' => $this->faker->firstName(),
             'apellidos' => $this->faker->lastName(),
             'telefono' => $this->faker->phoneNumber(),
-            'user_id' => $this->faker->unique()->numberBetween($min = 3, $max = 5),
+            'user_id' => $this->faker->unique()->numberBetween($min = 3, $max = 12),
         ];
     }
 }

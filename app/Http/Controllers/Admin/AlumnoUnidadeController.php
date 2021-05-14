@@ -36,7 +36,27 @@ class AlumnoUnidadeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $grupo = Grupo::find($request->grupo_id);
+        $matriculas = $grupo->matriculas;
+
+        foreach ($matriculas as $matricula){
+            foreach ($grupo->unidads as $unidad){
+                $alumno_unidade = Alumno_unidade::create([
+                    'unidad_id' => $unidad->id,
+                    'matricula_id' => $matricula->id,
+                ]);
+
+                foreach($alumno_unidade->unidad->notas as $nota){
+                    Alumno_nota::create([
+                        'nota_id' => $nota->id,
+                        'alumno_unidade_id' => $alumno_unidade->id,
+                    ])
+                }
+            }
+        }
+
+        return redirect()->route('admin.grupos.edit', compact('grupo'))->with('info_alumno_nota', 'Los registros de notas para los alumnos se generaron correctamente.');
+
     }
 
     /**

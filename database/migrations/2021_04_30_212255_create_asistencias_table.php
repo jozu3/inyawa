@@ -16,7 +16,7 @@ class CreateAsistenciasTable extends Migration
         Schema::create('asistencias', function (Blueprint $table) {
             $table->id();
             $table->foreignId('clase_id')->constrained();
-            $table->foreignId('alumno_id')->constrained();
+            $table->foreignId('matricula_id')->constrained();
             $table->string('asistencia');
             $table->timestamps();
         });

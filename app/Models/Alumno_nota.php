@@ -12,11 +12,11 @@ class Alumno_nota extends Model
     use HasFactory;
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public function alumno_unidade(){
+    public function alumnoUnidade(){
     	return $this->belongsTo(Alumno_unidade::class));
     }
     
     public function nota(){
-    	return $this->belongsTo(Nota::class));
+    	return $this->belongsTo(Nota::class);
     }
 }

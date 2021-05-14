@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GrupoSeeder::class);
         $this->call(UnidadSeeder::class);
         $this->call(CuentaSeeder::class);
+        $this->call(MatriculaSeeder::class);
     }
 }

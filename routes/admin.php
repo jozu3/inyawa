@@ -20,6 +20,8 @@ use App\Http\Controllers\Admin\PagoController;
 use App\Http\Controllers\Admin\CuentaController;
 use App\Http\Controllers\Admin\PDFController;
 use App\Http\Controllers\Admin\ClaseController;
+use App\Http\Controllers\Admin\AlumnoUnidadeController;
+use App\Http\Controllers\Admin\AlumnoNotaController;
 
 
 Route::resource('', HomeController::class)->names('admin');
@@ -38,11 +40,13 @@ Route::resource('matriculas', MatriculaController::class)->names('admin.matricul
 Route::resource('obligaciones', ObligacioneController::class)->names('admin.obligaciones');
 Route::resource('pagos', PagoController::class)->names('admin.pagos');
 Route::resource('cuentas', CuentaController::class)->names('admin.cuentas');
-Route::resource('clases', ClasesController::class)->names('admin.clases');
-//Route::resource('pdfs', PDFController::class)->names('pdfs');
+Route::resource('clases', ClaseController::class)->names('admin.clases');
+Route::resource('alumno_unidade', AlumnoUnidadeController::class)->names('admin.alumno_unidades');
+Route::resource('alumno_nota', AlumnoNotaController::class)->names('admin.alumno_notas');
 
   
 
+//Route::resource('pdfs', PDFController::class)->names('pdfs');
 Route::get('recibo-matricula/{idmatricula}', [PDFController::class, 'reciboMatricula'])->name('admin.print');
 
 /*Route::resource('grupos', GrupoController::class, ['except' => ['create']])->names('admin.grupos');

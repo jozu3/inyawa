@@ -24,4 +24,12 @@ class Unidad extends Model
     public function notas(){
         return $this->hasMany(Nota::class);
     }
+
+    public function clases(){
+        return $this->hasMany(Clase::class);
+    } 
+
+    public function alumno_unidades()   {
+        return $this->hasMany(Alumno_unidade::class);
+    }
 }

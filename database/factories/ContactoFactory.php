@@ -44,7 +44,7 @@ class ContactoFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'doc' => $this->faker->unique()->dni,
             'estado' => $this->faker->numberBetween($min = 0, $max = 3),
-            'empleado_id' => $this->faker->numberBetween($min = 6, $max = 12)
+            'empleado_id' => $this->faker->numberBetween($min = 3, $max = 9)
         ];
     }
 }

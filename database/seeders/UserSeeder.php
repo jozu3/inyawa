@@ -51,8 +51,8 @@ class UserSeeder extends Seeder
         ]);
 
         
-        $profesores = User::factory(3)->create();
-        $vendedores = User::factory(7)->create();
+        $profesores = User::factory(10)->create(); // user_ids -> 3-12
+        $vendedores = User::factory(7)->create(); // user_ids -> 13-19
 
         foreach ($profesores as $profesor){
             $profesor->assignRole('Profesor');
