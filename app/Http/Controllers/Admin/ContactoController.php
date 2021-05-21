@@ -98,6 +98,7 @@ class ContactoController extends Controller
         }
 
         if ($request->asignar == 'true'){
+            
             return redirect()->route('admin.contactos.index')->with('info', 'Contacto actualizado con éxito');
         }
 

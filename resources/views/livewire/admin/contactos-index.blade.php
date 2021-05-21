@@ -37,8 +37,11 @@
     					<th wire:click="sortBy('codigo_c')" style="cursor:pointer">Código
                             @include('partials._sort-icon', ['field' => 'codigo_c'])
                         </th>
-                        <th wire:click="sortBy('nombres')" style="cursor:pointer">Nombre
+                        <th  style="cursor:pointer">
+                            <span wire:click="sortBy('nombres')">Nombre</span>
                             @include('partials._sort-icon', ['field' => 'nombres'])
+                            <span wire:click="sortBy('newassign')" class="ml-1">Nuevos</span>
+                            @include('partials._sort-icon', ['field' => 'newassign'])
                         </th>
     					<th wire:click="sortBy('apellidos')" style="cursor:pointer">Apellidos
                             @include('partials._sort-icon', ['field' => 'apellidos'])
@@ -64,7 +67,11 @@
                     <tr>
                         <td>{{ $contacto->id }}</td>
                         <td>{{ $contacto->codigo_c }}</td>
-                    	<td>{{ $contacto->nombres }}</td>
+                    	<td>{{ $contacto->nombres }} 
+                            @if ($contacto->newassign == 1 && auth()->user()->empleado->id == $contacto->empleado->id)
+                                <span class="badge badge-success right">N</span>
+                            @endif
+                        </td>
                     	<td>{{ $contacto->apellidos }}</td>
                     	<td>{{ $contacto->telefono }}</td>
                         <td>
@@ -95,7 +102,6 @@
                                 @break
                             @endswitch
                         </td>
-                       {{-- @foreach (Auth::user()->roles as $role)--}}
                             @if (Auth::user()->hasRole(['Admin','Asistente'])) {{-- == 1 || $role->id == 2)--}}
                                 <td>
                                 {!! Form::model($contacto, ['route' => ['admin.contactos.update', $contacto], 'method' => 'put']) !!}
@@ -121,7 +127,7 @@
                                 </td>
                             @else
                                 <td>
-                                    {{ $contacto->empleado->nombres.' '.$empleado->apellidos }}
+                                    {{ $contacto->empleado->nombres.' '.$contacto->empleado->apellidos }}
                                 </td>
                             @endif
                                 <td>
@@ -145,8 +151,6 @@
                                 <td>
                                     {{ count($contacto->seguimientos) }}
                                 </td> 
-                          {{--  @break
-                        @endforeach--}}
                                             
                         <td width="10px">
                     		<a href="{{ route('admin.contactos.show', $contacto) }}" class="btn btn-success" ><i class="fas fa-file-signature"></i></a>

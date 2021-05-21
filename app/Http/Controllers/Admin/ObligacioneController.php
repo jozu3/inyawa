@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\models\Obligacione;
+use App\Models\Obligacione;
 
 class ObligacioneController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:admin.obligaciones.index');//->only('index');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +18,7 @@ class ObligacioneController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.obligaciones.index');
     }
 
     /**

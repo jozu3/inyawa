@@ -27,15 +27,15 @@ class PagoObserver
         //$estado = $obligacione->estado; 
 
         if($monto_final > $monto_pagado && $monto_pagado == 0){
-            $estado = 1;
+            $estado = 1;//por pagar
         }
 
         if($monto_final > $monto_pagado && $monto_pagado > 0){
-            $estado = 2;
+            $estado = 2;//parcial
         }
 
         if($monto_final == $monto_pagado){
-            $estado = 3;
+            $estado = 3;//completo
         }
 
         $obligacione->update([

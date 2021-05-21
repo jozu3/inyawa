@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clase;
+use App\Models\Grupo;
 use Illuminate\Http\Request;
 
 class ClaseController extends Controller
@@ -36,11 +37,7 @@ class ClaseController extends Controller
      */
     public function store(Request $request)
     {
-        /*$grupo = Grupo::find($request->grupo_id);
-
-        foreach ($grupo->unidads as $unidad){
-
-        }*/
+        
     }
 
     /**
@@ -86,5 +83,49 @@ class ClaseController extends Controller
     public function destroy(Clase $clase)
     {
         //
+    }
+
+    public function storeforgroup(Grupo $grupo){
+
+        foreach ($grupo->unidads as $unidad){
+            for ($i = 0; $i < $unidad->cantidad_clases; $i++) {
+
+                $days = 7*$i;
+
+                Clase::create([
+                    'unidad_id' => $unidad->id,
+                    'fechaclase' => date('Y-m-d', strtotime( '+'.$days.'day', strtotime($unidad->fechainicio))),
+                    'estado' => 0
+                ]); 
+            }
+        }
+
+        $var_msg = 'info_alumno_nota';
+        $msg = 'Los registros de las clases para los alumnos se crearon correctamente.';
+
+        return redirect()->route('admin.grupos.edit', compact('grupo'))->with($var_msg, $msg);
+    }
+
+    public function destroyfromgroup(Grupo $grupo){
+        $result = false;
+       //dd($grupo);
+        foreach ($grupo->unidads as $unidad){
+            foreach ($unidad->clases as $clase){
+                $result = false;
+                if ($clase->delete()) {
+                    $result = true;
+                }
+            }
+        }
+        if ($result){
+            $var_msg = 'info_alumno_nota';
+            $msg = 'Los registros de las clases para los alumnos se eliminaron correctamente.';
+        } else {
+            $var_msg = 'error_alumno_nota';
+            $msg = 'No se pudo eliminar todos los registros correctamente.';
+        }
+
+        return redirect()->route('admin.grupos.edit', compact('grupo'))->with($var_msg, $msg);
+
     }
 }

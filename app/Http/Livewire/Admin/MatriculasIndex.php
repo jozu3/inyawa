@@ -11,6 +11,7 @@ class MatriculasIndex extends Component
 	use WithPagination;
 
 	public $search;
+	public $readyToLoad = false;
 	
 	protected $paginationTheme = 'bootstrap';
 
@@ -18,9 +19,17 @@ class MatriculasIndex extends Component
 		$this->resetPage();
 	}
 
+	public function loadMatriculas(){
+		$this->readyToLoad = true;
+	}
+
     public function render()
     {
-    	$matriculas = Matricula::paginate();
+    	if ($this->readyToLoad) {
+    		$matriculas = Matricula::paginate();    		
+    	} else {
+    		$matriculas = Matricula::where('alumno_id', '')->paginate();
+    	}
 
         return view('livewire.admin.matriculas-index', compact('matriculas'));
     }

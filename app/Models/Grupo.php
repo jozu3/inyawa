@@ -22,8 +22,30 @@ class Grupo extends Model
     public function matriculas(){
     	return $this->hasMany(Matricula::class);
     }
+
+    public function notasGenerateds(){
+        $notas_generadas = 0;
+
+        foreach ($this->unidads as $unidad){
+            $notas_generadas += $unidad->alumno_unidades->count();
+        }
+
+        return $notas_generadas;
+    }
+
+    public function clasesGenerateds(){
+        $clases_generadas = 0;
+
+        foreach ($this->unidads as $unidad){
+            $clases_generadas += $unidad->clases->count();
+        }
+
+        return $clases_generadas;
+    }
+
 }
 /*
+Estados
 '0' => 'Por iniciar',
 '1' => 'Iniciado',
 '2' => 'Terminado',

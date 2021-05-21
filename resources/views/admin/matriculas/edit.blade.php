@@ -18,7 +18,7 @@
             </div>
     	<div class="card-body">
     		{!! Form::open(['route' => ['admin.matriculas.update', $matricula], 'method' => 'put']) !!}
-                @livewire('admin.grupo-info', ['curso_id' => $matricula->grupo->curso->id, 'grupo_id' => $matricula->grupo->id])
+                {{--@livewire('admin.grupo-info', ['curso_id' => $matricula->grupo->curso->id, 'grupo_id' => $matricula->grupo->id])--}}
 
                 @include('admin.matriculas.partials.formedit')
                 {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}

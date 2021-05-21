@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Seguimiento;
+use App\Models\Pago;
 
-class SeguimientoSeeder extends Seeder
+class PagoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class SeguimientoSeeder extends Seeder
      */
     public function run()
     {
-        Seguimiento::factory(3000)->create();
+        Pago::factory(1000)->create();
     }
 }

@@ -16,8 +16,8 @@ class CreateAlumnoNotasTable extends Migration
         Schema::create('alumno_notas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('nota_id')->constrained();
-            $table->foreignId('alumno_unidade_id')->constrained();
-            $table->integer('nota');
+            $table->foreignId('alumno_unidade_id')->constrained()->onDelete('cascade');;
+            $table->double('valor')->nullable();
             $table->timestamps();
         });
     }

@@ -46,7 +46,8 @@
     			<tbody>
     				@foreach($cuentas_mensual as $cuenta)
     				  <tr>
-                        <td>{{ $cuenta->nombrecuenta }}</td>
+                        <td>
+                            <b>{{ $cuenta->nombrecuenta }}</b></td>
                         <td>
                             @foreach($sem1 as $s)
                             @if ($s->idcuenta == $cuenta->idcuenta)
@@ -94,7 +95,8 @@
                             @endforeach
                             @endif
                         </td>
-                        <td>{{ 'S/ '.number_format($cuenta->sumpagos, 2)  }}</td>
+                        <td>
+                            <b>{{ 'S/ '.number_format($cuenta->sumpagos, 2) }}</b></td>
     				  </tr>
     				@endforeach
     			</tbody>

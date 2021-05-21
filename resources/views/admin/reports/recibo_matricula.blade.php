@@ -1,7 +1,7 @@
 @extends('layouts.print')
 @section('title', 'Recibo de Matrícula')
 @section('content')
-    <center>RECIBO</center>
+    <center class="border border-dark rounded-lg">RECIBO</center>
     <div class="">		
 		<span class="datos">
 			<div class="mt-2">
@@ -91,7 +91,7 @@
 	</div>
 	<br>
 	<div class="p-footer">
-		<img class="ic-fb"s src="{{ config('app.url') }}/img/ic_fb.png" alt="">  INYAWA PERU capacitaciones profesionales.
+		<img class="ic-fb" src="{{ config('app.url') }}/img/ic_fb.png" alt="">  INYAWA PERU capacitaciones profesionales.
 	</div>
 	<div class="p-footer">
 		Av Elmer Faucett 16-27 jardines de Viru - Bella Vista - Callao
@@ -101,6 +101,8 @@
 	</div>
 @endsection
 @section('styles')
+        <link rel="stylesheet" href="{{ config('app.url', 'http://localhost') }}/vendor/adminlte/dist/css/adminlte.min.css">
+
 <style>
 	center{
 		font-size:23px;
@@ -132,7 +134,7 @@
 		font-size: 12px;
 	}
 	td, th {
-     	padding: .3rem!important;
+     	padding: .4rem!important;
     }
     .ic-fb{
     	width: 18px;

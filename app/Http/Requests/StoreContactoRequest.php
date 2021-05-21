@@ -33,12 +33,14 @@ class StoreContactoRequest extends FormRequest
                 'empleado_id' => 'required',
             ];
 
+            $this['newassign'] = 1;
+
         } else {
 
             $rules = [
                 'codigo_c' => 'required',
                 //'nombres' => 'required',
-                'telefono' => 'required',
+                'telefono' => 'required|numeric',
                 //'estado' => 'required|in:1,2,3,4,5', //el estado se actuliza solo
             ];
 

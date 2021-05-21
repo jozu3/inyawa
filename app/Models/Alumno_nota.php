@@ -13,7 +13,7 @@ class Alumno_nota extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function alumnoUnidade(){
-    	return $this->belongsTo(Alumno_unidade::class));
+    	return $this->belongsTo(Alumno_unidade::class);
     }
     
     public function nota(){

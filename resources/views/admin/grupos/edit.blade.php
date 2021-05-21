@@ -30,12 +30,17 @@
 	            {{ session('info_alumno_nota') }}
 	        </div>
 	    @endif
+	    @if (session('error_alumno_nota'))
+	        <div class="alert alert-danger">
+	            {{ session('error_alumno_nota') }}
+	        </div>
+	    @endif
 	<div class="card">
 		<div class="card-header">
 			Unidades
-
+			{{$grupo->clasesGenerateds()}}
 			@if ($grupo->unidads->count())
-				@if($grupo->unidads[0]->alumno_unidades->count())
+				@if(!$grupo->notasGenerateds())
 					<div class="float-right">
 					{!! Form::open(['route' => 'admin.alumno_unidades.store']) !!}
 						{!! Form::hidden('grupo_id', $grupo->id) !!}
@@ -44,19 +49,29 @@
 					</div>
 				@else
 					<div class="float-right">
-					{!! Form::open(['route' => ['admin.alumno_unidades.destroy', $grupo]]) !!}
-						{!! Form::hidden('grupo_id', $grupo->id) !!}
-						{!! Form::submit('Eliminar notas', ['class' =>'btn btn-danger float-right mx-2']) !!}
+					{!! Form::open(['route' => ['admin.alumno_unidades.destroyfromgroup', $grupo]]) !!}
+						@method('DELETE')
+						{!! Form::submit('Eliminar registro de notas', ['class' =>'btn btn-danger float-right mx-2']) !!}
 					{!! Form::close() !!} 
-					</div>				
+					</div>
 				@endif
 			@endif
-					<div class="float-right">
-					{!! Form::open(['route' => 'admin.clases.store']) !!}
-						{!! Form::hidden('grupo_id', $grupo->id) !!}
-						{!! Form::submit('Crear clases', ['class' =>'btn btn-primary float-right']) !!}
-					{!! Form::close() !!}  
-					</div>
+
+			@if(!$grupo->clasesGenerateds())
+				<div class="float-right">
+				{!! Form::open(['route' => ['admin.clases.storeforgroup', $grupo]]) !!}
+					{!! Form::submit('Crear clases', ['class' =>'btn btn-primary float-right']) !!}
+				{!! Form::close() !!}  
+				</div>
+			@else
+				<div class="float-right">
+				{!! Form::open(['route' => ['admin.clases.destroyfromgroup', $grupo]]) !!}
+					@method('DELETE')
+					{!! Form::submit('Eliminar registro de clases', ['class' =>'btn btn-danger float-right mx-2']) !!}
+				{!! Form::close() !!} 
+				</div>				
+			@endif
+					
 		</div>
         @livewire('admin.unidad-index', [ 'grupo' => $grupo])
 		

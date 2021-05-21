@@ -235,13 +235,13 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        [
+      /*  [
             'text'        => 'Dashboard',
             'route'         => 'admin.index',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            'label'       => 14,
             'label_color' => 'success',
-        ],
+        ],*/
         
         [ 
             'header' => 'Administración',
@@ -272,13 +272,15 @@ return [
             'can'  =>   'admin.profesores.index'
         ],
 
-        ['header' => 'Ventas'],
-        [
+        ['header' => 'Ventas', 'key' => 'ventas'],
+      /*  [
             'text' => 'Lista de contactos',
+            'key' => 'list_contacts',
+            'label_color' => 'success',
             'route'  => 'admin.contactos.index',
             'icon' => 'fas fa-fw fa-user',
             'can'  =>   'admin.contactos.index'
-        ],
+        ],*/
         [
             'text' => 'Comentarios',
             'route'  => 'admin.seguimientos.index',
@@ -328,6 +330,12 @@ return [
             'route'  => 'admin.cuentas.index',
             'icon' => 'fas fa-credit-card',
             'can'  =>   'admin.cuentas.index'
+        ],
+        [
+            'text' => 'Obligaciones por pagar',
+            'route'  => 'admin.obligaciones.index',
+            'icon' => 'fas fa-credit-card',
+            'can'  =>   'admin.obligaciones.index'
         ],
       /*  [
             'text'    => 'Ventas',

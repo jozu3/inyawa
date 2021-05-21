@@ -17,7 +17,7 @@ class CreateAlumnoUnidadesTable extends Migration
             $table->id();
             $table->foreignId('unidad_id')->constrained();
             $table->foreignId('matricula_id')->constrained();
-            $table->integer('nota');
+            $table->double('nota')->nullable();
             $table->timestamps();
         });
     }

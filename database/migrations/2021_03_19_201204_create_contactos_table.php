@@ -25,6 +25,7 @@ class CreateContactosTable extends Migration
             $table->tinyInteger('grado_academico')->nullable();
             $table->tinyInteger('estado');
             $table->foreignId('empleado_id')->constrained();
+            $table->tinyInteger('newassign')->default(1);
             $table->timestamps();
         });
     }

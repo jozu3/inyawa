@@ -17,8 +17,8 @@ class ContactosIndex extends Component
     public $contactado = true;
     public $probable = true;
 	public $confirmado = true;
-	public $sortBy = 'nombres';
-    public $sortDirection = 'asc';
+	public $sortBy = 'newassign';
+    public $sortDirection = 'desc';
     public $page = 1;
 
     public function sortBy($field)

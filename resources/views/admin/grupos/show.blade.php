@@ -26,11 +26,11 @@
 					<div class="col-md-3">
 						<p>Unidades:</p>
 					</div>
-					<div class="col-md-9">{{ count($grupo->unidads)}}</div>
+					<div class="col-md-9"> <b>{{ count($grupo->unidads)}}</b></div>
 					<div class="col-md-3">
 						<p>Alumnos:</p>
 					</div>
-					<div class="col-md-9">{{ count($grupo->matriculas)}}</div>
+					<div class="col-md-9"><b>{{ count($grupo->matriculas)}}</b></div>
 				</div>
 			</div>
 		</div>
@@ -40,7 +40,6 @@
 		  <div class="nav nav-tabs" id="nav-tab" role="tablist">
 		    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Asistencia</a>
 		    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Notas</a>
-		    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
 		  </div>
 		</nav>
 		<div class="tab-content" id="nav-tabContent">
@@ -50,11 +49,17 @@
 		  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 				@include('admin.grupos.partials.register-notas')
 		  </div>
-		  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-		  </div>
 		</div>		
 	</div>
 </div>
+						    
+	<div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
+	  <strong>Holy guacamole!</strong> You should check.
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>            	
+	{{--@livewire('admin.alert')--}}
 @stop
 
 @section('css')
@@ -74,7 +79,7 @@
 		    left:0;
 
     	}
-    	.card-body{
+    	.card-body-2{
     		padding-left:0
     	}
 
@@ -86,10 +91,29 @@
 			height:4em;
 			color: #00000050;
     	}
+    	#success-alert{
+    		position:fixed;
+    		top: 150px;
+    		right:5px;
+    	}
     </style>
 @stop
 
 @section('js')
     <script> 
+    	$().ready(function(){
+			$("#success-alert").hide();
+    	});
+
+    	Livewire.on('alert', function(result){
+	    	
+    		if (result) {
+    			$("#success-alert").show();
+		    	$("#success-alert").fadeTo(1000, 500).slideUp(500, function(){
+				    $("#success-alert").slideUp(500);
+				});
+    		}
+
+    	});
     </script>
 @stop

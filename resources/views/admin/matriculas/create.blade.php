@@ -2,11 +2,18 @@
 
 @section('title', 'Matricular')
 
+@section('plugins.Select2', true)
+
 @section('content_header')
     <h1>Registrar matrícula</h1>
 @stop
 
 @section('content')
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <div class="card">
     	<div class="card-body">
     		{!! Form::model($contacto, ['route' => 'admin.matriculas.store']) !!}
@@ -26,5 +33,9 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script> 
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
 @stop

@@ -27,7 +27,9 @@
     				@foreach($pagos as $pago)
     				  <tr>
                         <td>{{ $pago->nombrecuenta}}</td>
-                        <td>{{ 'S/ '.number_format($pago->sumpagos, 2)  }}</td>
+                        <td>
+                            <b>{{ 'S/ '.number_format($pago->sumpagos, 2)  }}</b>
+                        </td>
     				  </tr>
     				@endforeach
     			</tbody>

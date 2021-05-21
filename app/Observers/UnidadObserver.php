@@ -15,7 +15,7 @@ class UnidadObserver
      */
     public function created(Unidad $unidad)
     {
-        for ($i = 0; $i < $unidad->cantidad_clases; $i++) {
+       /* for ($i = 0; $i < $unidad->cantidad_clases; $i++) {
 
             $days = 7*$i;
 
@@ -24,7 +24,7 @@ class UnidadObserver
                 'fechaclase' => date('Y-m-d', strtotime( '+'.$days.'day', strtotime($unidad->fechainicio))),
                 'estado' => 0
             ]);            
-        }
+        }*/
     }
 
     /**

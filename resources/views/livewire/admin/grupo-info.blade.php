@@ -2,7 +2,7 @@
 	@if ($cursos->count())
 		<div class="form-group">
 			{!! Form::label('curso_id', 'Curso') !!}
-			{!! Form::select('curso_id', $cursos, null, ['class' => 'form-control', 'placeholder' => 'Escoge un curso', 'wire:model' => 'curso_id']); !!}
+			{!! Form::select('curso_id', $cursos, null, ['class' => 'form-control ', 'placeholder' => 'Escoge un curso', 'wire:model' => 'curso_id']); !!}
 			@error('curso_id')
 				<small class="text-danger">{{ $message }}</small>
 			@enderror

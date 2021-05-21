@@ -54,12 +54,13 @@ class MatriculaController extends Controller
         //actualizar daotos del contacto
         $contacto = Contacto::find($request->contacto_id);
         $request['estado'] = 5;
-        $contacto->update($request->all());
 
 
         $alumno_existe = Alumno::where('contacto_id', '=', $request->contacto_id)->get();
 
+
         if (!count($alumno_existe)){//entra si el alumno no existe
+            $contacto->update($request->all());
     
             //crear el usuario y asignarlo al request
             $user = User::create([
@@ -67,7 +68,7 @@ class MatriculaController extends Controller
                 'email' => $contacto->email,
                 'password' => Hash::make('password'),
                 'estado' => 1,
-            ]);
+            ])->assignRole('Alumno');
 
             $request['user_id'] = $user->id;
 
@@ -77,7 +78,15 @@ class MatriculaController extends Controller
             $alumno = Alumno::create($request->all());
 
         } else {
-            $alumno = $contacto->alumno;
+            $matricula_existe = Matricula::where('alumno_id', $contacto->alumno->id)->where('grupo_id', $request->grupo_id)->get();
+            
+            if (!count($matricula_existe)){ //Entra si no hay matricula en el mismo grupo
+                $contacto->update($request->all());
+
+                $alumno = $contacto->alumno;
+            } else {
+                 return redirect()->back()->with('error', 'El alumno ya está matriculado en el grupo seleccionado.');
+            }
         }
 
         $request['alumno_id'] = $alumno->id;
@@ -127,7 +136,7 @@ class MatriculaController extends Controller
     {
         $matricula->update([
             'tipomatricula' => $request->tipomatricula,
-            'grupo_id' => $request->grupo_id
+            //'grupo_id' => $request->grupo_id
         ]);
         
         return redirect()->route('admin.matriculas.edit', compact('matricula'))->with('info','Se actualizaron los datos correctamente');

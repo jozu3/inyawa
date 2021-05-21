@@ -1,4 +1,4 @@
-<div>
+<div wire:init="loadMatriculas">
     <div class="card">
     	<div class="card-header">
     		<input wire:model="search" class="form-control" placeholder="Ingrese nombre de un matricula">
@@ -14,7 +14,7 @@
     					<th>Nombres</th>
     					<th>Apellidos</th>
                         <th>Telefono</th>
-                        <th>Empleado</th>
+                        <th>Matriculado por:</th>
     				</tr>
     			</thead>
     			<tbody>
@@ -26,7 +26,7 @@
     				  	<td>{{ $matricula->alumno->contacto->nombres }}</td>
     				  	<td>{{ $matricula->alumno->contacto->apellidos }}</td>
                         <td>{{ $matricula->alumno->contacto->telefono }}</td>
-                        <td>{{ $matricula->empleado->user->name }}</td>
+                        <td>{{ $matricula->empleado->nombres.' '.$matricula->empleado->apellidos }}</td>
     				  	<td width="10px">
     				  		<a href="{{ route('admin.matriculas.show', $matricula) }}" class="btn btn-primary">Ver</a>
     				  	</td>

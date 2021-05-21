@@ -2,14 +2,14 @@
 	<div class="card-header">
 		<b>Listado de Alumnos</b>
 	</div>
-	<div class="card-body cont-table-div">
+	<div class="card-body card-body-2 cont-table-div">
 		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th class="nombre-fijo">Nombre</th>
 					@foreach($grupo->unidads as $unidad)
-						<th colspan="{{ $unidad->notas->count() }}">
-							{{ $unidad->descripcion }}
+						<th colspan="{{ $unidad->notas->count() + 1}}" class="border-left">
+							<center>{{ $unidad->descripcion }}</center>
 						</th>
 					@endforeach
 				</tr>
@@ -20,16 +20,15 @@
 						
 					</td>
 					@foreach($grupo->unidads as $unidad)
-							@foreach($unidad->notas as $nota)
-							<td>	
-								<div class="form-row align-items-center una-fila">
-				                <div class="col-auto my-1 mx-2">
-								 	<b>{{ $nota->descripcion }}</b>
-				                </div>
-								</div>
-							</td>
-							@endforeach
+						<td>Promedio</td>
+						@foreach($unidad->notas as $nota)
+						<td width="100px">	
+							
+							 	<b>{{ $nota->descripcion }}</b>
+			               
+						</td>
 						@endforeach
+					@endforeach
 				</tr>
 				@foreach($grupo->matriculas as $matricula)
 					<tr>
@@ -37,22 +36,22 @@
 							<b>{{$matricula->alumno->contacto->apellidos.' ' }}</b>{{ $matricula->alumno->contacto->nombres }} 
 						</td>
 						@if ($matricula->alumnoUnidades->count())
-							{{-- expr --}}
 						@foreach($matricula->alumnoUnidades as $alumnoUnidad)
-						<td>
+						<td class="border-left text-center">
 							{{ $alumnoUnidad->nota }}
 						</td>
 							@foreach($alumnoUnidad->alumnoNotas as $alumnoNota)
 								<td>
 									<div class="form-row align-items-center una-fila">
-				                <div class="col-auto my-1 mx-2">
-				                	{!! Form::model($alumnoNota) !!}
-				                	@livewire('admin.create-nota', [
-				                		'nota_id' => $alumnoNota->nota->id,
-				                		'alumno_unidade_id' => $alumnoNota->alumnoUnidad->id,
-				                		])
-				                	{!! Form::close() !!}
-				                </div>
+						                <div class="col-auto my-1 mx-2">
+						                	
+						                	@livewire('admin.create-nota', [
+						                		'nota_id' => $alumnoNota->nota->id,
+						                		'alumno_unidade_id' => $alumnoNota->alumnoUnidade->id,
+						                		//'alumnoNota' => $alumnoNota
+						                		])
+						                	
+						                </div>
 									</div>
 								</td>
 							@endforeach

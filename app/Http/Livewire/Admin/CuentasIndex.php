@@ -9,15 +9,15 @@ use DB;
 
 class CuentasIndex extends Component
 {
-    public $f_inicio = '0001-01-01';
+    public $f_inicio = '2021-01-01';
     public $f_fin = '2021-12-31';
 
     public function render()
     {
     	$pagos = Cuenta::select('cuentas.id as idcuenta','cuentas.cuenta as nombrecuenta', DB::raw('SUM(pagos.monto) as sumpagos'))
     			->join('pagos', 'cuentas.id', '=', 'pagos.cuenta_id')
-                ->where('pagos.fechapago', '>', $this->f_inicio)
-                ->where('pagos.fechapago', '<', $this->f_fin)
+                ->where('pagos.fechapago', '>=', $this->f_inicio)
+                ->where('pagos.fechapago', '<=', $this->f_fin)
     			->groupBy('cuentas.id', 'cuentas.cuenta')
     			->get();
 

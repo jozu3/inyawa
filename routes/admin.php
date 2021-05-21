@@ -24,6 +24,8 @@ use App\Http\Controllers\Admin\AlumnoUnidadeController;
 use App\Http\Controllers\Admin\AlumnoNotaController;
 
 
+
+
 Route::resource('', HomeController::class)->names('admin');
 Route::resource('users', UserController::class)->names('admin.users');
 Route::resource('empleados', EmpleadoController::class)->names('admin.empleados');
@@ -41,8 +43,13 @@ Route::resource('obligaciones', ObligacioneController::class)->names('admin.obli
 Route::resource('pagos', PagoController::class)->names('admin.pagos');
 Route::resource('cuentas', CuentaController::class)->names('admin.cuentas');
 Route::resource('clases', ClaseController::class)->names('admin.clases');
-Route::resource('alumno_unidade', AlumnoUnidadeController::class)->names('admin.alumno_unidades');
-Route::resource('alumno_nota', AlumnoNotaController::class)->names('admin.alumno_notas');
+Route::resource('alumno_unidades', AlumnoUnidadeController::class)->names('admin.alumno_unidades');
+Route::resource('alumno_notas', AlumnoNotaController::class)->names('admin.alumno_notas');
+
+Route::delete('alumno_unidades/destroyfromgroup/{grupo}', [AlumnoUnidadeController::class, 'destroyfromgroup'])->name('admin.alumno_unidades.destroyfromgroup');
+Route::delete('clases/destroyfromgroup/{grupo}', [ClaseController::class, 'destroyfromgroup'])->name('admin.clases.destroyfromgroup');
+Route::post('clases/storeforgroup/{grupo}', [ClaseController::class, 'storeforgroup'])->name('admin.clases.storeforgroup');
+  
 
   
 

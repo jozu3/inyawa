@@ -18,7 +18,7 @@
             {{ session('error') }}
         </div>
     @endif
-    {{--@livewire('admin.cuentas-index')--}}
+    @livewire('admin.cuentas-index')
     @livewire('admin.cuentas-mensual-index')
     
 @stop

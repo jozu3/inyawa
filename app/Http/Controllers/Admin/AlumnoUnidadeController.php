@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Alumno_unidade;
+use App\Models\Alumno_nota;
+use App\Models\Grupo;
 use Illuminate\Http\Request;
 
 class AlumnoUnidadeController extends Controller
@@ -50,7 +52,7 @@ class AlumnoUnidadeController extends Controller
                     Alumno_nota::create([
                         'nota_id' => $nota->id,
                         'alumno_unidade_id' => $alumno_unidade->id,
-                    ])
+                    ]);
                 }
             }
         }
@@ -101,6 +103,29 @@ class AlumnoUnidadeController extends Controller
      */
     public function destroy(Alumno_unidade $alumno_unidade)
     {
-        //
+
+    }
+
+    public function destroyfromgroup(Grupo $grupo){
+        $result = false;
+       //dd($grupo);
+        foreach ($grupo->matriculas as $matricula){
+            foreach ($matricula->alumnoUnidades as $alumnoUnidad){
+                $result = false;
+                if ($alumnoUnidad->delete()) {
+                    $result = true;
+                }
+            }
+        }
+        if ($result){
+            $var_msg = 'info_alumno_nota';
+            $msg = 'Los registros de notas para los alumnos se eliminaron correctamente.';
+        } else {
+            $var_msg = 'error_alumno_nota';
+            $msg = 'No se pudo eliminar todos los registros correctamente.';
+        }
+
+        return redirect()->route('admin.grupos.edit', compact('grupo'))->with($var_msg, $msg);
+
     }
 }
