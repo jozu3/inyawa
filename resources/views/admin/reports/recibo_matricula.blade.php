@@ -1,37 +1,47 @@
 @extends('layouts.print')
 @section('title', 'Recibo de Matrícula')
 @section('content')
-    <center class="border border-dark rounded-lg">RECIBO</center>
+    <div class="recibo border border-dark rounded-lg">
+	    RECIBO DE PAGO
+	    <div style="font-size:18px">N° de Matrícula</div>
+	    <div style="font-size:18px">{{ $matricula->id }}</div>
+	</div>
     <div class="">		
-		<span class="datos">
-			<div class="mt-2">
+    	<div class="d-flex" style="border:1px solid black">
+			<div class="" style="height:65px">				
+				<img class="logo" src="{{ config('app.url') }}/img/logo_inyawa.jpg" alt="">
+			</div>
+			<div class="" style="margin-left:150px; height:65px">
+				<div><b style="font-size:25px">INYAWA PERU</b></div>
+				<div><b style="font-size:15px">Capacitaciones Profesionales</b></div>
+			</div>
+    	</div>
+		<div class="datos">
+			<div class="mt-1 ml-2">
 				<span class="text1">Alumno:</span>
 				<span class="">{{ $matricula->alumno->user->name}}</span>
 			</div>
-			<div class="mt-2">
+			<div class="mt-1 ml-2">
 				<span class="text1">DNI:</span>
 				<span class="">{{ $matricula->alumno->contacto->doc}}</span>
 			</div>
-			<div class="mt-2">
+			<div class="mt-1 ml-2">
 				<span class="text1">Correo electrónico:</span>
 				<span class="">{{ $matricula->alumno->contacto->email}}</span>
 			</div>
-			<div class="mt-2">
+			<div class="mt-1 ml-2">
 				<span class="text1">Teléfono:</span>
 				<span class="">{{ $matricula->alumno->contacto->telefono}}</span>
 			</div>
-			<div class="mt-2">
+			<div class="mt-1 ml-2">
 				<span class="text1">Código:</span>
 				<span class="">{{ $matricula->alumno->codigo }}</span>
 			</div>
-			<div class="mt-2">
+			<div class="mt-1 ml-2 mb-1">
 				<span class="text1">Curso:</span>
 				<span class="col-md-9">{{ $matricula->grupo->curso->nombre }}</span>
 			</div>
-		</span>
-		<span class="cont-logo">
-			<img class="logo" src="{{ config('app.url') }}/img/logo_inyawa.jpg" alt="">
-		</span>
+		</div>
 		<div class="mt-3">
 			<div class="">
 				<div class="mt-1">
@@ -44,7 +54,9 @@
 								<th>Concepto</th>
 								<th>Fecha</th>
 								<th>Estado</th>
-								<th>Monto</th>
+								<th>Importe inicial</th>
+								<th>Descuento</th>
+								<th>Importe final</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -71,7 +83,9 @@
 										    	@break
 										@endswitch
 									</td>
-									<td>{{$obligacione->montofinal}}</td>
+									<td>{{ 'S/ '.number_format($obligacione->monto, 2) }}</td>
+									<td>{{ 'S/ '.number_format($obligacione->descuento, 2) }}</td>
+									<td>{{ 'S/ '.number_format($obligacione->montofinal, 2) }}</td>
 								</tr>
 								@php
 									$total += $obligacione->montofinal;
@@ -80,8 +94,10 @@
 							<tr>
 								<td></td>
 								<td></td>
+								<td></td>
+								<td></td>
 								<td><b>Total</b></td>
-								<td><b>{{ $total }}</b></td>
+								<td><b>{{ 'S/ '.number_format($total, 2) }}</b></td>
 							</tr>
 						</tbody>
 					</table>
@@ -91,43 +107,57 @@
 	</div>
 	<br>
 	<div class="p-footer">
-		<img class="ic-fb" src="{{ config('app.url') }}/img/ic_fb.png" alt="">  INYAWA PERU capacitaciones profesionales.
+		<i class="fab fa-facebook-square"></i> 
 	</div>
 	<div class="p-footer">
-		Av Elmer Faucett 16-27 jardines de Viru - Bella Vista - Callao
 	</div>
-	<div class="p-footer">
-		Correo Electronico: <a href="mailto:inyawaperucapacitacionesprofesionales@gmail.com">inyawaperucapacitacionesprofesionales@gmail.com</a> 
-	</div>
+
+	<footer class="footer"> 
+		<div class="align-items-center" style="height: 100%; padding-top:10px">
+			<span style="">
+				INYAWA PERU
+			</span>	
+			<span class="ml-4" style="" >
+				Av Elmer Faucett 16-27 jardines de Viru - Bella Vista - Callao
+			</span>
+			
+		</div>
+	</footer>
 @endsection
 @section('styles')
-        <link rel="stylesheet" href="{{ config('app.url', 'http://localhost') }}/vendor/adminlte/dist/css/adminlte.min.css">
 
 <style>
-	center{
+	.recibo{
 		font-size:23px;
 		font-weight:bold;
+		position:absolute;
+		right:0px;
+		top:0px;
+		text-align:center;
+		width: 250px
 	}
 	.datos{
 		font-size:14px;
+		border:1px solid black;
 	}
 	.icfb{
 		color: #385898;
 	}
 	.text1 {
 		width: 25%;
+		font-weight: bold;
 		/*background-color:red;*/
 	}
 	.logo{
-		width: 200px;
+		width: 150px;
 	}
 	table{
 		font-size: 12px;
 	}
 	.cont-logo{
-		position: absolute;
-		right: 0;
-		top: 50px
+		/*position: absolute;
+		top: 80px;
+		right: 30px;*/
 	}
 	.p-footer{
 		font-weight: bold;
@@ -138,6 +168,16 @@
     }
     .ic-fb{
     	width: 18px;
+    }
+    .footer{
+    	position: absolute;
+    	bottom:-35;
+    	left:-35;
+    	right:-35;
+    	width: 100%;
+    	height:50px;
+    	background-color: #864c4a;
+    	color: #fff;
     }
 </style>
 @endsection

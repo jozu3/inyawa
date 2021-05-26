@@ -23,9 +23,7 @@
 						<td>Promedio</td>
 						@foreach($unidad->notas as $nota)
 						<td width="100px">	
-							
-							 	<b>{{ $nota->descripcion }}</b>
-			               
+							<b>{{ $nota->descripcion }}</b>
 						</td>
 						@endforeach
 					@endforeach
@@ -36,11 +34,11 @@
 							<b>{{$matricula->alumno->contacto->apellidos.' ' }}</b>{{ $matricula->alumno->contacto->nombres }} 
 						</td>
 						@if ($matricula->alumnoUnidades->count())
-						@foreach($matricula->alumnoUnidades as $alumnoUnidad)
+						@foreach($matricula->alumnoUnidades as $alumnoUnidade)
 						<td class="border-left text-center">
-							{{ $alumnoUnidad->nota }}
+							@livewire('admin.unidad-nota-show', ['alumnoUnidade_id' => $alumnoUnidade->id])
 						</td>
-							@foreach($alumnoUnidad->alumnoNotas as $alumnoNota)
+							@foreach($alumnoUnidade->alumnoNotas as $alumnoNota)
 								<td>
 									<div class="form-row align-items-center una-fila">
 						                <div class="col-auto my-1 mx-2">

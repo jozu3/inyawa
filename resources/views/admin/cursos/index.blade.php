@@ -3,7 +3,9 @@
 @section('title', 'Cursos')
 
 @section('content_header')
-     <a href="{{ route('admin.cursos.create') }}" class="btn btn-success btn-sm float-right">Nuevo curso</a>
+    @can('admin.cursos.create')
+        <a href="{{ route('admin.cursos.create') }}" class="btn btn-success btn-sm float-right">Nuevo curso</a>
+    @endcan
     <h1>Lista de cursos</h1>
 @stop
 

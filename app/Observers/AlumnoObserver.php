@@ -30,7 +30,9 @@ class AlumnoObserver
 
     public function created(Alumno $alumno)
     {
-        //
+        $alumno->user->update([
+            'name' => $alumno->contacto->nombres.' '.$alumno->contacto->apellidos
+        ]);
     }
     /**
      * Handle the Alumno "updated" event.
@@ -40,7 +42,9 @@ class AlumnoObserver
      */
     public function updated(Alumno $alumno)
     {
-        //
+        $alumno->user->update([
+            'name' => $alumno->contacto->nombres.' '.$alumno->contacto->apellidos
+        ]);
     }
 
     /**

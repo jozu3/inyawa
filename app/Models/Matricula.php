@@ -43,3 +43,10 @@ class Matricula extends Model
     }
 
 }
+/*
+    Estados = [
+        0 => Activo/Matriculado
+        1 => Retirado
+    ]
+
+*/

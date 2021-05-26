@@ -3,7 +3,6 @@
 @section('title', 'Grupos')
 
 @section('content_header')
-     <a href="{{ route('admin.grupos.create') }}" class="btn btn-success btn-sm float-right">Nuevo grupo</a>
     <h1>Lista de grupos</h1>
 @stop
 
@@ -17,7 +16,7 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="">
+    
 @stop
 
 @section('js')

@@ -22,7 +22,12 @@ class PDFController extends Controller
         
       //  dd($matricula);
         $pdf = PDF::setPaper('a4', 'vertical')->loadView('admin.reports.recibo_matricula', $data);
-    	
+
+    	//return view('admin.reports.recibo_matricula', compact('matricula'));
         return $pdf->stream('imprimiendo.pdf');
+    }
+
+    public function pagos(){
+        
     }
 }

@@ -4,7 +4,7 @@
 
 @section('content_header')
 	<a href="{{ route('admin.matriculas.edit', $matricula) }}" class="btn btn-success btn-sm float-right">Editar matrícula</a>
-	<a href="{{ route('admin.print', 'recibo-matricula?idmatricula='.$matricula->id) }}" class="btn btn-danger btn-sm float-right mr-2"><i class="fas fa-file-pdf"></i> Imprimir recibo</a>
+	<a href="{{ route('admin.print', 'recibo-matricula?idmatricula='.$matricula->id) }}" class="btn btn-danger btn-sm float-right mr-2" target="_blank"><i class="fas fa-file-pdf"></i> Imprimir recibo</a>
     <h1>Alumno: {{ $matricula->alumno->contacto->nombres.' '.$matricula->alumno->contacto->apellidos }}</h1>
 @stop
 
@@ -62,6 +62,7 @@
 							<th>Fecha</th>
 							<th>Estado</th>
 							<th>Monto</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -86,6 +87,20 @@
 									@endswitch
 								</td>
 								<td>{{$obligacione->montofinal}}</td>
+								<td>
+									@switch ($obligacione->estado)
+										@case(0)
+									        @break
+									    @case(1)
+											<a href="{{ route('admin.pagos.create', 'idobligacione='.$obligacione->id) }}" class="btn btn-sm btn-primary" >Registar pago</a>
+									        @break
+									    @case(2)
+											<a href="{{ route('admin.pagos.create', 'idobligacione='.$obligacione->id) }}" class="btn btn-sm btn-primary" >Registar pago</a>
+									    	@break
+									    @case(3)
+									    	@break
+									@endswitch
+								</td>
 							</tr>
 						@endforeach
 					</tbody>

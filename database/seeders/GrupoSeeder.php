@@ -14,6 +14,6 @@ class GrupoSeeder extends Seeder
      */
     public function run()
     {
-        Grupo::factory(500)->create();
+        Grupo::factory(1)->create();
     }
 }

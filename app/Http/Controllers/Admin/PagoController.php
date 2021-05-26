@@ -32,9 +32,14 @@ class PagoController extends Controller
     public function create()
     {
         $this->authorize('create', Pago::class);
+        $idobligacione = null;
 
         $cuentas = Cuenta::all()->pluck('cuenta', 'id');
-        return view('admin.pagos.create', compact('cuentas'));
+        if (isset($_GET['idobligacione'])){
+            $idobligacione = Obligacione::find($_GET['idobligacione'])->id;
+        }
+
+        return view('admin.pagos.create', compact('cuentas', 'idobligacione'));
     }
 
     /**

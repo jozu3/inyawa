@@ -14,6 +14,7 @@
             {{ session('info') }}
         </div>
     @endif
+    @if (auth()->user()->hasRole(['Admin', 'Asistente']))
 	<div class="card">
 		<div class="card-body">
 			{!! Form::model($grupo, ['route' => ['admin.grupos.update', $grupo], 'method' => 'put']) !!}
@@ -25,16 +26,17 @@
 			{!! Form::close() !!}
 		</div>
 	</div>
-		@if (session('info_alumno_nota'))
-	        <div class="alert alert-success">
-	            {{ session('info_alumno_nota') }}
-	        </div>
-	    @endif
-	    @if (session('error_alumno_nota'))
-	        <div class="alert alert-danger">
-	            {{ session('error_alumno_nota') }}
-	        </div>
-	    @endif
+    @endif
+	@if (session('info_alumno_nota'))
+        <div class="alert alert-success">
+            {{ session('info_alumno_nota') }}
+        </div>
+    @endif
+    @if (session('error_alumno_nota'))
+        <div class="alert alert-danger">
+            {{ session('error_alumno_nota') }}
+        </div>
+    @endif
 	<div class="card">
 		<div class="card-header">
 			Unidades

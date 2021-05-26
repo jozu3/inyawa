@@ -1,14 +1,14 @@
 <div class="col-md-12">
-	{!! Form::label('cuenta_id', 'Cuenta de ingreso') !!}
-	{!! Form::select('cuenta_id', $cuentas, null, ['class' => 'form-control', 'placeholder' => '--Seleccione cuenta--']) !!}
-	@error('cuenta_id')
+	{!! Form::label('obligacione_id', 'Código de pago') !!}
+	{!! Form::text('obligacione_id', $idobligacione, ['class' => 'form-control', 'placeholder' => 'Ingrese el codigo de la obligación por pagar']) !!}
+	@error('obligacione_id')
 		<small class="text-danger">{{ $message }}</small>
 	@enderror
 </div>
 <div class="col-md-12">
-	{!! Form::label('obligacione_id', 'Código de pago') !!}
-	{!! Form::text('obligacione_id', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el codigo de la obligación por pagar']) !!}
-	@error('obligacione_id')
+	{!! Form::label('cuenta_id', 'Cuenta de ingreso') !!}
+	{!! Form::select('cuenta_id', $cuentas, null, ['class' => 'form-control', 'placeholder' => '--Seleccione cuenta--']) !!}
+	@error('cuenta_id')
 		<small class="text-danger">{{ $message }}</small>
 	@enderror
 </div>

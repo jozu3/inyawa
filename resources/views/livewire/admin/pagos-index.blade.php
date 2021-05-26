@@ -18,6 +18,21 @@
                   </select>
                 </div>
               </div>
+              <div class="form-row align-items-center">
+                <div class="col-auto my-1">
+                    <label class="ml-1 d-inline mr-2" for="">Fecha de inicio</label>
+                    <input wire:model="f_inicio" type="date" class="form-control d-inline w-auto">
+                </div>
+                <div class="col-auto my-1 mx-2">
+                    <label class="ml-1 d-inline mr-2" for="">Fecha de fin</label>
+                    <input wire:model="f_fin" type="date" class="form-control d-inline w-auto">
+                </div>
+            </div>
+             @if (session()->has('message'))
+                <div class="text-danger">
+                    {{ session('message') }}
+                </div>
+            @endif
             <!--div class="form-row align-items-center">
                 <div class="col-auto my-1">
                   <div class="custom-control custom-checkbox mr-sm-2">
@@ -26,7 +41,6 @@
                   </div>
                 </div>
               </div-->
-
     	</div>
         @if ($pagos->count())
     	<div class="card-body" style="overflow-x: auto">

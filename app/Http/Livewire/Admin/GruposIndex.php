@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\Grupo;
+use App\Models\Unidad;
 use Livewire\WithPagination;
 
 class GruposIndex extends Component
@@ -39,10 +40,19 @@ class GruposIndex extends Component
 			$grupos = $grupos->where('cursos.id', '=', $this->curso_id)	;
 		}
 
+
+
 		$grupos = $grupos->where('cursos.nombre', 'like','%'.$this->search.'%')
 			->whereIn('grupos.estado', $states)
 			->orderby('grupos.fecha', 'desc')
 		    ->paginate($this->cant);
+
+		if (auth()->user()->hasRole('Profesor')) {
+        	$grupos = Unidad::select('cursos.nombre','grupos.fecha', 'grupos.estado', 'grupos.id', 'cursos.id as idcurso')
+        					->join('grupos', 'unidads.grupo_id', '=', 'grupos.id')
+        					->join('cursos', 'grupos.curso_id', '=', 'cursos.id')
+        					->where('unidads.profesore_id', auth()->user()->profesore->id)->paginate();
+        }
     				    
 		$this->resetPage();
 

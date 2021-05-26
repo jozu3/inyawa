@@ -24,6 +24,8 @@ class CursosIndex extends Component
         $est = $this->estado;
         $cursos = Curso::where('nombre', 'like','%'.$this->search.'%');
 
+  /*      
+*/
         if ($est == 1) {
 			$cursos = $cursos->where('estado', $est);
         }

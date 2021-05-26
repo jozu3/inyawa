@@ -1,0 +1,3 @@
+<div>
+    {{ $alumnoUnidad->nota }}
+</div>

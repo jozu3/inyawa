@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Empleado;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EmpleadoFactory extends Factory
@@ -21,11 +22,13 @@ class EmpleadoFactory extends Factory
      */
     public function definition()
     {
+        $users = User::whereHas("roles", function($q){ $q->where("name", ["Vendedor"]); })->pluck('id');
+
         return [
             'nombres' => $this->faker->firstName().' '.$this->faker->firstName(),
             'apellidos' => $this->faker->lastName().' '.$this->faker->lastName(),
             'telefono' => $this->faker->phoneNumber(),
-            'user_id' => $this->faker->unique()->numberBetween(13,19)
+            'user_id' => $this->faker->unique()->randomElement($users)
         ];
     }
 }

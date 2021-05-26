@@ -100,13 +100,7 @@ class ContactoController extends Controller
         if ($request->asignar == 'true'){
             
             return redirect()->route('admin.contactos.index')->with('info', 'Contacto actualizado con éxito');
-        }
-
-        if ($request->updt_alumno == 'true'){
-            $alumno = $contacto->alumno;
-            return redirect()->route('admin.alumnos.edit', compact('alumno') )->with('info', 'Contacto actualizado con éxito');
         }        
-        
 
         return redirect()->route('admin.contactos.show', compact('contacto'))->with('info', 'Contacto actualizado con éxito');
     }

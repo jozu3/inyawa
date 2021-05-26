@@ -3,6 +3,7 @@
 @section('title', 'Editar matricula')
 
 @section('content_header')
+    <a href="{{ route('admin.matriculas.show', $matricula) }}" class="float-right">Ver recibo <i class="fas fa-chevron-right"></i></a>
     <h1>Editar matrícula</h1>
 @stop
 
@@ -17,9 +18,12 @@
             <b>Detalle de la matrícula</b>
             </div>
     	<div class="card-body">
-    		{!! Form::open(['route' => ['admin.matriculas.update', $matricula], 'method' => 'put']) !!}
+    		{!! Form::model($matricula, ['route' => ['admin.matriculas.update', $matricula], 'method' => 'put']) !!}
                 {{--@livewire('admin.grupo-info', ['curso_id' => $matricula->grupo->curso->id, 'grupo_id' => $matricula->grupo->id])--}}
-
+                <div class="form-group">
+                    {!! Form::label('estado', 'Estado') !!}
+                    {!! Form::select('estado', ['0' => 'Habilitado', '1' => 'Retirado'],null, ['class' => 'form-control']) !!}
+                </div>
                 @include('admin.matriculas.partials.formedit')
                 {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}
     		{!! Form::close() !!}

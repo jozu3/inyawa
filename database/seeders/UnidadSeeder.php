@@ -16,7 +16,7 @@ class UnidadSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $unidades = Unidad::factory(2200)->create();
+        $unidades = Unidad::factory(1)->create();
         
 
         foreach ($unidades as $unidad){

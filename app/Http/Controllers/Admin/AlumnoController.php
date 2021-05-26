@@ -76,7 +76,17 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, Alumno $alumno)
     {
-        //
+        
+        $alumno->contacto->update([
+            'nombres' => $request->nombres,
+            'apellidos' => $request->apellidos,
+            'telefono' => $request->telefono,
+            'email' => $request->email,
+            'doc' => $request->doc,
+            'grado_academico' => $request->grado_academico,
+        ]);
+
+        return redirect()->route('admin.alumnos.edit', compact('alumno'))->with('info', 'El alumno se actualizó correctamente');   
     }
 
     /**

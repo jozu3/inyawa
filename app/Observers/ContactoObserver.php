@@ -23,7 +23,7 @@ class ContactoObserver
      * @param  \App\Models\Contacto  $contacto
      * @return void
      */
-    public function updated(Contacto $contacto)
+    public function updating(Contacto $contacto)
     {
         
     }

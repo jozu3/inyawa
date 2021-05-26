@@ -96,6 +96,9 @@
     		top: 150px;
     		right:5px;
     	}
+        .form-control{
+            width:80px!important;
+        }
     </style>
 @stop
 

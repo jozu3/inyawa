@@ -20,12 +20,24 @@ class AlumnosIndex extends Component
 
     public function render()
     {
-    	 $alumnos = Alumno::select('*','alumnos.id as id', 'contactos.id as idcontacto')->join('contactos', 'alumnos.contacto_id', '=', 'contactos.id')
-    	 			->where('contactos.nombres', 'like','%'.$this->search.'%')
-            		->orWhere('contactos.apellidos', 'like','%'.$this->search.'%')
-            		->orWhere('contactos.telefono', 'like','%'.$this->search.'%')
-            		->orWhere('contactos.email', 'like','%'.$this->search.'%')
-            		->paginate();
+        $that = $this;
+
+    	$alumnos = Alumno::select('*','alumnos.id as id', 'contactos.id as idcontacto')
+                    ->join('contactos', 'alumnos.contacto_id', '=', 'contactos.id')
+                    ->join('matriculas', 'matriculas.alumno_id', '=', 'alumnos.id')
+                    ->where(function($query) use ($that) {
+                          $query->orWhere('contactos.apellidos', 'like','%'.$that->search.'%')
+	 			                ->orWhere('contactos.nombres', 'like','%'.$this->search.'%')
+                                ->orWhere('contactos.telefono', 'like','%'.$that->search.'%')
+                                ->orWhere('contactos.email', 'like','%'.$that->search.'%');
+                        });
+
+        $user = auth()->user();
+        if ($user->hasRole(['Vendedor'])) {
+            $alumnos = $alumnos->whereHas('matriculas', function($q) use ($user){ $q->where("matriculas.empleado_id", [$user->empleado->id]); });
+        }
+        $alumnos = $alumnos->paginate();
+
             		//dd($alumnos);
         return view('livewire.admin.alumnos-index', compact('alumnos'));
     }

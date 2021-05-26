@@ -19,4 +19,9 @@ class Profesore extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function unidadsqueenseño($grupo_id){
+    	$unidadsqueenseño = Unidad::where('grupo_id', $grupo_id)->where('profesore_id', auth()->user()->profesore->id)->get();
+    	return $unidadsqueenseño;
+    }
 }

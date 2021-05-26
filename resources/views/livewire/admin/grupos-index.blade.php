@@ -18,6 +18,8 @@
                   </select>
                 </div>
               </div>
+            @else
+              <a href="{{ route('admin.grupos.create', 'idcurso='.$curso_id) }}" class="btn btn-success btn-sm float-right">Nuevo grupo</a>
             @endif
             <div class="form-row align-items-center">
                 <div class="col-auto my-1">
@@ -74,10 +76,16 @@
                             @endif
                         </td>
                         <td>
-                            {{ $grupo->unidads->count() }}
+                            @if (auth()->user()->hasRole('Profesor'))
+                                {{auth()->user()->profesore->unidadsqueenseño($grupo->id)->count()}}
+                            @else
+                                {{ $grupo->unidads->count() }}
+                            @endif
                         </td>
                         <td>
+                            @if (!auth()->user()->hasRole('Profesor'))
                             {{ $grupo->matriculas->count() }}
+                            @endif
                         </td>
     				  	<td width="10px">
                             <a href="{{ route('admin.grupos.edit', $grupo) }}" class="btn btn-sm btn-primary" >Editar</a>

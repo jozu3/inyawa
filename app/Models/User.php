@@ -65,6 +65,10 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function adminlte_profile_url(){
+        return 'user/profile';
+    }
+
    
     public function empleado(){
         return $this->hasOne(Empleado::class);

@@ -17,11 +17,9 @@
             <h4>Código de alumno: {{ $alumno->codigo }}</h4>
         </div>
 		<div class="card-body">
-			{!! Form::model($alumno->contacto, ['route' => ['admin.contactos.update', $alumno->contacto], 'method' => 'put']) !!}
-				{!! Form::hidden('updt_alumno','true') !!}
+			{!! Form::model($alumno->contacto, ['route' => ['admin.alumnos.update', $alumno], 'method' => 'put']) !!}
 				@include('admin.contactos.partials.form')
 				<div class="row">
-					
 					<div class="col-md-12">
 							{!! Form::label('estado', 'Estado') !!}
 							{!! Form::select('estado', [

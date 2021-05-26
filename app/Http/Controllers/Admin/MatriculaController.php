@@ -15,7 +15,10 @@ use App\Models\Obligacione;
 class MatriculaController extends Controller
 {
     public function __construct(){
-        $this->middleware('can:admin.matriculas.index');//->only('index');
+        $this->middleware('can:admin.matriculas.index')->only('index');
+        $this->middleware('can:admin.matriculas.create')->only('create', 'store');
+        $this->middleware('can:admin.matriculas.edit')->only('edit', 'update');
+        $this->middleware('can:admin.matriculas.destroy')->only('destroy');
     }
     /**
      * Display a listing of the resource.
@@ -136,6 +139,7 @@ class MatriculaController extends Controller
     {
         $matricula->update([
             'tipomatricula' => $request->tipomatricula,
+            'estado' => $request->estado
             //'grupo_id' => $request->grupo_id
         ]);
         
@@ -150,6 +154,7 @@ class MatriculaController extends Controller
      */
     public function destroy(Matricula $matricula)
     {
-        //
+        $matricula->delete();
+        return redirect()->route('admin.matriculas.index')->with('eliminar','Ok');
     }
 }

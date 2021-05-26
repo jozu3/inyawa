@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Seguimiento;
 use App\Models\Empleado;
+use Faker\Generator as Faker;
 
 class UserSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
         $nom_admin_1 = 'Sebastian';
         $ape_admin_1 = 'Cruz';
@@ -51,16 +52,22 @@ class UserSeeder extends Seeder
         ]);
 
         
-        $profesores = User::factory(10)->create(); // user_ids -> 3-12
-        $vendedores = User::factory(7)->create(); // user_ids -> 13-19
+        //vendedores
+        $vendedores_users = User::factory(7)->create(); // user_ids -> 13-19
 
-        foreach ($profesores as $profesor){
-            $profesor->assignRole('Profesor');
-        }
-
-        foreach ($vendedores as $vendedor){
+        foreach ($vendedores_users as $vendedor){
             $vendedor->assignRole('Vendedor');
         }
+
+        //Coordinador academico
+        $coord_user = User::factory(1)->create()[0]->assignRole('Coordinador académico');
+
+        Empleado::create([
+            'nombres' => $faker->firstName(),
+            'apellidos' => $faker->lastName(),
+            'telefono' => $faker->phoneNumber(),
+            'user_id' => $coord_user->id,
+        ]);
 
     }
 }

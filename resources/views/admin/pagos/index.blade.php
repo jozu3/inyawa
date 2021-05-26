@@ -17,8 +17,11 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="">
-
+    <style>
+        .w-auto{
+            width:auto;
+        }
+    </style>   
 @stop
 
 @section('js')

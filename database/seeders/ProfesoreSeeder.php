@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 use App\Models\Profesore;
+use App\Models\User;
 
 class ProfesoreSeeder extends Seeder
 {
@@ -12,9 +14,23 @@ class ProfesoreSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        Profesore::factory(10)->create();
+    	$profesores_users = User::factory(15)->create(); // user_ids -> 3-12
+
+
+ 		foreach ($profesores_users as $profesor_user){
+            $profesor_user->assignRole('Profesor');
+
+        	Profesore::create([
+        		'nombres' => $faker->firstName(),
+	            'apellidos' => $faker->lastName(),
+	            'telefono' => $faker->phoneNumber(),
+	            'user_id' => $profesor_user->id
+        	]);
+        }
+
+
         
     }
 }
