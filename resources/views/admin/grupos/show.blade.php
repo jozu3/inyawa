@@ -35,6 +35,7 @@
 			</div>
 		</div>
 	</div>
+	@if ($grupo->unidads->count() != 0)
 	<div class="col-md-12">
 		<nav>
 		  <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -51,6 +52,15 @@
 		  </div>
 		</div>		
 	</div>
+	@else
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header text-warning">
+				{{ 'Debe crear las unidades de este grupo' }}
+			</div>
+		</div>
+	</div>
+	@endif
 </div>
 						    
 	<div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">

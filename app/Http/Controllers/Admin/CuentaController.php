@@ -28,7 +28,7 @@ class CuentaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.cuentas.create');
     }
 
     /**
@@ -39,7 +39,14 @@ class CuentaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'cuenta' => 'required',
+        ]);
+
+        $request['saldo'] = 0;
+
+        Cuenta::create($request->all());
+        return redirect()->route('admin.cuentas.index')->with('info', 'La cuenta se creó correctamente');
     }
 
     /**
@@ -50,7 +57,6 @@ class CuentaController extends Controller
      */
     public function show(Cuenta $cuenta)
     {
-        //
     }
 
     /**
@@ -61,7 +67,8 @@ class CuentaController extends Controller
      */
     public function edit(Cuenta $cuenta)
     {
-        //
+
+        return view('admin.cuentas.edit', compact('cuenta'));
     }
 
     /**
@@ -73,7 +80,14 @@ class CuentaController extends Controller
      */
     public function update(Request $request, Cuenta $cuenta)
     {
-        //
+        $request->validate([
+            'cuenta' => 'required',
+        ]);
+
+        $request['saldo'] = 0;
+        
+        $cuenta->update($request->all());
+        return redirect()->route('admin.cuentas.index')->with('info', 'La cuenta se actualizó correctamente');
     }
 
     /**
