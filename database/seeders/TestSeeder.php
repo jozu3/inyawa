@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Contacto;
 
-class ContactoSeeder extends Seeder
+class TestSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +13,7 @@ class ContactoSeeder extends Seeder
      */
     public function run()
     {
-        Contacto::factory(1)->create();
+        $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

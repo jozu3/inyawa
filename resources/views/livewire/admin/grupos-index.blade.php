@@ -56,7 +56,9 @@
                         <th>Estado</th>
                         <th>Unidades</th>
                         <th>Alumnos</th>
+                        @can('admin.grupos.edit')
     					<th colspan="2"></th>
+                        @endcan
     				</tr>
     			</thead>
     			<tbody>
@@ -87,12 +89,15 @@
                             {{ $grupo->matriculas->count() }}
                             @endif
                         </td>
+                        @can('admin.grupos.edit')
     				  	<td width="10px">
                             <a href="{{ route('admin.grupos.edit', $grupo) }}" class="btn btn-sm btn-primary" >Editar</a>
                         </td>
                         <td width="10px">
                             <a href="{{ route('admin.grupos.show', $grupo) }}" class="btn btn-sm btn-primary" >Alumnos</a>
                         </td>
+                        @endcan
+                        @can('admin.grupos.destroy')
     				  	<td width="10px">
 							<form method="POST" action="{{ route('admin.grupos.destroy', $grupo) }}">
 								@csrf
@@ -100,6 +105,7 @@
 								<button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
 							</form>
 						</td>
+                        @endcan
     				  </tr>
     				@endforeach
 

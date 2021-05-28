@@ -19,7 +19,9 @@
                         <th width="200px">Grupos por inciciar</th>
                         <th width="200px">Grupos por inciciar</th>
                         <th width="200px">Grupos terminados</th>
+                        @can('admin.cursos.edit')
     					<th colspan="2"></th>
+                        @endcan
     				</tr>
     			</thead>
     			<tbody>
@@ -73,9 +75,12 @@
                             @endforeach
                             {{ $gru_termin }}
                         </td>
+                        @can('admin.cursos.edit')
     				  	<td width="10px">
     				  		<a href="{{ route('admin.cursos.edit', $curso) }}" class="btn btn-sm btn-primary" >Editar</a>
     				  	</td>
+                        @endcan
+                        @can('admin.cursos.destroy')
     				  	<td width="10px">
 							<form method="POST" action="{{ route('admin.cursos.destroy', $curso) }}">
 								@csrf
@@ -83,6 +88,7 @@
 								<button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
 							</form>
 						</td>
+                        @endcan
     				  </tr>
     				@endforeach
 
