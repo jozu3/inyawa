@@ -22,7 +22,11 @@
                 {{--@livewire('admin.grupo-info', ['curso_id' => $matricula->grupo->curso->id, 'grupo_id' => $matricula->grupo->id])--}}
                 <div class="form-group">
                     {!! Form::label('estado', 'Estado') !!}
-                    {!! Form::select('estado', ['0' => 'Habilitado', '1' => 'Retirado'],null, ['class' => 'form-control']) !!}
+                    {!! Form::select('estado', [
+                        '0' => 'Habilitado', 
+                        '1' => 'Retirado', 
+                        '2' => 'Suspendido',
+                    ], null, ['class' => 'form-control']) !!}
                 </div>
                 @include('admin.matriculas.partials.formedit')
                 {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}

@@ -54,8 +54,8 @@ class ProfesoreController extends Controller
                     'name' => $name,
                     'email' => $_POST['email'],
                     'password' => Hash::make('password'),
-                    'estado' => 0
-                ]);
+                    'estado' => 1
+                ])->assignRole('Profesor');
 
         $request['user_id'] = $user->id;
 

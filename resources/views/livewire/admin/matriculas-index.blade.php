@@ -8,6 +8,12 @@
                 Ver retirados
               </label>
             </div>
+            <div class="form-check mt-2 d-inline">
+              <input class="form-check-input" wire:model= "estado" type="checkbox" id="estado">
+              <label class="form-check-label" for="estado">
+                Ver suspendidos
+              </label>
+            </div>
     	</div>
         @if ($matriculas->count())
     	<div class="card-body">
