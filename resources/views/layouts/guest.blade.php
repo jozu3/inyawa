@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="{{ config('app.url', 'http://localhost').'/css/app.css' }}">
 
         <!-- Scripts -->
-        <script src="{{ config('app.url', 'http://localhost').'js/app.js' }}" defer></script>
+        <script src="{{ config('app.url', 'http://localhost').'/js/app.js' }}" defer></script>
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">
