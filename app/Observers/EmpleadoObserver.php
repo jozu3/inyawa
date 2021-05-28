@@ -14,9 +14,11 @@ class EmpleadoObserver
      */
     public function created(Empleado $empleado)
     {
-        $empleado->user->update([
-            'name' => $empleado->nombres.' '.$empleado->apellidos
-        ]);
+        if (isset($empleado->user)){
+            $empleado->user->update([
+                'name' => $empleado->nombres.' '.$empleado->apellidos
+            ]);
+        }
     }
 
     /**
@@ -27,9 +29,11 @@ class EmpleadoObserver
      */
     public function updated(Empleado $empleado)
     {
-        $empleado->user->update([
-            'name' => $empleado->nombres.' '.$empleado->apellidos
-        ]);
+        if (isset($empleado->user)){
+            $empleado->user->update([
+                'name' => $empleado->nombres.' '.$empleado->apellidos
+            ]);
+        }
     }
 
     /**

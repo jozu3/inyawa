@@ -54,6 +54,7 @@ class ProfesoreController extends Controller
                     'name' => $name,
                     'email' => $_POST['email'],
                     'password' => Hash::make('password'),
+                    'estado' => 0
                 ]);
 
         $request['user_id'] = $user->id;
