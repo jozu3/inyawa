@@ -49,10 +49,14 @@
 <div class="col-md-12">
 	{!! Form::label('grado_academico', 'Grado académico') !!}
 	{!! Form::select('grado_academico', [
-			'1' => 'Educación primaria',
-			'2' => 'Educación secundaria',
-			'3' => 'Técnico superior',
-			'4' => 'Universitario',
+			'1' => 'Profesor',
+			'2' => 'Bachiller',
+			'3' => 'Licenciado',
+			'4' => 'Magister',
+			'5' => 'Doctor',
+			'6' => 'Phd',
+			'7' => 'Estudiante',
+			'8' => 'No registra',
 		], null, ['class' => 'form-control', 'placeholder' => '-- Escoge un grado académico --']); !!}
 	@error('grado_academico')
 		<small class="text-danger">{{ $message }}</small>
