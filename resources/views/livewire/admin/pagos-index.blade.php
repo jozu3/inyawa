@@ -54,7 +54,9 @@
                         <th>Monto</th>
                         <th>Fecha de pago</th>
     					<th>Registrado por:</th>
-                        <th></th>
+                        <th width="200px">
+                            <a href="{{ route('admin.print.pagos', 'f-inicio='.$f_inicio.'&f-fin='.$f_fin.'&search='.$search) }}" class="btn btn-danger btn-sm float-right mr-2" target="_blank"><i class="fas fa-file-pdf"></i> Imprimir reporte</a>
+                        </th>
     				</tr>
     			</thead>
     			<tbody>
@@ -69,7 +71,7 @@
                         </td>
                         <td>{{ $pago->montopago }}</td>
                         <td>{{ $pago->fechapago }}</td>
-                        <td>{{ $pago->nombres }}</td>
+                        <td>{{ $pago->nom_empleado.' '.$pago->ape_empleado }}</td>
     				  	<td width="10px">
     				  		<a href="{{ route('admin.pagos.edit', $pago->idpago) }}" class="btn btn-primary" >Editar</a>
     				  	</td>

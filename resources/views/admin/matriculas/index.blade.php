@@ -22,8 +22,6 @@
 @stop
 
 @section('js')
-
-
     <script>
     	$().ready(function() {
 			@if (session('eliminar') == 'Ok')

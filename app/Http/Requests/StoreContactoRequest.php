@@ -46,7 +46,7 @@ class StoreContactoRequest extends FormRequest
 
             if ($this->grado_academico) {
                 $rules = array_merge($rules, [
-                    'grado_academico' => 'required|in:1,2,3,4',
+                    'grado_academico' => 'required|in:1,2,3,4,5,6,7,8',
                 ]);
             }
 

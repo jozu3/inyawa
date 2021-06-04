@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class AlumnoNotaController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:admin.alumno_notas.index')->only('index');
+        $this->middleware('can:admin.alumno_notas.create')->only('create', 'store');
+        $this->middleware('can:admin.alumno_notas.edit')->only('edit', 'update');
+        $this->middleware('can:admin.alumno_notas.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

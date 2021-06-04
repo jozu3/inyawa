@@ -23,7 +23,7 @@ class RoleSeeder extends Seeder
         $role5 = Role::create(['name' => 'Profesor']);
         $role6 = Role::create(['name' => 'Alumno']);
 
-        Permission::create(['name' => 'admin.home', 'description' => 'Ver el admin'])->syncRoles([$role1, $role2, $role3]);
+        Permission::create(['name' => 'admin.home', 'description' => 'Ver el admin'])->syncRoles([$role1, $role2, $role3, $role4, $role5]);
 
         //Permisos USUARIO
         Permission::create(['name' => 'admin.users.index', 'description' => 'Ver listado de usuarios'])->syncRoles([$role1]);
@@ -91,9 +91,9 @@ class RoleSeeder extends Seeder
 
         //Permisos Matriculas
         Permission::create(['name' => 'admin.matriculas.index', 'description' => 'Ver listado de matriculas'])->syncRoles([$role1, $role2, $role3, $role4]);
-        Permission::create(['name' => 'admin.matriculas.create', 'description' => 'Crear matriculas'])->syncRoles([$role1, $role2, $role3, $role4]);
-        Permission::create(['name' => 'admin.matriculas.edit', 'description' => 'Editar matriculas'])->syncRoles([$role1, $role2, $role3, $role4]);
-        Permission::create(['name' => 'admin.matriculas.destroy', 'description' => 'Eliminar matriculas'])->syncRoles([$role1, $role2, $role3, $role4]);
+        Permission::create(['name' => 'admin.matriculas.create', 'description' => 'Crear matriculas'])->syncRoles([$role1, $role2, $role3,]);
+        Permission::create(['name' => 'admin.matriculas.edit', 'description' => 'Editar matriculas'])->syncRoles([$role1, $role2, $role3,]);
+        Permission::create(['name' => 'admin.matriculas.destroy', 'description' => 'Eliminar matriculas'])->syncRoles([$role1, $role2, $role3,]);
 
          //Permisos Obligacione
         Permission::create(['name' => 'admin.obligaciones.index', 'description' => 'Ver listado de obligaciones de pago'])->syncRoles([$role1, $role2]);

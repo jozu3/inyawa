@@ -3,7 +3,9 @@
 @section('title', 'Grupo')
 
 @section('content_header')
-	<a href="{{ route('admin.grupos.edit', $grupo) }}" class="btn btn-success btn-sm float-right">Editar grupo</a>
+	@can('admin.grupos.edit')
+		<a href="{{ route('admin.grupos.edit', $grupo) }}" class="btn btn-success btn-sm float-right">Editar grupo</a>
+	@endcan
     <h1>Grupo: {{ $grupo->curso->nombre.' '.$grupo->fecha }}</h1>
 @stop
 

@@ -5,10 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Clase;
 use App\Models\Grupo;
+use App\Models\Unidad;
 use Illuminate\Http\Request;
 
 class ClaseController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:admin.clases.index')->only('index');
+        $this->middleware('can:admin.clases.create')->only('create', 'store', 'storeforgroup');
+        $this->middleware('can:admin.clases.edit')->only('edit', 'update');
+        $this->middleware('can:admin.clases.destroy')->only('destroy', 'destroyfromgroup');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -71,7 +78,10 @@ class ClaseController extends Controller
      */
     public function update(Request $request, Clase $clase)
     {
-        //
+        $clase->update(['fechaclase' => $request->fechaclase]);
+        $unidad = Unidad::find($request->unidad_id);
+
+        return redirect()->route('admin.unidads.edit', compact('unidad'))->with('info-clase', 'La fecha de clase se editó correctamente');
     }
 
     /**

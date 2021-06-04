@@ -20,7 +20,7 @@ class CreateMatriculasTable extends Migration
             $table->foreignId('empleado_id')->constrained();
             $table->tinyInteger('estado');
             $table->tinyInteger('tipomatricula');
-            $table->date('fecha');
+            $table->date('fecha')->nullable();
             $table->timestamps();
         });
     }

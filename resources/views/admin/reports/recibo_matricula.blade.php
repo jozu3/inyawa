@@ -8,7 +8,7 @@
 	</div>
     <div class="">		
     	<div class="d-flex" style="border:1px solid black">
-			<div class="" style="height:65px">				
+			<div class="" style="height:65px">
 				<img class="logo" src="{{ config('app.url') }}/img/logo_inyawa.jpg" alt="">
 			</div>
 			<div class="" style="margin-left:150px; height:65px">
@@ -19,7 +19,9 @@
 		<div class="datos">
 			<div class="mt-1 ml-2">
 				<span class="text1">Alumno:</span>
-				<span class="">{{ $matricula->alumno->user->name}}</span>
+				<span class="">{{ $matricula->alumno->user->name}}     </span>
+				<span class="text1">Código de alumno:</span>
+				<span class="">{{ $matricula->alumno->codigo }}</span>
 			</div>
 			<div class="mt-1 ml-2">
 				<span class="text1">DNI:</span>
@@ -34,12 +36,14 @@
 				<span class="">{{ $matricula->alumno->contacto->telefono}}</span>
 			</div>
 			<div class="mt-1 ml-2">
-				<span class="text1">Código:</span>
-				<span class="">{{ $matricula->alumno->codigo }}</span>
 			</div>
 			<div class="mt-1 ml-2 mb-1">
 				<span class="text1">Curso:</span>
-				<span class="col-md-9">{{ $matricula->grupo->curso->nombre }}</span>
+				<span class="col-md-9">{{ $matricula->grupo->curso->nombre }}     </span>
+				<span class="text1">Fecha de inicio del grupo:</span>
+				<span class="col-md-9">{{ date('d/m/Y',strtotime($matricula->grupo->fecha)) }}</span>
+			</div>
+			<div class="mt-1 ml-2 mb-1">
 			</div>
 		</div>
 		<div class="mt-3">
@@ -106,14 +110,12 @@
 		</div>
 	</div>
 	<br>
-	<div class="p-footer">
-		<i class="fab fa-facebook-square"></i> 
-	</div>
-	<div class="p-footer">
-	</div>
 
 	<footer class="footer"> 
-		<div class="align-items-center" style="height: 100%; padding-top:10px">
+		<div class="align-items-center" style="height: 100%; padding-top:15px">
+			<span class="" style="margin-left:20px">
+				<img src="{{ config('app.url') }}/img/ic_fb_white.png" width="18px" alt="">
+			</span>
 			<span style="">
 				INYAWA PERU
 			</span>	
@@ -161,7 +163,6 @@
 	}
 	.p-footer{
 		font-weight: bold;
-		font-size: 12px;
 	}
 	td, th {
      	padding: .4rem!important;
@@ -178,6 +179,7 @@
     	height:50px;
     	background-color: #864c4a;
     	color: #fff;
+		font-size: 12px;
     }
 </style>
 @endsection

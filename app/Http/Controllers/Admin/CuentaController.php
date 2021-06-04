@@ -9,7 +9,10 @@ use App\Models\Cuenta;
 class CuentaController extends Controller
 {
     public function __construct(){
-        $this->middleware('can:admin.cuentas.index');//->only('index');
+        $this->middleware('can:admin.cuentas.index')->only('index');
+        $this->middleware('can:admin.cuentas.create')->only('create', 'store');
+        $this->middleware('can:admin.cuentas.edit')->only('edit', 'update');
+        $this->middleware('can:admin.cuentas.destroy')->only('destroy');
     }
     /**
      * Display a listing of the resource.
@@ -98,6 +101,7 @@ class CuentaController extends Controller
      */
     public function destroy(Cuenta $cuenta)
     {
-        //
+        $cuenta->delete();
+        return redirect()->route('admin.cuentas.index')->with('info', 'La cuenta se elimnió correctamente');
     }
 }

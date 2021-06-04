@@ -30,11 +30,22 @@
 	
     @livewire('admin.notas-index', [ 'unidad' => $unidad])
 	
+	@if (session('info-clase'))
+		<div class="alert alert-success">
+			{{ session('info-clase') }}
+		</div>
+	@endif
 	<div class="card">
 		<div class="card-header">
-			Clases
+			<h3>Clases</h3>
 		</div>
-        @livewire('admin.clases-index', [ 'unidad' => $unidad])
+		<div class="card-body">
+			@if ($unidad->clases->count())
+        		@livewire('admin.clases-index', [ 'unidad' => $unidad])
+        	@else
+				<div class="text-warning">Aun no se han generado las clases</div>
+			@endif
+		</div>
 		
 	</div>
 @stop

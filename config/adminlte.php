@@ -271,8 +271,11 @@ return [
             'icon'        => 'fas fa-chalkboard-teacher',
             'can'  =>   'admin.profesores.index'
         ],
-
-        ['header' => 'Ventas', 'key' => 'ventas'],
+        [
+            'header' => 'Ventas', 
+            'key' => 'ventas',
+            'can'  => 'admin.contactos.index'
+        ],
       /*  [
             'text' => 'Lista de contactos',
             'key' => 'list_contacts',

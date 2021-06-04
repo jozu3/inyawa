@@ -3,14 +3,14 @@
     	<div class="card-header">
     		<input wire:model="search" class="form-control" placeholder="Ingrese el nombre o apellido de un alumno">
             <div class="form-check mt-2 d-inline">
-              <input class="form-check-input" wire:model= "estado" type="checkbox" id="estado">
-              <label class="form-check-label" for="estado">
+              <input class="form-check-input" wire:model= "estado_retirado" type="checkbox" id="estado_retirado">
+              <label class="form-check-label" for="estado_retirado">
                 Ver retirados
               </label>
             </div>
             <div class="form-check mt-2 d-inline">
-              <input class="form-check-input" wire:model= "estado" type="checkbox" id="estado">
-              <label class="form-check-label" for="estado">
+              <input class="form-check-input" wire:model= "estado_suspendido" type="checkbox" id="estado_suspendido">
+              <label class="form-check-label" for="estado_suspendido">
                 Ver suspendidos
               </label>
             </div>
@@ -44,6 +44,7 @@
     				  	<td width="10px">
     				  		<a href="{{ route('admin.matriculas.show', $matricula->idmatricula) }}" class="btn btn-primary">Ver</a>
     				  	</td>
+                        @can('admin.matriculas.destroy')
                         <td width="10px">
                            <form method="POST" class="eliminar-matricula" action="{{ route('admin.matriculas.destroy', $matricula->idmatricula) }}">
                                 @csrf
@@ -51,6 +52,7 @@
                                 <button type="submit" class="btn btn-sm btn-danger ">Eliminar</button>
                             </form>
                         </td>
+                        @endcan
     				  </tr>
     				@endforeach
 

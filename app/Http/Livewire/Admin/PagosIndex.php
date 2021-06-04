@@ -17,12 +17,11 @@ class PagosIndex extends Component
     public $f_inicio = '';
     public $f_fin = '';
 
-
     public function render()
     {
         $that = $this;
 
-    	$pagos = Pago::select('*', 'pagos.monto as montopago','pagos.id as idpago')
+    	$pagos = Pago::select('*','empleados.nombres as nom_empleado', 'empleados.apellidos as ape_empleado', 'pagos.monto as montopago','pagos.id as idpago')
                 ->join('empleados', 'pagos.empleado_id', '=', 'empleados.id')
                 ->join('obligaciones', 'pagos.obligacione_id', '=', 'obligaciones.id')
                 ->join('matriculas', 'matriculas.id', '=', 'obligaciones.matricula_id')
@@ -54,6 +53,7 @@ class PagosIndex extends Component
     	$pagos = $pagos->orderBy('pagos.fechapago', 'desc')->paginate($this->cant);
 
         $this->resetPage();
+
         return view('livewire.admin.pagos-index', compact('pagos'));
     }
 }

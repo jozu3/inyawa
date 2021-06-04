@@ -27,8 +27,6 @@ class PagoFactory extends Factory
 
         $obligacione = Obligacione::whereIn('estado',[1,2])->get()->random();
 
-        $max = 0;
-
         $monto_pagado = Pago::where('obligacione_id', $obligacione->id)->sum('monto');
 
         $maximo = $obligacione->montofinal - $monto_pagado;

@@ -28,9 +28,6 @@ class ProfesoreSeeder extends Seeder
 	            'telefono' => $faker->phoneNumber(),
 	            'user_id' => $profesor_user->id
         	]);
-        }
-
-
-        
+        }        
     }
 }

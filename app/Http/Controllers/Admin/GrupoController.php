@@ -10,7 +10,7 @@ use App\Models\Grupo;
 class GrupoController extends Controller
 {
     public function __construct(){
-        $this->middleware('can:admin.grupos.index')->only('index');
+        $this->middleware('can:admin.grupos.index')->only('index', 'show');
         $this->middleware('can:admin.grupos.create')->only('create', 'store');
         $this->middleware('can:admin.grupos.edit')->only('edit', 'update');
         $this->middleware('can:admin.grupos.destroy')->only('destroy');

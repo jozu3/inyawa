@@ -93,6 +93,8 @@
     				  	<td width="10px">
                             <a href="{{ route('admin.grupos.edit', $grupo) }}" class="btn btn-sm btn-primary" >Editar</a>
                         </td>
+                        @endcan
+                        @can('admin.grupos.index')
                         <td width="10px">
                             <a href="{{ route('admin.grupos.show', $grupo) }}" class="btn btn-sm btn-primary" >Alumnos</a>
                         </td>

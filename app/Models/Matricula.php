@@ -47,6 +47,6 @@ class Matricula extends Model
     Estados = [
         0 => Activo/Matriculado
         1 => Retirado
+        2 => Suspendido
     ]
-
 */

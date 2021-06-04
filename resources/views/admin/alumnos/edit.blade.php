@@ -58,11 +58,26 @@
                             {{ $matricula->grupo->fecha }}
                         </td>
                         <td>
-                            {{ $matricula->grupo->estado }}
+                            @switch($matricula->grupo->estado)
+                                @case(0)
+                                    {{ 'Habilitado' }}
+                                    @break
+                                @case(1)
+                                    {{ 'Retirado' }}
+                                    @break
+                                @case(2)
+                                    {{ 'Suspendido' }}
+                                    @break
+                            
+                                @default
+                            @endswitch                            
                         </td>
-    				  	<td width="10px">
-    				  		<a href="{{ route('admin.grupos.show', $matricula->grupo) }}" class="btn btn-sm btn-primary" >Ver</a>
-    				  	</td>
+    				  	<td width="120px">
+                            <a href="{{ route('admin.grupos.show', $matricula->grupo) }}" class="btn btn-sm btn-primary" >Ver grupo</a>
+                        </td>
+                        <td width="120px">
+                            <a href="{{ route('admin.matriculas.show', $matricula) }}" class="btn btn-sm btn-primary" >Ver matrícula</a>
+                        </td>
     				  </tr>
     				@endforeach
 

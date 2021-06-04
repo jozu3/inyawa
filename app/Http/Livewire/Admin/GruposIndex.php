@@ -30,7 +30,7 @@ class GruposIndex extends Component
     {
 		$states = [];
 		$this->poriniciar == true ? array_push($states, "0") : ''; 
-	    $this->iniciado == true ? array_push($states, "1") : ''; 
+	    $this->iniciado == true ? array_push($states, "1") : '';
 	    $this->terminado == true ? array_push($states, "2") : '';
 	    //$curso_id = $this->curso_id;
 
@@ -39,8 +39,6 @@ class GruposIndex extends Component
 		if($this->curso_id != ''){
 			$grupos = $grupos->where('cursos.id', '=', $this->curso_id)	;
 		}
-
-
 
 		$grupos = $grupos->where('cursos.nombre', 'like','%'.$this->search.'%')
 			->whereIn('grupos.estado', $states)
@@ -51,9 +49,10 @@ class GruposIndex extends Component
         	$grupos = Unidad::select('cursos.nombre','grupos.fecha', 'grupos.estado', 'grupos.id', 'cursos.id as idcurso')
         					->join('grupos', 'unidads.grupo_id', '=', 'grupos.id')
         					->join('cursos', 'grupos.curso_id', '=', 'cursos.id')
-        					->where('unidads.profesore_id', auth()->user()->profesore->id)->paginate();
+        					->where('unidads.profesore_id', auth()->user()->profesore->id)
+        					->paginate();
         }
-    				    
+
 		$this->resetPage();
 
         return view('livewire.admin.grupos-index', compact('grupos'));

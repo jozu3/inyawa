@@ -16,7 +16,6 @@ class EmpleadoSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        Empleado::factory(7)->create();
 
         //vendedores
         $vendedores_users = User::factory(7)->create(); // user_ids -> 13-19
@@ -25,6 +24,7 @@ class EmpleadoSeeder extends Seeder
             $vendedor->assignRole('Vendedor');
         }
 
+        Empleado::factory(7)->create();
         //Coordinador academico
         $coord_user = User::factory(1)->create()[0]->assignRole('Coordinador académico');
 

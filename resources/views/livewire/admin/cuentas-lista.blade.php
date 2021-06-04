@@ -17,7 +17,13 @@
                         <td>{{ $cuenta->cuenta}}</td>
                         <td>
     						<a href="{{ route('admin.cuentas.edit', $cuenta) }}" class="btn btn-success btn-sm float-right">Editar cuenta</a>
-
+                        </td>
+                        <td>
+                            <form method="POST" action="{{ route('admin.cuentas.destroy', $cuenta) }}">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" name=""class="btn btn-danger btn-sm float-right" value="Eliminar cuenta">
+                            </form>
                         </td>
     				  </tr>
     				@endforeach

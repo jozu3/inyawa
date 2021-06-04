@@ -40,7 +40,6 @@
 	<div class="card">
 		<div class="card-header">
 			Unidades
-			{{$grupo->clasesGenerateds()}}
 			@if ($grupo->unidads->count())
 				@if(!$grupo->notasGenerateds())
 					<div class="float-right">
@@ -57,23 +56,23 @@
 					{!! Form::close() !!} 
 					</div>
 				@endif
-			@endif
 
-			@if(!$grupo->clasesGenerateds())
-				<div class="float-right">
-				{!! Form::open(['route' => ['admin.clases.storeforgroup', $grupo]]) !!}
-					{!! Form::submit('Crear clases', ['class' =>'btn btn-primary float-right']) !!}
-				{!! Form::close() !!}  
-				</div>
-			@else
-				<div class="float-right">
-				{!! Form::open(['route' => ['admin.clases.destroyfromgroup', $grupo]]) !!}
-					@method('DELETE')
-					{!! Form::submit('Eliminar registro de clases', ['class' =>'btn btn-danger float-right mx-2']) !!}
-				{!! Form::close() !!} 
-				</div>				
-			@endif
+				@if(!$grupo->clasesGenerateds())
+					<div class="float-right">
+					{!! Form::open(['route' => ['admin.clases.storeforgroup', $grupo]]) !!}
+						{!! Form::submit('Crear clases', ['class' =>'btn btn-primary float-right']) !!}
+					{!! Form::close() !!}  
+					</div>
+				@else
+					<div class="float-right">
+					{!! Form::open(['route' => ['admin.clases.destroyfromgroup', $grupo]]) !!}
+						@method('DELETE')
+						{!! Form::submit('Eliminar registro de clases', ['class' =>'btn btn-danger float-right mx-2']) !!}
+					{!! Form::close() !!} 
+					</div>				
+				@endif
 					
+			@endif
 		</div>
         @livewire('admin.unidad-index', [ 'grupo' => $grupo])
 		

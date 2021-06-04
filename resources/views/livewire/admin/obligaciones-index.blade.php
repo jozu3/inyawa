@@ -36,8 +36,8 @@
                         <th>Código de matrícula</th>
                         <th>Alumno</th>
     					<th>Concepto</th>
-    					<th>Estado</th>
                         <th>Fecha de vencimiento</th>
+    					<th>Estado</th>
                         <th>Monto pagado</th>
                         <th>Monto final</th>
                         <th></th>
@@ -52,6 +52,7 @@
                             <a href="{{ route('admin.matriculas.edit', $obligacione->matricula)}}"> {{ $obligacione->concepto }}
                             </a>   
                         </td>
+                        <td>{{ date('d/m/Y', strtotime($obligacione->fechalimite)) }}</td>
                         <td>
                             @switch ($obligacione->estado)
                                 @case(0)
@@ -67,8 +68,10 @@
                                     Pagado
                                     @break
                             @endswitch
+                            @if ($obligacione->fechapagadototal > $obligacione->fechalimite)
+                                <small class="text-danger">({{ date('d/m/Y', strtotime($obligacione->fechapagadototal)) }})</small>
+                            @endif
                         </td>
-                        <td>{{ $obligacione->fechalimite }}</td>
                         <td>{{ $obligacione->montopagado }}</td>
                         <td>{{ $obligacione->montofinal }}</td>
     				  	<td width="10px">

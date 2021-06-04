@@ -8,48 +8,88 @@
 				<tr>
 					<th class="nombre-fijo">Nombre</th>
 					@foreach($grupo->unidads as $unidad)
-						<th colspan="{{ $unidad->clases->count() }}" class="text-center border-left">
-							{{ $unidad->descripcion }}
-						</th>
+						@if (auth()->user()->hasRole(['Admin', 'Asistente']))
+							<th colspan="{{ $unidad->clases->count() }}" class="text-center border-left">
+								{{ $unidad->descripcion }}
+							</th>
+						@else
+							@if (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id)
+								<th colspan="{{ $unidad->clases->count() }}" class="text-center border-left">
+									{{ $unidad->descripcion }}
+								</th>
+							@else
+							@endif
+						@endif
 					@endforeach
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td class="nombre-fijo">
-						
 					</td>
 					@foreach($grupo->unidads as $unidad)
+						@if (auth()->user()->hasRole(['Admin', 'Asistente']))
 							@foreach($unidad->clases as $clase)
 							<td>	
 								<b>{{ date('d/m/Y', strtotime($clase->fechaclase)) }}</b>
 							</td>
 							@endforeach
-						@endforeach
+						@else
+							@if (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id)
+								@foreach($unidad->clases as $clase)
+								<td>	
+									<b>{{ date('d/m/Y', strtotime($clase->fechaclase)) }}</b>
+								</td>
+								@endforeach
+							@else
+							@endif
+						@endif
+					@endforeach
 				</tr>
-				@foreach($grupo->matriculas as $matricula)
+				@foreach($grupo->matriculasEstado([0,2]) as $matricula)
 					<tr>
 						<td class="nombre-fijo">
 							<b>{{$matricula->alumno->contacto->apellidos.' ' }}</b>{{ $matricula->alumno->contacto->nombres }} 
 						</td>
 						@if ($matricula->grupo->unidads[0]->clases->count())
-						@foreach($matricula->grupo->unidads as $unidad)
-							@foreach($unidad->clases as $clase)
-								<td class="border-left">
-									<div class="form-row align-items-center una-fila">
-				                <div class="col-auto my-1 mx-2">
-				                	{!! Form::model($matricula->asistenciaClase($clase)) !!}
-				                	@livewire('admin.create-asistencia', [
-				                		'clase_id' => $clase->id,
-				                		'matricula_id' => $matricula->id,
-				                		//'asistencia' => $matricula->asistenciaClase($clase)
-				                		])
-				                	{!! Form::close() !!}
-				                </div>
-									</div>
-								</td>
+							@foreach($matricula->grupo->unidads as $unidad)
+								@if (auth()->user()->hasRole(['Admin', 'Asistente']))
+									@foreach($unidad->clases as $clase)
+										<td class="border-left">
+											<div class="form-row align-items-center una-fila">
+								                <div class="col-auto my-1 mx-2">
+								                	{!! Form::model($matricula->asistenciaClase($clase)) !!}
+								                	@livewire('admin.create-asistencia', [
+								                		'clase_id' => $clase->id,
+								                		'matricula_id' => $matricula->id,
+								                		//'asistencia' => $matricula->asistenciaClase($clase)
+								                		])
+								                	{!! Form::close() !!}
+								                </div>
+											</div>
+										</td>
+									@endforeach
+								@else
+									@if (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id)
+										@foreach($unidad->clases as $clase)
+										<td class="border-left">
+											<div class="form-row align-items-center una-fila">
+								                <div class="col-auto my-1 mx-2">
+								                	{!! Form::model($matricula->asistenciaClase($clase)) !!}
+								                	@livewire('admin.create-asistencia', [
+								                		'clase_id' => $clase->id,
+								                		'matricula_id' => $matricula->id,
+								                		//'asistencia' => $matricula->asistenciaClase($clase)
+								                		])
+								                	{!! Form::close() !!}
+								                </div>
+											</div>
+										</td>
+										@endforeach	
+									@else
+									@endif
+								@endif
 							@endforeach
-						@endforeach
 						@else
 							<td colspan="100%" class="alert-light alturatd-dis">
 								{{ 'No se han generado las clases para los alumnos' }}

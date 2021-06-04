@@ -15,11 +15,24 @@ class AlumnoNotaObserver
     public function created(Alumno_nota $alumno_nota)
     {
         $nota = 0;
+        $notabaja = 20;
+        $notarecuperatoria = 0;
 
         foreach ($alumno_nota->alumnoUnidade->alumnoNotas as $alnot){
+            if ($alnot->valor < $notabaja) {
+                $notabaja = $alnot->valor;
+            }
+
+            if ($alnot->nota->tipo == 1) { //nota recuperatoria
+                $notarecuperatoria = $alnot->valor;
+            }
+
             $nota += $alnot->valor*$alnot->nota->valor;
         }
 
+        if ($notarecuperatoria != 0) {
+            $nota = $notarecuperatoria;
+        }
 
         $alumno_nota->alumnoUnidade->update([
             'nota' => $nota
@@ -35,11 +48,24 @@ class AlumnoNotaObserver
     public function updated(Alumno_nota $alumno_nota)
     {
         $nota = 0;
+        $notabaja = 20;
+        $notarecuperatoria = 0;
 
         foreach ($alumno_nota->alumnoUnidade->alumnoNotas as $alnot){
+            if ($alnot->valor < $notabaja) {
+                $notabaja = $alnot->valor;
+            }
+
+            if ($alnot->nota->tipo == 1) { //nota recuperatoria
+                $notarecuperatoria = $alnot->valor;
+            }
+
             $nota += $alnot->valor*$alnot->nota->valor;
         }
 
+        if ($notarecuperatoria != 0) {
+            $nota = $notarecuperatoria;
+        }
 
         $alumno_nota->alumnoUnidade->update([
             'nota' => $nota

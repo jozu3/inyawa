@@ -14,7 +14,10 @@ use App\Http\Requests\StoreContactoRequest;
 class ContactoController extends Controller
 {
     public function __construct(){
-        $this->middleware('can:admin.contactos.index');//->only('index');
+        $this->middleware('can:admin.contactos.index')->only('index');
+        $this->middleware('can:admin.contactos.create')->only('create', 'store');
+        $this->middleware('can:admin.contactos.edit')->only('edit', 'update');
+        $this->middleware('can:admin.contactos.destroy')->only('destroy');
     }
     
     /**

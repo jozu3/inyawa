@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Curso;
+use App\Models\Matricula;
 
 class Grupo extends Model
 {
@@ -21,6 +22,11 @@ class Grupo extends Model
 
     public function matriculas(){
     	return $this->hasMany(Matricula::class);
+    }
+
+    public function matriculasEstado($estados = []){
+        $matriculas = Matricula::where('grupo_id', $this->id)->whereIn('estado', $estados)->get();
+        return $matriculas;
     }
 
     public function notasGenerateds(){

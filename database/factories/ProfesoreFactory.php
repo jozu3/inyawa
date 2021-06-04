@@ -24,10 +24,10 @@ class ProfesoreFactory extends Factory
     {
         //$users = User::where()
         return [
-            'nombres' => $this->faker->firstName(),
+        /*    'nombres' => $this->faker->firstName(),
             'apellidos' => $this->faker->lastName(),
             'telefono' => $this->faker->phoneNumber(),
-            'user_id' => $this->faker->unique()->numberBetween($min = 3, $max = 12),
+            'user_id' => $this->faker->unique()->numberBetween($min = 3, $max = 12),*/
         ];
     }
 }

@@ -71,7 +71,7 @@
 			'0' => 'Por iniciar',
 			'1' => 'Iniciado',
 			'2' => 'Terminado',
-		], null, ['class' => 'form-control', 'placeholder' => 'Escoge']); !!}
+		], null, ['class' => 'form-control', 'placeholder' => '--Seleccione--']); !!}
 	@error('estado')
 		<small class="text-danger">{{ $message }}</small>
 	@enderror

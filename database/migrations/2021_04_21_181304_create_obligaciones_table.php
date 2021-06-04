@@ -18,6 +18,7 @@ class CreateObligacionesTable extends Migration
             $table->foreignId('matricula_id')->constrained()->onDelete('cascade');
             $table->string('concepto');
             $table->date('fechalimite');
+            $table->date('fechapagadototal')->nullable();
             $table->double('monto', 8, 2);
             $table->double('descuento', 8, 2);
             $table->double('montopagado', 8, 2);

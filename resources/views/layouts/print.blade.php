@@ -9,16 +9,13 @@
         <!-- Styles -->
         
         <link rel="stylesheet" href="{{ config('app.url', 'http://localhost') }}/vendor/adminlte/dist/css/adminlte.min.css">
-        <link rel="stylesheet" href="{{ config('app.url', 'http://localhost').'/css/app.css' }}">
 
         @livewireStyles
 
         <!-- Scripts -->
-        <script src="{{ config('app.url', 'http://localhost').'/js/app.js' }}" defer></script>
         @yield('styles')
 
         <!-- Scripts -->
-        <script src="{{ config('app.url', 'http://localhost').'/js/app.js' }}" defer></script>
 
     </head>
     <body class="font-sans antialiased">

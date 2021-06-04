@@ -55,6 +55,7 @@ Route::post('clases/storeforgroup/{grupo}', [ClaseController::class, 'storeforgr
 
 //Route::resource('pdfs', PDFController::class)->names('pdfs');
 Route::get('recibo-matricula/{idmatricula}', [PDFController::class, 'reciboMatricula'])->name('admin.print');
+Route::get('reportpagos', [PDFController::class, 'pagos'])->name('admin.print.pagos');
 
 /*Route::resource('grupos', GrupoController::class, ['except' => ['create']])->names('admin.grupos');
 Route::get('grupos/create/{id}', [GrupoController::class, 'create'])->name('admin.grupos.create');

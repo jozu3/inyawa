@@ -14,7 +14,7 @@ class ObligacionesIndex extends Component
 	public $readyToLoad = false;
 	public $cant = 30;
 
-	
+
 	protected $paginationTheme = 'bootstrap';
 
     public function render()
@@ -23,10 +23,10 @@ class ObligacionesIndex extends Component
 
     	if($this->search !== ''){
            $obligaciones = $obligaciones->where('matricula_id', '=', $this->search);
-        }
+       }
 
-        $obligaciones = $obligaciones->paginate($this->cant);
+       $obligaciones = $obligaciones/*->orderBy('fechalimite', 'desc')*/->orderBy('matricula_id', 'desc')->paginate($this->cant);
 
-        return view('livewire.admin.obligaciones-index', compact('obligaciones'));
+       return view('livewire.admin.obligaciones-index', compact('obligaciones'));
     }
 }

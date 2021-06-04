@@ -49,12 +49,39 @@ class MatriculaObserver
             'estado' => 1
         ]);
 
+        $date = null;
         //generar obligacion de cuotas por pagar
         for ($i = 1; $i <= $matricula->grupo->ncuotas; $i++) {
+            if ($i == 1) {
+                $date = date('Y-m-d', strtotime( '+'.'2'.'day', strtotime($matricula->grupo->fecha)));
+            } else {
+                $meses = $i -1 ;
+                $dia = date('d', strtotime($matricula->grupo->fecha));
+                $mes = date('m', strtotime( '+'.$meses.'month', strtotime($matricula->grupo->fecha)));
+                   
+                if ($dia >= 1 && $dia <= 7) {
+                    $dia_vencimiento = 8;
+                }
+
+                if ($dia >= 8 && $dia <= 20) {
+                    $dia_vencimiento = 12;
+                }
+
+                if ($dia >= 21 && $dia <=31) {
+                    if ($mes == '02') {
+                        $dia_vencimiento = 28;
+                    } else {
+                        $dia_vencimiento = 30;
+                    }
+                }
+
+                $date = date('Y-m', strtotime( '+'.$meses.'month', strtotime($matricula->grupo->fecha))).'-'.$dia_vencimiento;
+            }
+
             Obligacione::create([
                 'matricula_id' => $matricula->id,
                 'concepto' => 'Cuota '.$i,
-                'fechalimite' => date('Y-m-d'),
+                'fechalimite' => $date,
                 'monto' => $precio_cuota,
                 'descuento' => 0,
                 'montopagado' => 0,
@@ -64,10 +91,13 @@ class MatriculaObserver
         }
 
         //generar obligacion de certificacion
+
+        $date = date('Y-m-d', strtotime( '+1 month', strtotime($date)));
+
         Obligacione::create([
             'matricula_id' => $matricula->id,
             'concepto' => 'Certificación',
-            'fechalimite' => date('Y-m-d'),
+            'fechalimite' => $date,
             'monto' => $precio_certificacion,
             'descuento' => 0,
             'montopagado' => 0,

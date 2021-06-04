@@ -6,8 +6,12 @@ use Livewire\Component;
 
 class ClasesIndex extends Component
 {
+	public $unidad;
+
     public function render()
     {
-        return view('livewire.admin.clases-index');
+    	$clases = $this->unidad->clases;
+
+        return view('livewire.admin.clases-index', compact('clases'));
     }
 }

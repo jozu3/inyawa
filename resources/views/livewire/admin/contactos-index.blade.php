@@ -152,8 +152,8 @@
                                     {{ count($contacto->seguimientos) }}
                                 </td> 
                                             
-                        <td width="10px">
-                    		<a href="{{ route('admin.contactos.show', $contacto) }}" class="btn btn-success" ><i class="fas fa-file-signature"></i></a>
+                        <td width="160px">
+                    		<a href="{{ route('admin.contactos.show', $contacto) }}" class="btn btn-success" ><i class="fas fa-file-signature"></i> Ver / Editar</a>
                     	</td>
                     </tr>
     				@endforeach
