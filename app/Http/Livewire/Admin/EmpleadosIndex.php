@@ -20,9 +20,7 @@ class EmpleadosIndex extends Component
 	}
     public function render()
     {
-    	$empleados = Empleado::where('nombres', 'like','%'.$this->search.'%')->orWhere('apellidos', 'like','%'.$this->search.'%')->paginate();
-
-    	
+    	$empleados = Empleado::where('nombres', 'like','%'.$this->search.'%')->orWhere('apellidos', 'like','%'.$this->search.'%')->paginate();    	
 
         return view('livewire.admin.empleados-index', compact('empleados'));
     }
