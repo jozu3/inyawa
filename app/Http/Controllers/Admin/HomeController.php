@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-	 public function __construct(){
+	public function __construct(){
         $this->middleware('can:admin.home');//->only('index');
         
     }
