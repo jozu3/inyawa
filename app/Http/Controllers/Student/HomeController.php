@@ -10,7 +10,11 @@ class HomeController extends Controller
     public function __construct(){
         $this->middleware('can:student.home');
     }
+    
     public function index(){
-        return view('student.index');
+
+        $matriculas = auth()->user()->alumno->matriculas;
+
+        return view('student.index', compact('matriculas'));
     }
 }

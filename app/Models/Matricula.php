@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Alumno;
+use App\Models\Asistencia;
 use App\Models\Grupo;
 use App\Models\Empleado;
 use App\Models\Obligacione;
@@ -31,7 +32,7 @@ class Matricula extends Model
     }
 
     public function asistencias(){
-        return $this->hasMany(Asistencias::class);
+        return $this->hasMany(Asistencia::class);
     }
 
     public function alumnoUnidades(){

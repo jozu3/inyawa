@@ -20,7 +20,9 @@ class PermissionAlumnoSeeder extends Seeder
 
         //permisos 
 
-        Permission::create(['name' => 'student.home', 'description' => 'Ingresar a perfil de estudiante'])->syncRoles([$role6]);
+       // Permission::create(['name' => 'student.home', 'description' => 'Ingresar a perfil de estudiante'])->syncRoles([$role6]);
+        Permission::create(['name' => 'student.obligaciones.index', 'description' => 'Ver sus obligaciones por pagar'])->syncRoles([$role6]);
+        Permission::create(['name' => 'student.pagos.index', 'description' => 'Ver el listado de sus pagos'])->syncRoles([$role6]);
 
 
     }

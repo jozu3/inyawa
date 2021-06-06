@@ -1,22 +1,90 @@
 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-    <div>
+    <!--div>
         <x-jet-application-logo class="block h-12 w-auto" />
+    </div-->
+
+    <div class="mt-4 text-2xl">
+       <b>Mis cursos</b>
     </div>
 
-    <div class="mt-8 text-2xl">
-        Welcome to your Jetstream application!
-    </div>
-
-    <div class="mt-6 text-gray-500">
+    <!--div class="mt-6 text-gray-500">
         Laravel Jetstream provides a beautiful, robust starting point for your next Laravel application. Laravel is designed
         to help you build your application using a development environment that is simple, powerful, and enjoyable. We believe
         you should love expressing your creativity through programming, so we have spent time carefully crafting the Laravel
         ecosystem to be a breath of fresh air. We hope you love it.
-    </div>
+    </div-->
 </div>
 
-<div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
+<div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-1">
+
     <div class="p-6">
+        <!-- This example requires Tailwind CSS v2.0+ -->
+        <div class="flex flex-col">
+          <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+              <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Curso
+                      </th>
+                      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Unidades
+                      </th>
+                      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Unidades completadas
+                      </th>
+                      <th scope="col" class="relative px-6 py-3">
+                        <span class="sr-only"></span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach ($matriculas as $matricula)
+                        <tr>
+                          <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                              <div class="ml-4">
+                                <div class="text-2xl font-medium text-gray-900">
+                                  {{ $matricula->grupo->curso->nombre }}
+                                </div>
+                                <div class="text-sm text-gray-500">
+                                  {{ date('d/m/Y', strtotime($matricula->grupo->fecha)) }}                                
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 inline-flex text-md leading-5 font-semibold">
+                              {{ $matricula->grupo->unidads->count() }}
+                            </span>
+                          </td>
+                          <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                              {{ $matricula->grupo->unidads->count() }}
+                            </span>
+                          </td>
+                          <td width="10px" class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <a href="{{ route('st.grupos.show', $matricula->grupo) }}" class="text-indigo-600 text-3xl hover:text-indigo-900"><i class="fas fa-chevron-circle-right"></i></a>
+                          </td>
+                        </tr>
+                    @endforeach
+
+                    <!-- More people... -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+
+
+
+    <!--div class="p-6">
         <div class="flex items-center">
             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
             <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="https://laravel.com/docs">Documentation</a></div>
@@ -86,5 +154,5 @@
                 Authentication and registration views are included with Laravel Jetstream, as well as support for user email verification and resetting forgotten passwords. So, you're free to get started what matters most: building your application.
             </div>
         </div>
-    </div>
+    </div-->
 </div>
