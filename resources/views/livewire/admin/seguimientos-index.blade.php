@@ -18,7 +18,7 @@
                             @include('partials._sort-icon', ['field' => 'cursos.nombre'])
                         </th>
                         <th>Comentario</th>
-                        <th>Usuario</th>
+                        <th>Vendedor actual</th>
     					<th></th>
     				</tr>
     			</thead>
@@ -35,7 +35,6 @@
     				  	</td>
     				  </tr>
     				@endforeach
-
     			</tbody>
     		</table>
     	</div>

@@ -24,7 +24,7 @@ class AlumnosIndex extends Component
 
     	$alumnos = Alumno::select('*','alumnos.id as id', 'contactos.id as idcontacto')
                     ->join('contactos', 'alumnos.contacto_id', '=', 'contactos.id')
-                    ->join('matriculas', 'matriculas.alumno_id', '=', 'alumnos.id')
+                    //->join('matriculas', 'matriculas.alumno_id', '=', 'alumnos.id')
                     ->where(function($query) use ($that) {
                           $query->orWhere('contactos.apellidos', 'like','%'.$that->search.'%')
 	 			                ->orWhere('contactos.nombres', 'like','%'.$this->search.'%')

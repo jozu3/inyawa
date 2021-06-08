@@ -46,8 +46,8 @@ class GruposIndex extends Component
 		    ->paginate($this->cant);
 
 		if (auth()->user()->hasRole('Profesor')) {
-        	$grupos = Unidad::select('cursos.nombre','grupos.fecha', 'grupos.estado', 'grupos.id', 'cursos.id as idcurso')
-        					->join('grupos', 'unidads.grupo_id', '=', 'grupos.id')
+        	$grupos = Grupo::select('cursos.nombre','grupos.fecha', 'grupos.estado', 'grupos.id', 'cursos.id as idcurso')
+        					->join('unidads', 'unidads.grupo_id', '=', 'grupos.id')
         					->join('cursos', 'grupos.curso_id', '=', 'cursos.id')
         					->where('unidads.profesore_id', auth()->user()->profesore->id)
         					->paginate();

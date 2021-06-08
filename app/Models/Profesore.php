@@ -21,7 +21,7 @@ class Profesore extends Model
     }
 
     public function unidadsqueenseño($grupo_id){
-    	$unidadsqueenseño = Unidad::where('grupo_id', $grupo_id)->where('profesore_id', auth()->user()->profesore->id)->get();
+    	$unidadsqueenseño = Unidad::where('grupo_id', $grupo_id)->where('profesore_id', $this->id)->get();
     	return $unidadsqueenseño;
     }
 }

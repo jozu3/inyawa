@@ -18,16 +18,15 @@
                     </select>
                 </div>
             </div>
-            <!--div class="form-row align-items-center">
-                <div class="col-auto my-1">
-                  <div class="custom-control custom-checkbox mr-sm-2">
-                    <input type="checkbox" wire:model="estemes" class="custom-control-input" id="customControlAutosizing">
-                    <label class="custom-control-label" for="customControlAutosizing">Vencen este mes</label>
-                  </div>
-                </div>
-            </div-->
             <div class="form-row align-items-center">
-               <div class="col-auto my-1">
+                <div class="form-check mx-2">
+                  <input class="form-check-input" wire:model= "vertodas" type="checkbox" id="vertodas">
+                  <label class="form-check-label" for="vertodas">
+                    Ver todas
+                  </label>
+                </div>
+                @if (!$vertodas)
+                <div class="col-auto my-1">
                     <label class="ml-1" for="">Mes</label>
                 </div>
                 <div class="col-auto my-1 mx-2">
@@ -56,6 +55,8 @@
                        @endforeach
                     </select>
                 </div>
+                @endif
+            
             </div>
     	</div>
         @if ($obligaciones->count())
@@ -79,7 +80,7 @@
                         <td>{{ $obligacione->matricula->id }}</td>
                         <td>{{ $obligacione->matricula->alumno->contacto->nombres.' '.$obligacione->matricula->alumno->contacto->apellidos }}</td>
     				  	<td>
-                            <a href="{{ route('admin.matriculas.edit', $obligacione->matricula)}}"> {{ $obligacione->concepto }}
+                            <a href="{{ route('admin.matriculas.edit', $obligacione->matricula)}}"> {{ $obligacione->id.' - '. $obligacione->concepto }}
                             </a>   
                         </td>
                         <td>{{ date('d/m/Y', strtotime($obligacione->fechalimite)) }}</td>

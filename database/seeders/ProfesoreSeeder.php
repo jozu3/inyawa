@@ -16,7 +16,7 @@ class ProfesoreSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-    	$profesores_users = User::factory(15)->create(); // user_ids -> 3-12
+    	$profesores_users = User::factory(20)->create(); // user_ids -> 3-12
 
 
  		foreach ($profesores_users as $profesor_user){

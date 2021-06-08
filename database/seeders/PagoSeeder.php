@@ -14,6 +14,6 @@ class PagoSeeder extends Seeder
      */
     public function run()
     {
-        Pago::factory(3)->create();
+        Pago::factory(1000)->create();//algunos se cancelan por el observer creating
     }
 }

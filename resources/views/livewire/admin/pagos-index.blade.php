@@ -73,8 +73,17 @@
                         <td>{{ $pago->fechapago }}</td>
                         <td>{{ $pago->nom_empleado.' '.$pago->ape_empleado }}</td>
     				  	<td width="10px">
-    				  		<a href="{{ route('admin.pagos.edit', $pago->idpago) }}" class="btn btn-primary" >Editar</a>
-    				  	</td>
+                            <a href="{{ route('admin.pagos.edit', $pago->idpago) }}" class="btn btn-primary" >Editar</a>
+                        </td>
+                        @can('admin.pagos.destroy')
+                        <td width="10px">
+                           <form method="POST" class="" action="{{ route('admin.pagos.destroy', $pago->idpago) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger ">Eliminar</button>
+                            </form>
+                        </td>
+                        @endcan
     				  </tr>
     				@endforeach
     			</tbody>

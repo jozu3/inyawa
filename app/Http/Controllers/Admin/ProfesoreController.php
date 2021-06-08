@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Profesore;
 use App\Models\User;
+use App\Models\Unidad;
+use App\Models\Grupo;
 use Illuminate\Http\Request;
 
 class ProfesoreController extends Controller
@@ -85,7 +87,14 @@ class ProfesoreController extends Controller
      */
     public function edit(Profesore $profesore)
     {
-        return view('admin.profesores.edit', compact('profesore'));
+        $grupos = Grupo::select('cursos.nombre','grupos.fecha', 'grupos.estado', 'grupos.id', 'cursos.id as idcurso')
+                            ->join('unidads', 'unidads.grupo_id', '=', 'grupos.id')
+                            ->join('cursos', 'grupos.curso_id', '=', 'cursos.id')
+                            ->where('unidads.profesore_id', $profesore->id)
+                            ->get();
+
+
+        return view('admin.profesores.edit', compact('profesore', 'grupos'));
     }
 
     /**
@@ -97,9 +106,15 @@ class ProfesoreController extends Controller
      */
     public function update(Request $request, Profesore $profesore)
     {
-        $profesore->update($request->all());
+        $profesore->user->update(['email' => $request->email]);
+        $profesore->update([
+            'nombres' => $request->nombres,
+            'apellidos' => $request->apellidos,
+            'telefono' => $request->telefono,
+        ]);
 
-        return redirect()->route('admin.profesore.edit', compact('profesore'))->with('info', 'Los datos se guardaron correctamente');
+
+        return redirect()->route('admin.profesores.edit', compact('profesore'))->with('info', 'Los datos se guardaron correctamente');
     }
 
     /**

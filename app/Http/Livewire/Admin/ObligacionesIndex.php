@@ -14,32 +14,41 @@ class ObligacionesIndex extends Component
 	public $search = '';
 	public $readyToLoad = false;
 	public $cant = 50;
-       public $mes;
-       public $year;
+   public $mes;
+   public $year;
+   public $vertodas = false;
 
 
-    protected $paginationTheme = 'bootstrap';
+   protected $paginationTheme = 'bootstrap';
 
-    public function load(){
-       $this->mes = date('m');
-       $this->year = date('Y');
-    }
+   public function load(){
+      $this->mes = date('m');
+      $this->year = date('Y');
+   }
 
-    public function render()
-    {
-       $years = Obligacione::select(DB::raw('year(fechalimite) as year'))->groupBy('year')->get();
+   public function render()
+   {
+      $years = Obligacione::select(DB::raw('year(fechalimite) as year'))->groupBy('year')->get();
 
 
-    	$obligaciones = Obligacione::where('estado','<>', '');
+   	$obligaciones = Obligacione::where('estado','<>', '');
+      $that = $this;
 
-    	if($this->search !== ''){
-           $obligaciones = $obligaciones->where('matricula_id', '=', $this->search);
-       }
+   	if($this->search !== ''){
+        $obligaciones = $obligaciones->where(function($query) use ($that) {
+                       $query
+                         ->orWhere('matricula_id', 'like','%'.$that->search.'%')
+                        ->orWhere('obligaciones.id', 'like','%'.$that->search.'%');
+                     });
+      }
 
-       $obligaciones = $obligaciones->where(DB::raw('month(fechalimite)'), $this->mes)
-                            ->where(DB::raw('year(fechalimite)'), $this->year)
-                            ->orderBy('fechalimite', 'desc')->paginate($this->cant);
+      if (!$this->vertodas) {
+         $obligaciones = $obligaciones->where(DB::raw('month(fechalimite)'), $this->mes)
+                            ->where(DB::raw('year(fechalimite)'), $this->year);
+      }
 
-       return view('livewire.admin.obligaciones-index', compact('obligaciones', 'years'));
-    }
+      $obligaciones = $obligaciones->orderBy('fechalimite', 'desc')->paginate($this->cant);         
+
+      return view('livewire.admin.obligaciones-index', compact('obligaciones', 'years'));
+   }
 }

@@ -19,10 +19,17 @@
 @error('telefono')
     <small class="text-danger">{{ $message }}</small>
 @enderror
+@if (isset($profesore))
+<div class="form-group">
+    {!! Form::label('email', 'Correo electrónico:') !!}
+    {!! Form::text('email', $profesore->user->email, ['class' => 'form-control']) !!}
+</div>
+@else
 <div class="form-group">
     {!! Form::label('email', 'Correo electrónico:') !!}
     {!! Form::text('email', null, ['class' => 'form-control']) !!}
 </div>
+@endif
 @error('email')
     <small class="text-danger">{{ $message }}</small>
 @enderror

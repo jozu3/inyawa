@@ -10,6 +10,10 @@ class PagoObserver
         if (! \App::runningInConsole()) {
             $pago->empleado_id = auth()->user()->empleado->id;
         }
+
+        if ($pago->obligacione->estado == 3) {
+            return false;
+        }
     }
     /**
      * Handle the Pago "created" event.
@@ -19,6 +23,7 @@ class PagoObserver
      */
     public function created(Pago $pago)
     {
+
         $obligacione = $pago->obligacione;
 
         $monto_final = $obligacione->montofinal;
@@ -35,7 +40,7 @@ class PagoObserver
             $estado = 2;//parcial
         }
 
-        if($monto_final == $monto_pagado){
+        if($monto_final === $monto_pagado){
             $estado = 3;//completo
             $fechapagadototal = $pago->fechapago;
         }
@@ -45,6 +50,8 @@ class PagoObserver
             'montopagado' => $monto_pagado,
             'fechapagadototal' => $fechapagadototal
         ]);
+
+
 
     }
 

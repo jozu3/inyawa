@@ -94,11 +94,11 @@
                             <a href="{{ route('admin.grupos.edit', $grupo) }}" class="btn btn-sm btn-primary" >Editar</a>
                         </td>
                         @endcan
-                        @can('admin.grupos.index')
+                        @if (!Auth::user()->hasRole('Vendedor'))
                         <td width="10px">
                             <a href="{{ route('admin.grupos.show', $grupo) }}" class="btn btn-sm btn-primary" >Alumnos</a>
                         </td>
-                        @endcan
+                        @endif
                         @can('admin.grupos.destroy')
     				  	<td width="10px">
 							<form method="POST" action="{{ route('admin.grupos.destroy', $grupo) }}">

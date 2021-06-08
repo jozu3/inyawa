@@ -102,6 +102,8 @@ class PagoController extends Controller
      */
     public function destroy(Pago $pago)
     {
-        //
+        $pago->delete();
+
+        return redirect()->route('admin.pagos.index')->with('info', 'El pago se eliminó');
     }
 }

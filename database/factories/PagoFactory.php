@@ -29,12 +29,12 @@ class PagoFactory extends Factory
 
         $monto_pagado = Pago::where('obligacione_id', $obligacione->id)->sum('monto');
 
-        $maximo = $obligacione->montofinal - $monto_pagado;
+        $maximo = $obligacione->montofinal - $obligacione->montopagado;
  
         return [
             'cuenta_id' => Cuenta::all()->random()->id,
             'obligacione_id' => $obligacione->id,
-            'monto' => $this->faker->numberBetween($min = 1, $max = $maximo),
+            'monto' => $maximo,
             'fechapago' => $this->faker->dateTimeThisYear($max = '2021-05-22', $timezone = null)->format('Y-m-d'),
             'empleado_id' => Empleado::all()->random()->id,
         ];

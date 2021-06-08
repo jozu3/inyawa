@@ -7,6 +7,11 @@
 @stop
 
 @section('content')
+    @if (session('info'))
+        <div class="alert alert-success">
+            {{ session('info') }}
+        </div>
+    @endif
     <div class="card">
     	<dic class="card-body">
     		{!! Form::open(['route' => 'admin.profesores.store']) !!}

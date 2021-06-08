@@ -37,7 +37,9 @@ class MatriculaController extends Controller
      */
     public function create()
     {
+
         $contacto = Contacto::find($_GET['idcontacto']);
+        $this->authorize('vendiendo', $contacto);
         $alumno_existe = null;
         if (isset($contacto->alumno)) {
             $alumno_existe = 'Ya es alumno, se sugiere tipo de matrícula para alumno antiguo.';
@@ -54,8 +56,10 @@ class MatriculaController extends Controller
      */
     public function store(StoreMatriculaRequest $request)
     {
+
         //actualizar daotos del contacto
         $contacto = Contacto::find($request->contacto_id);
+        $this->authorize('updating', $contacto);
         $request['estado'] = 5;
 
 
