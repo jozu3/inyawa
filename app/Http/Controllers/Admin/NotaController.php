@@ -74,9 +74,7 @@ class NotaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateNotaRequest $request, Nota $nota)
-    {
-        
-                 
+    {                 
         $nota->update($request->all());
 
         return redirect()->route('admin.notas.edit', compact('nota'))->with('info', 'Se actualizaron los datos');

@@ -1,10 +1,10 @@
 <x-jet-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Información del perfil') }}
+        {{ __('Profile Information') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Actualiza tu dirección de correo electronico') }}
+        {{ __('Update your account\'s profile information and email address.') }}
     </x-slot>
 
     <x-slot name="form">
@@ -51,9 +51,17 @@
                 <x-jet-input-error for="photo" class="mt-2" />
             </div>
         @endif
+
+        <!-- Name -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="name" value="{{ __('Name') }}" />
+            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
+            <x-jet-input-error for="name" class="mt-2" />
+        </div>
+
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="email" value="{{ __('Correo electrónico') }}" />
+            <x-jet-label for="email" value="{{ __('Email') }}" />
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
@@ -61,11 +69,11 @@
 
     <x-slot name="actions">
         <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Guardado.') }}
+            {{ __('Saved.') }}
         </x-jet-action-message>
 
         <x-jet-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Guardar') }}
+            {{ __('Save') }}
         </x-jet-button>
     </x-slot>
 </x-jet-form-section>

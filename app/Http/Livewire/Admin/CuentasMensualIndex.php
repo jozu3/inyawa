@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\Pago;
+use App\Models\Obligacione;
 use App\Models\Cuenta;
 use DB;
 
@@ -25,7 +26,9 @@ class CuentasMensualIndex extends Component
     public function render()
     {
         $hoy = date('Y-m-d', strtotime(now()));
-    	$year_actual = date('Y', strtotime(now()));
+    	//$year_actual = date('Y', strtotime(now()));
+        $years = Obligacione::select(DB::raw('year(fechalimite) as year'))->groupBy('year')->get();
+
 
     	$cuentas_mensual = Cuenta::select('cuentas.id as idcuenta','cuentas.cuenta as nombrecuenta', DB::raw('SUM(pagos.monto) as sumpagos'))
     			->join('pagos', 'cuentas.id', '=', 'pagos.cuenta_id')
@@ -91,7 +94,7 @@ class CuentasMensualIndex extends Component
 
 
 
-        return view('livewire.admin.cuentas-mensual-index', compact('cuentas_mensual', 'year_actual','sem1', 'sem2', 'sem3', 'sem4', 'sem5'));
+        return view('livewire.admin.cuentas-mensual-index', compact('cuentas_mensual', 'years','sem1', 'sem2', 'sem3', 'sem4', 'sem5'));
     }
 
 }

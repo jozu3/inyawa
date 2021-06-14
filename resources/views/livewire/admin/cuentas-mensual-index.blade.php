@@ -1,6 +1,9 @@
 <div>
     <div class="card">
     	<div class="card-header">
+            <div class="">
+                    <h3>Ingreso por periodo mensual</h3>
+                </div>
             <div class="form-row align-items-center">
                 <div class="col-auto my-1">
                     <label class="ml-1" for="">Mes</label>
@@ -26,9 +29,9 @@
                 </div>
                 <div class="col-auto my-1 mx-2">
                     <select wire:model="anio" type="date" class="form-control">
-                        @for ($i = $year_actual; $i > $year_actual - 5 ; $i--)
-                	       <option value="{{ $i }}">{{ $i }}</option>
-                        @endfor
+                       @foreach ($years as $y)
+                            <option value="{{$y->year}}">{{ $y->year}}</option>
+                       @endforeach
                     </select>
                 </div>
             </div>

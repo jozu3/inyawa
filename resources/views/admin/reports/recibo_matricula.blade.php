@@ -112,14 +112,14 @@
 	<br>
 
 	<footer class="footer"> 
-		<div class="align-items-center" style="height: 100%; padding-top:15px">
+		<div class="align-items-center" style="height: 100%; padding-top:10px">
 			<span class="" style="margin-left:20px">
 				<img src="{{ config('app.url') }}/img/ic_fb_white.png" width="18px" alt="">
 			</span>
 			<span style="">
 				INYAWA PERU
 			</span>	
-			<span class="ml-4" style="" >
+			<span class="ml-4" style="margin-left: 50px;" >
 				Av Elmer Faucett 16-27 jardines de Viru - Bella Vista - Callao
 			</span>
 			
@@ -179,7 +179,8 @@
     	height:50px;
     	background-color: #864c4a;
     	color: #fff;
-		font-size: 12px;
+		font-size: 17px;
+		padding-left: 20px;
     }
 </style>
 @endsection

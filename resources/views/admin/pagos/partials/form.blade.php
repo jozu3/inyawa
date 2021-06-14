@@ -1,6 +1,10 @@
 <div class="col-md-12">
-	{!! Form::label('obligacione_id', 'Código de pago') !!}
+	{!! Form::label('obligacione_id', 'Código de Obligación por pagar') !!}
+	@if (isset($idobligacione))
 	{!! Form::text('obligacione_id', $idobligacione, ['class' => 'form-control', 'placeholder' => 'Ingrese el codigo de la obligación por pagar']) !!}
+	@else
+	{!! Form::text('obligacione_id', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el codigo de la obligación por pagar']) !!}
+	@endif
 	@error('obligacione_id')
 		<small class="text-danger">{{ $message }}</small>
 	@enderror

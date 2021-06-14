@@ -16,7 +16,11 @@ class CheckRole
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
-    {
+    {   
+        if (auth()->user()->hasRole('Alumno')) {
+            return redirect()->route('st.index');
+        }
+
         return $next($request);
     }
 }

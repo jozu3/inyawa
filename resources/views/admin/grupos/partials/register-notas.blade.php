@@ -33,16 +33,20 @@
 							<td>Promedio</td>
 							@foreach($unidad->notas as $nota)
 								<td width="100px">	
-									<b>{{ $nota->descripcion }}</b>
+									<b>{{ $nota->descripcion }}@if ($nota->tipo == 1)
+										{{ '(Nota recuperatoria)' }}
+									@endif()</b>
 								</td>
 							@endforeach
 						@else
 							@if (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id)
 								<td>Promedio</td>
 								@foreach($unidad->notas as $nota)
-									<td width="100px">	
-										<b>{{ $nota->descripcion }}</b>
-									</td>
+								<td width="100px">	
+									<b>{{ $nota->descripcion }}@if ($nota->tipo == 1)
+										{{ '(Nota recuperatoria)' }}
+									@endif()</b>
+								</td>
 								@endforeach
 							</th>
 							@else

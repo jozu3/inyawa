@@ -43,6 +43,16 @@ class Matricula extends Model
         return Asistencia::where('clase_id', $clase->id)->where('matricula_id', $this->id)->first();
     }
 
+    public function asistenciasUnidad(Unidad $unidad){
+        return Asistencia::where('matricula_id', $this->id)
+                ->whereHas('clase', function($q) use ($unidad){ 
+                    $q->whereHas('unidad', function($qu) use ($unidad){ 
+                        $qu->where('id', $unidad->id); 
+                    })
+                ->where('asistencia', '0');
+        })->get();
+    }
+
 }
 /*
     Estados = [

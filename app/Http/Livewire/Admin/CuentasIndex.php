@@ -9,8 +9,8 @@ use DB;
 
 class CuentasIndex extends Component
 {
-    public $f_inicio = '2021-01-01';
-    public $f_fin = '2021-12-31';
+    public $f_inicio = '';
+    public $f_fin = '';
 
     public function render()
     {

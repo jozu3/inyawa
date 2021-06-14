@@ -30,7 +30,6 @@ class UpdateNotaRequest extends FormRequest
 
         if ($this->tipo == 0)
         {
-
             $notas_completas += $this->valor;
         }
 
@@ -48,6 +47,7 @@ class UpdateNotaRequest extends FormRequest
         return [
             'notas_completas.max' => 'La suma del valor de las notas no deben superar el 100%.',
             'tiene_nota_recuperatoria.in' => 'Esta unidad ya tiene una nota recuperatoria.',
+            'valor.in' => 'Si la nota es de tipo "Nota recuperatoria" el valor debe ser "0".'
         ];
     }
 
@@ -66,6 +66,7 @@ class UpdateNotaRequest extends FormRequest
             'tipo' => 'required',
             'tiene_nota_recuperatoria' => 'in:0',
             'valor' => 'required|exclude_if:tipo,1|numeric|min:0.01|max:1',
+            'valor' => 'required|exclude_if:tipo,0|numeric|in:0',
             'notas_completas' => 'required|numeric|min:0|max:1',
         ];
     }

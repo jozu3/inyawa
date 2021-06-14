@@ -54,7 +54,7 @@
                         <th>Monto</th>
                         <th>Fecha de pago</th>
     					<th>Registrado por:</th>
-                        <th width="200px">
+                        <th colspan="2">
                             <a href="{{ route('admin.print.pagos', 'f-inicio='.$f_inicio.'&f-fin='.$f_fin.'&search='.$search) }}" class="btn btn-danger btn-sm float-right mr-2" target="_blank"><i class="fas fa-file-pdf"></i> Imprimir reporte</a>
                         </th>
     				</tr>

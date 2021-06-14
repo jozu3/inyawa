@@ -24,19 +24,22 @@
                                 Asistencias
                               </th>
                               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Promedio
+                                Nota
+                              </th>
+                              <th scope="col" class="relative px-6 py-3">
+                                <span class="sr-only">Promedio</span>
                               </th>
                             </tr>
                           </thead>
                           <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($alumno_unidades as $alumno_unidade)
-                                  
                                 <tr>
                                   <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
+                                      
                                       <div class="ml-4">
                                         <div class="text-2xl font-medium text-gray-900">
-                                          <b>{{ $alumno_unidade->unidad->descripcion }}</b>
+                                          {{ $alumno_unidade->unidad->descripcion }}
                                         </div>
                                         <div class="text-sm text-gray-500">
                                           {{ date('d/m/Y', strtotime($alumno_unidade->unidad->fechainicio)) }}                                
@@ -50,45 +53,18 @@
                                     </span>
                                   </td>
                                   <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm">
-                                      <div class="flex items-center justify-center">
-                                        <div class="rounded-md bg-yellow-400 text-white font-semibold py-2 px-4">
-                                          {{ $alumno_unidade->nota }}
-                                        </div>
-                                      </div>
+                                    <div class="text-sm text-gray-900">
+                                        {{ $alumno_unidade->nota }}
                                     </div>
                                   </td>
-                                </tr>                                  
-                                <div class="row">
-                              <tr>
-                                <td class="px-6 whitespace-nowrap">
-                                      <div class="ml-12">
-                                        <div class="text-xl text-gray-900">
-                                          Notas
-                                      </div>
-                                </td>
-                                <td colspan="2" class="px-6 py-4 whitespace-nowrap">
-                                  @foreach ($alumno_unidade->alumnoNotasorden('asc') as $alumno_nota)
-                                  <div class="">
-                                      <div class="flex my-2">
-                                        <div class="flex-1 flex items-center">
-                                          {{ $alumno_nota->descripcionnota }}
-                                          @if ($alumno_nota->tiponota == 1)
-                                            (Nota recuperatoria)
-                                          @endif
-                                        </div>
-                                        @if ($alumno_nota->valoralumno_nota != '')
-                                        <div class="flex-1 flex items-center justify-center ">
-                                          <div class="rounded-md bg-yellow-600 text-white font-semibold py-2 px-4">
-                                            {{ $alumno_nota->valoralumno_nota }}
-                                          </div>
-                                        </div>
-                                        @endif
-                                      </div>
-                                  </div>
-                                  @endforeach
-                                </td>
-                              </tr>
+                                  <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    </span>
+                                  </td>
+                                  <td width="10px" class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <a href="{{ route('st.alumno_unidade.show', $alumno_unidade) }}" class="text-indigo-600 text-3xl hover:text-indigo-900"><i class="fas fa-chevron-circle-right"></i></a>
+                                  </td>
+                                </tr>
                             @endforeach
                           </tbody>
                         </table>

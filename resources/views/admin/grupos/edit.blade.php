@@ -75,7 +75,6 @@
 			@endif
 		</div>
         @livewire('admin.unidad-index', [ 'grupo' => $grupo])
-		
 	</div>
 @stop
 

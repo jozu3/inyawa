@@ -25,4 +25,4 @@
 		<small class="text-danger">{{ $message }}</small>
 	@enderror
 </div>
-<input type="text" name="id" value="{{ $nota->id }}">
+<input type="hidden" name="id" value="{{ $nota->id }}">

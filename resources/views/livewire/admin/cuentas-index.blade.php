@@ -1,6 +1,9 @@
 <div>
     <div class="card">
     	<div class="card-header">
+            <div class="">
+                <h3>Ingreso por fechas</h3>
+            </div>
             <div class="form-row align-items-center">
                 <div class="col-auto my-1">
                     <label class="ml-1" for="">Fecha de inicio</label>
