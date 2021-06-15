@@ -43,6 +43,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Dispatcher $events)
     {
+        
+        if(config('app.env') === 'production') {
+            \URL::forceScheme('https');
+        }
 
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
                

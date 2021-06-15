@@ -68,7 +68,7 @@
 						@foreach ($matricula->obligaciones as $obligacione)
 							<tr>
 								<td>{{$obligacione->concepto}}</td>
-								<td>{{$obligacione->fechalimite}}</td>
+								<td>{{ date('d/m/Y', strtotime($obligacione->fechalimite)) }}</td>
 								<td>
 									@switch ($obligacione->estado)
 										@case(0)

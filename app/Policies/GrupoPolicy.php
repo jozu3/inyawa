@@ -6,7 +6,7 @@ use App\Models\Grupo;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class GrupoAlumnoPolicy
+class GrupoPolicy
 {
     use HandlesAuthorization;
 
@@ -30,7 +30,13 @@ class GrupoAlumnoPolicy
      */
     public function view(User $user, Grupo $grupo)
     {
-        return true;
+        foreach ($user->alumno->matriculas as $matricula) {
+            if ($matricula->grupo->id == $grupo->id) {
+                return true;
+            }
+        }
+        abort(404);
+        //return false;
     }
 
     /**

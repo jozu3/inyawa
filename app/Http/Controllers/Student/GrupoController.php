@@ -49,7 +49,7 @@ class GrupoController extends Controller
      */
     public function show(Grupo $grupo)
     {
-        //$this->authorize('view', $grupo);
+        $this->authorize('view', $grupo);
 
         $alumno = auth()->user()->alumno;
 
