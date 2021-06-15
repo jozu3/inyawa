@@ -8,10 +8,25 @@
 
 @section('content')
     <p>Bienvenido al Panel Administrativo de <strong>Inyawa Perú</strong></p>
+    <div>
+        <div class="contimg">
+            <x-jet-application-mark />
+        </div>
+    </div>
 @stop
 
 @section('css')
     <link rel="stylesheet" href="">
+    <style type="text/css">
+        .contimg{
+            text-align: center;   
+        }
+        .contimg>img{
+            width:50%!important;
+            opacity: 0.3;
+            border:  0px!important;
+        }
+    </style>
 @stop
 
 @section('js')
