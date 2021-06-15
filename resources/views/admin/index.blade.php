@@ -23,7 +23,7 @@
         }
         .contimg>img{
             width:50%!important;
-            opacity: 0.3;
+            opacity: 0.2;
             border:  0px!important;
         }
     </style>

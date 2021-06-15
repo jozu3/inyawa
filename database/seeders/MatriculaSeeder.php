@@ -14,6 +14,6 @@ class MatriculaSeeder extends Seeder
      */
     public function run()
     {
-        Matricula::factory(2000)->create();
+        Matricula::factory(300)->create();
     }
 }
