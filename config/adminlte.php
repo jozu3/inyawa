@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Inyawa</b>LTE',
+    'logo' => '<strong>Inyawa</strong>Perú',
     //'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img' => 'img/logo_inyawa.jpg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'admin',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',

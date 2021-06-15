@@ -24,7 +24,7 @@
 
                     @can('admin.home')
                     <x-jet-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.index')">
-                        {{ __('Admin') }}
+                        {{ __('Panel administrativo') }}
                     </x-jet-nav-link>
                     @endcan
                 </div>

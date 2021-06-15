@@ -5,10 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>@yield('title', 'Imprimir')</title>
-
+        <link rel="shortcut icon" href="{{ config('app.url', 'https://www.inyawaperu.com') }}/favicons/favicon.ico">
         <!-- Styles -->
         
-        <link rel="stylesheet" href="{{ config('app.url', 'http://localhost') }}/vendor/adminlte/dist/css/adminlte.min.css">
+        <link rel="stylesheet" href="{{ config('app.url', 'https://www.inyawaperu.com') }}/vendor/adminlte/dist/css/adminlte.min.css">
 
         @livewireStyles
 

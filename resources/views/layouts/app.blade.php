@@ -12,14 +12,14 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ config('app.url', 'http://localhost').'/css/app.css' }}">
-        <link rel="stylesheet" href="{{ config('app.url', 'http://localhost').'/vendor/fontawesome-free/css/all.min.css' }}">
+        <link rel="stylesheet" href="{{ config('app.url', 'https://www.inyawaperu.com').'/css/app.css' }}">
+        <link rel="stylesheet" href="{{ config('app.url', 'https://www.inyawaperu.com').'/vendor/fontawesome-free/css/all.min.css' }}">
 
 
         @livewireStyles
 
         <!-- Scripts -->
-        <script src="{{ config('app.url', 'http://localhost').'/js/app.js' }}" defer></script>
+        <script src="{{ config('app.url', 'https://www.inyawaperu.com').'/js/app.js' }}" defer></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
