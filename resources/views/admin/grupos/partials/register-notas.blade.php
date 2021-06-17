@@ -8,7 +8,7 @@
 				<tr>
 					<th class="nombre-fijo">Nombre</th>
 					@foreach($grupo->unidads as $unidad)
-						@if (auth()->user()->hasRole(['Admin', 'Asistente']))
+						@if (auth()->user()->hasRole(['Admin', 'Asistente', 'Coordinador académico']))
 
 							<th colspan="{{ $unidad->notas->count() + 1}}" class="border-left">
 								<center>{{ $unidad->descripcion }}</center>
@@ -29,7 +29,7 @@
 					<td class="nombre-fijo">
 					</td>
 					@foreach($grupo->unidads as $unidad)
-						@if (auth()->user()->hasRole(['Admin', 'Asistente']))
+						@if (auth()->user()->hasRole(['Admin', 'Asistente', 'Coordinador académico']))
 							<td>Promedio</td>
 							@foreach($unidad->notas as $nota)
 								<td width="100px">	
@@ -61,7 +61,7 @@
 						</td>
 						@if ($matricula->alumnoUnidades->count())
 						@foreach($matricula->alumnoUnidades as $alumnoUnidade)
-						@if (auth()->user()->hasRole(['Admin', 'Asistente']))
+						@if (auth()->user()->hasRole(['Admin', 'Asistente', 'Coordinador académico']))
 							<td class="border-left text-center">
 								@livewire('admin.unidad-nota-show', ['alumnoUnidade_id' => $alumnoUnidade->id])
 							</td>

@@ -8,7 +8,7 @@
 				<tr>
 					<th class="nombre-fijo">Nombre</th>
 					@foreach($grupo->unidads as $unidad)
-						@if (auth()->user()->hasRole(['Admin', 'Asistente']))
+						@if (auth()->user()->hasRole(['Admin', 'Asistente', 'Coordinador académico']))
 							<th colspan="{{ $unidad->clases->count() }}" class="text-center border-left">
 								{{ $unidad->descripcion }}
 							</th>
@@ -28,7 +28,7 @@
 					<td class="nombre-fijo">
 					</td>
 					@foreach($grupo->unidads as $unidad)
-						@if (auth()->user()->hasRole(['Admin', 'Asistente']))
+						@if (auth()->user()->hasRole(['Admin', 'Asistente', 'Coordinador académico']))
 							@foreach($unidad->clases as $clase)
 							<td>	
 								<b>{{ date('d/m/Y', strtotime($clase->fechaclase)) }}</b>
@@ -53,7 +53,7 @@
 						</td>
 						@if ($matricula->grupo->unidads[0]->clases->count())
 							@foreach($matricula->grupo->unidads as $unidad)
-								@if (auth()->user()->hasRole(['Admin', 'Asistente']))
+								@if (auth()->user()->hasRole(['Admin', 'Asistente', 'Coordinador académico']))
 									@foreach($unidad->clases as $clase)
 										<td class="border-left">
 											<div class="form-row align-items-center una-fila">
