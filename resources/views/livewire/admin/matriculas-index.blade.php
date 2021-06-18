@@ -3,6 +3,12 @@
     	<div class="card-header">
     		<input wire:model="search" class="form-control" placeholder="Ingrese el nombre o apellido de un alumno">
             <div class="form-check mt-2 d-inline">
+              <input class="form-check-input" wire:model= "estado_habilitado" type="checkbox" id="estado_habilitado">
+              <label class="form-check-label" for="estado_habilitado">
+                Ver habilitados
+              </label>
+            </div>
+            <div class="form-check mt-2 d-inline">
               <input class="form-check-input" wire:model= "estado_retirado" type="checkbox" id="estado_retirado">
               <label class="form-check-label" for="estado_retirado">
                 Ver retirados
@@ -27,6 +33,7 @@
     					<th>Nombres</th>
     					<th>Apellidos</th>
                         <th>Telefono</th>
+                        <th>Estado</th>
                         <th>Vendedor</th>
                         <th>Matriculado por:</th>
     				</tr>
@@ -41,6 +48,20 @@
     				  	<td>{{ $matricula->alumno->contacto->nombres }}</td>
     				  	<td>{{ $matricula->alumno->contacto->apellidos }}</td>
                         <td>{{ $matricula->alumno->contacto->telefono }}</td>
+                        <td>
+                            @switch($matricula->mat_estado)
+                                @case(0)
+                                    {{ 'Habilitado' }}
+                                    @break
+                                @case(1)
+                                    {{ 'Retirado' }}
+                                    @break
+                                @case(2)
+                                    {{ 'Suspendido' }}
+                                    @break
+                                @default
+                            @endswitch
+                        </td>
                         <td>{{ $matricula->alumno->contacto->empleado->user->name }}</td>
                         <td>{{ $matricula->matri_por_nombres.' '.$matricula->matri_por_apellidos }}</td>
     				  	<td width="10px">

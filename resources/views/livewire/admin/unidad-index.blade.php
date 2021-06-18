@@ -78,6 +78,7 @@
 		    	<td></td>
 		    </tr>
 		@endif
+		@if (!$iniciado)
 			<tr>
 				<form wire:submit.prevent="submit">
 				<td>
@@ -106,6 +107,7 @@
 				</td>
 				</form>
 			</tr>
+		@endif
 		</tbody>
 	</table>
 </div>

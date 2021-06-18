@@ -15,6 +15,7 @@ class UnidadIndex extends Component
 	public $fechainicio;
 	public $cantidad_clases;
 	public $profesore_id;
+	public $iniciado;
 
 	protected $rules = [
 		'descripcion' => 'required',

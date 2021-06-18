@@ -15,7 +15,7 @@ class MatriculasIndex extends Component
 	public $readyToLoad = false;
     public $estado_retirado = true;
     public $estado_suspendido = true;
-
+    public $estado_habilitado = true;
 	
 	protected $paginationTheme = 'bootstrap';
 
@@ -31,11 +31,12 @@ class MatriculasIndex extends Component
     public function render()
     {
     	if ($this->readyToLoad) {
-    		$states = ["0"];
+    		$states = [];
+	        $this->estado_habilitado == true ? array_push($states, "0") : ''; 
 	        $this->estado_retirado == true ? array_push($states, "1") : ''; 
 	        $this->estado_suspendido == true ? array_push($states, "2") : ''; 
 
-    		$matriculas = Matricula::select('*', 'empleados.nombres as matri_por_nombres', 'empleados.apellidos as matri_por_apellidos', 'matriculas.id as idmatricula')
+    		$matriculas = Matricula::select('*', 'empleados.nombres as matri_por_nombres', 'empleados.apellidos as matri_por_apellidos', 'matriculas.id as idmatricula', 'matriculas.estado as mat_estado')
     							->join('alumnos', 'alumnos.id', '=', 'matriculas.alumno_id')
     							->join('contactos', 'contactos.id', '=', 'alumnos.contacto_id')
     							->join('empleados', 'empleados.id', '=', 'matriculas.empleado_id')

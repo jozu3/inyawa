@@ -2,6 +2,8 @@
 
 @section('title', 'Editar grupo')
 
+@section('plugins.Sweetalert2', true)
+
 @section('content_header')
      <a href="{{ route('admin.grupos.show', $grupo) }}" class="btn btn-success btn-sm float-right"><i class="fas fa-user-graduate"></i> Ver alumnos</a>
 
@@ -40,16 +42,22 @@
 	<div class="card">
 		<div class="card-header">
 			Unidades
+			@php
+				$iniciado = false;
+			@endphp
 			@if ($grupo->unidads->count())
 				@if(!$grupo->notasGenerateds())
 					<div class="float-right">
-					{!! Form::open(['route' => 'admin.alumno_unidades.store']) !!}
+					{!! Form::open(['route' => 'admin.alumno_unidades.store', 'class' =>'crear_notas_clases']) !!}
 						{!! Form::hidden('grupo_id', $grupo->id) !!}
 						{!! Form::submit('Generar notas', ['class' =>'btn btn-primary float-right mx-2']) !!}
 					{!! Form::close() !!} 
 					</div>
 				@else
 					<div class="float-right">
+					@php
+						$iniciado = true;
+					@endphp
 					{!! Form::open(['route' => ['admin.alumno_unidades.destroyfromgroup', $grupo]]) !!}
 						@method('DELETE')
 						{!! Form::submit('Eliminar registro de notas', ['class' =>'btn btn-danger float-right mx-2']) !!}
@@ -59,22 +67,24 @@
 
 				@if(!$grupo->clasesGenerateds())
 					<div class="float-right">
-					{!! Form::open(['route' => ['admin.clases.storeforgroup', $grupo]]) !!}
+					{!! Form::open(['route' => ['admin.clases.storeforgroup', $grupo], 'class' =>'crear_notas_clases']) !!}
 						{!! Form::submit('Crear clases', ['class' =>'btn btn-primary float-right']) !!}
 					{!! Form::close() !!}  
 					</div>
 				@else
+					@php
+						$iniciado = true;
+					@endphp
 					<div class="float-right">
 					{!! Form::open(['route' => ['admin.clases.destroyfromgroup', $grupo]]) !!}
 						@method('DELETE')
 						{!! Form::submit('Eliminar registro de clases', ['class' =>'btn btn-danger float-right mx-2']) !!}
 					{!! Form::close() !!} 
 					</div>				
-				@endif
-					
+				@endif	
 			@endif
-		</div>
-        @livewire('admin.unidad-index', [ 'grupo' => $grupo])
+		</div>	
+        @livewire('admin.unidad-index', [ 'grupo' => $grupo, 'iniciado' => $iniciado])
 	</div>
 @stop
 
@@ -96,5 +106,29 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script>
+    	$().ready(function() {
+		
+	    	$('.crear_notas_clases').submit( function (e) {
+	    		e.preventDefault();
+		    	Swal.fire({
+				  title: 'Advertencia',
+				  text: "Si crea las clases o genera las notas para los alumnos, ya no podrá agregar unidades o notas de las unidades a este grupo.",
+				  icon: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Continuar',
+				  cancelButtonText: "Cancelar", 
+				}).then((result) => {
+				  if (result.value) {
+				    /**/
+				    this.submit();
+				  }
+				})	    		
+	    	});
+	    
+
+	    });
+    </script>
 @stop

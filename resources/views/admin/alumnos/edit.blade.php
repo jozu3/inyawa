@@ -58,7 +58,7 @@
                             {{ $matricula->grupo->fecha }}
                         </td>
                         <td>
-                            @switch($matricula->grupo->estado)
+                            @switch($matricula->estado)
                                 @case(0)
                                     {{ 'Habilitado' }}
                                     @break
@@ -68,7 +68,6 @@
                                 @case(2)
                                     {{ 'Suspendido' }}
                                     @break
-                            
                                 @default
                             @endswitch                            
                         </td>
