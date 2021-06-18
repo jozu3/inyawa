@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Alumno;
 use App\Models\Curso;
+use App\Models\Empleado;
+use DB;
 
 class AlumnoController extends Controller
 {
@@ -64,7 +66,12 @@ class AlumnoController extends Controller
      */
     public function edit(Alumno $alumno)
     {
-        return view('admin.alumnos.edit', compact('alumno'));
+        $vendedores = [];
+        if (auth()->user()->hasRole(['Admin', 'Asistente'])) {
+            $vendedores = Empleado::select(DB::raw('concat(nombres, " ", apellidos) as nombre'), 'id')->pluck('nombre', 'id');
+            $alumno->contacto['vendedor_id'] = $alumno->contacto->empleado_id;
+        }
+        return view('admin.alumnos.edit', compact('alumno', 'vendedores'));
     }
 
     /**

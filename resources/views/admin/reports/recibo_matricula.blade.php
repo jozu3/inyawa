@@ -86,6 +86,9 @@
 										        Pagado
 										    	@break
 										@endswitch
+										@if ($obligacione->fechapagadototal > $obligacione->fechalimite)
+			                                <small class="text-danger">({{ date('d/m/Y', strtotime($obligacione->fechapagadototal)) }})</small>
+			                            @endif
 									</td>
 									<td>{{ 'S/ '.number_format($obligacione->monto, 2) }}</td>
 									<td>{{ 'S/ '.number_format($obligacione->descuento, 2) }}</td>

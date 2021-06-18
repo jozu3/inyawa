@@ -13,7 +13,13 @@
             {{ session('info') }}
         </div>
     @endif
-    @livewire('admin.pagos-index')
+    @php
+        $search = '';
+        if (isset($_GET['search'])) {
+            $search = $_GET['search'];
+        }
+    @endphp
+    @livewire('admin.pagos-index', ['search' => $search])
 @stop
 
 @section('css')

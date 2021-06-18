@@ -27,6 +27,7 @@
     					<th>Nombres</th>
     					<th>Apellidos</th>
                         <th>Telefono</th>
+                        <th>Vendedor</th>
                         <th>Matriculado por:</th>
     				</tr>
     			</thead>
@@ -40,6 +41,7 @@
     				  	<td>{{ $matricula->alumno->contacto->nombres }}</td>
     				  	<td>{{ $matricula->alumno->contacto->apellidos }}</td>
                         <td>{{ $matricula->alumno->contacto->telefono }}</td>
+                        <td>{{ $matricula->alumno->contacto->empleado->user->name }}</td>
                         <td>{{ $matricula->matri_por_nombres.' '.$matricula->matri_por_apellidos }}</td>
     				  	<td width="10px">
     				  		<a href="{{ route('admin.matriculas.show', $matricula->idmatricula) }}" class="btn btn-primary">Ver</a>

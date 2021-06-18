@@ -23,9 +23,7 @@ class PagoObserver
      */
     public function created(Pago $pago)
     {
-
         $obligacione = $pago->obligacione;
-
         $monto_final = $obligacione->montofinal;
         $monto_pagado = $obligacione->montopagado + $pago->monto;
 
@@ -85,8 +83,6 @@ class PagoObserver
             $fechapagadototal = $pago->fechapago;
         }
 
-
-
         $obligacione->update([
             'estado' => $estado,
             'montopagado' => $monto_pagado,
@@ -102,7 +98,29 @@ class PagoObserver
      */
     public function deleted(Pago $pago)
     {
-        //
+        $obligacione = $pago->obligacione;
+        $monto_final = $obligacione->montofinal;
+        $monto_pagado = Pago::where('obligacione_id', $pago->obligacione_id)->sum('monto');
+        $fechapagadototal = null;
+
+        if($monto_final > $monto_pagado && $monto_pagado == 0){
+            $estado = 1;
+        }
+
+        if($monto_final > $monto_pagado && $monto_pagado > 0){
+            $estado = 2;
+        }
+
+        if($monto_final == $monto_pagado){
+            $estado = 3;
+            $fechapagadototal = $pago->fechapago;
+        }
+
+        $obligacione->update([
+            'estado' => $estado,
+            'montopagado' => $monto_pagado,
+            'fechapagadototal' => $fechapagadototal
+        ]);
     }
 
     /**

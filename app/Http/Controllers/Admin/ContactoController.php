@@ -10,6 +10,7 @@ use App\Models\Empleado;
 use App\Models\Curso;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreContactoRequest;
+use DB;
 
 class ContactoController extends Controller
 {
@@ -38,8 +39,12 @@ class ContactoController extends Controller
     public function create()
     {
         $this->authorize('crear', Contacto::class);
+        $vendedores = [];
+        if (auth()->user()->hasRole(['Admin', 'Asistente'])) {
+            $vendedores = Empleado::select(DB::raw('concat(nombres, " ", apellidos) as nombre'), 'id')->pluck('nombre', 'id');
+        }
 
-        return view('admin.contactos.create');
+        return view('admin.contactos.create', compact('vendedores'));
     }
 
     /**
@@ -51,6 +56,9 @@ class ContactoController extends Controller
     public function store(StoreContactoRequest $request)
     {
         $request['estado'] = 1;
+        if (isset($request['vendedor_id'])) {
+            $request['empleado_id'] = $request['vendedor_id'];
+        }
         $contacto = Contacto::create($request->all());
 
         return redirect()->route('admin.contactos.show', compact('contacto'))->with('info', 'Contacto creado con éxito');
@@ -70,7 +78,14 @@ class ContactoController extends Controller
         $seguimientos = Seguimiento::where('contacto_id', $contacto->id)->get();
         $cursos = Curso::pluck('nombre', 'id');
 
-        return view('admin.contactos.show', compact('contacto','seguimientos', 'cursos'));
+        $vendedores = [];
+        if (auth()->user()->hasRole(['Admin', 'Asistente'])) {
+            $vendedores = Empleado::select(DB::raw('concat(nombres, " ", apellidos) as nombre'), 'id')->pluck('nombre', 'id');
+
+            $contacto['vendedor_id'] = $contacto->empleado_id;
+        }
+
+        return view('admin.contactos.show', compact('contacto','seguimientos', 'cursos', 'vendedores'));
     }
 
     /**
@@ -96,14 +111,17 @@ class ContactoController extends Controller
     {
         $this->authorize('vendiendo', $contacto);
 
+        if (isset($request['vendedor_id'])) {
+            $request['empleado_id'] = $request['vendedor_id'];
+        }
+
         if (!$contacto->update($request->all())) {
             return redirect()->route('admin.contactos.show', compact('contacto'))->with('error', 'Hubo un error al actualizar');
         }
 
         if ($request->asignar == 'true'){
-            
             return redirect()->route('admin.contactos.index')->with('info', 'Contacto actualizado con éxito');
-        }        
+        }      
 
         return redirect()->route('admin.contactos.show', compact('contacto'))->with('info', 'Contacto actualizado con éxito');
     }

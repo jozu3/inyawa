@@ -38,11 +38,14 @@ class StoreContactoRequest extends FormRequest
         } else {
 
             $rules = [
-                'codigo_c' => 'required',
                 //'nombres' => 'required',
                 'telefono' => 'required|numeric',
                 //'estado' => 'required|in:1,2,3,4,5', //el estado se actuliza solo
             ];
+
+            if (auth()->user()->hasRole(['Admin', 'Asistente'])) {
+                $rules['vendedor_id'] = 'required';
+            }
 
             if ($this->grado_academico) {
                 $rules = array_merge($rules, [

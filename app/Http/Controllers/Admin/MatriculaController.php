@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Alumno;
 use App\Models\Contacto;
 use App\Models\User;
+use App\Models\Empleado;
 use App\Models\Matricula;
 use App\Models\Obligacione;
+use DB;
 
 class MatriculaController extends Controller
 {
@@ -45,7 +47,13 @@ class MatriculaController extends Controller
             $alumno_existe = 'Ya es alumno, se sugiere tipo de matrícula para alumno antiguo.';
         }
 
-        return view('admin.matriculas.create', compact('contacto', 'alumno_existe'));
+        $vendedores = [];
+        if (auth()->user()->hasRole(['Admin', 'Asistente'])) {
+            $vendedores = Empleado::select(DB::raw('concat(nombres, " ", apellidos) as nombre'), 'id')->pluck('nombre', 'id');
+            $contacto['vendedor_id'] = $contacto->empleado_id;
+        }
+
+        return view('admin.matriculas.create', compact('contacto', 'alumno_existe', 'vendedores'));
     }
 
     /**
@@ -62,13 +70,25 @@ class MatriculaController extends Controller
         $this->authorize('updating', $contacto);
         $request['estado'] = 5;
 
+        if (isset($request['vendedor_id'])) {
+            $request['empleado_id'] = $request['vendedor_id'];
+        }
 
         $alumno_existe = Alumno::where('contacto_id', '=', $request->contacto_id)->get();
 
 
         if (!count($alumno_existe)){//entra si el alumno no existe
+
+            $usuario_existe = User::where('email', $request->email)->get();
+
+            if (count($usuario_existe)>0){
+                return redirect()->back()->with('error', 'El correo electrónico ya está asociado a otro usuario, debe ingresar uno diferente');
+            }
+
             $contacto->update($request->all());
-    
+            $contacto = Contacto::find($request->contacto_id);
+
+            
             //crear el usuario y asignarlo al request
             $user = User::create([
                 'name' => $contacto->nombres . ' ' . $contacto->apellidos,

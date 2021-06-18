@@ -49,7 +49,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Concepto</th>
-                            <th>Fecha</th>
+                            <th>Fecha de vencimiento</th>
                             <th>Estado</th>
                             <th>Monto</th>
                             <th>Descuento</th>
@@ -81,6 +81,9 @@
                                             Pagado
                                             @break
                                     @endswitch
+                                    @if ($obligacione->fechapagadototal > $obligacione->fechalimite)
+                                        <small class="text-danger">({{ date('d/m/Y', strtotime($obligacione->fechapagadototal)) }})</small>
+                                    @endif
                                 </td>
                                 <td>{{$obligacione->monto}}</td>
                                 <td>

@@ -61,8 +61,16 @@
 	@error('grado_academico')
 		<small class="text-danger">{{ $message }}</small>
 	@enderror
-
 </div> 
+@if (auth()->user()->hasRole(['Admin', 'Asistente']))
+<div class="col-md-12">
+	{!! Form::label('vendedor_id', 'Vendedor') !!}
+	{!! Form::select('vendedor_id', $vendedores, null, ['class' => 'form-control', 'placeholder' => '-- Seleccione --']); !!}
+	@error('vendedor_id')
+		<small class="text-danger">{{ $message }}</small>
+	@enderror
+</div> 
+@endif
 {{-- <div class="col-md-6">
 	{!! Form::label('estado', 'Estado') !!}
 	{!! Form::select('estado', [

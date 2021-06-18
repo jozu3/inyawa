@@ -44,6 +44,10 @@
 						<p>Curso:</p>
 					</div>
 					<div class="col-md-9">{{ $matricula->grupo->curso->nombre }}</div>
+					<div class="col-md-3">
+						<p>Fecha de inicio del grupo:</p>
+					</div>
+					<div class="col-md-9">{{ date('d/m/Y', strtotime($matricula->grupo->fecha)) }}</div>
 				</div>
 			</div>
 		</div>
@@ -52,15 +56,19 @@
 		<div class="card">
 			<div class="card-header">
 				<b>Obligaciones por pagar</b>
+        		<a href="{{ route('admin.pagos.index', 'search='.$matricula->id) }}" class="btn btn-primary btn-sm float-right">Ver pagos</a>
 			</div>
 			<div class="card-body">
 				<table class="table table-striped">
 					<thead>
 						<tr>
 							<th>Concepto</th>
-							<th>Fecha</th>
+							<th>Fecha de vencimiento</th>
 							<th>Estado</th>
 							<th>Monto</th>
+							<th>Descuento</th>
+							<th>Monto pagado</th>
+							<th>Monto final</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -84,7 +92,13 @@
 									        Pagado
 									    	@break
 									@endswitch
+									@if ($obligacione->fechapagadototal > $obligacione->fechalimite)
+		                                <small class="text-danger">({{ date('d/m/Y', strtotime($obligacione->fechapagadototal)) }})</small>
+		                            @endif
 								</td>
+								<td>{{$obligacione->montofinal}}</td>
+								<td>{{$obligacione->descuento}}</td>
+								<td>{{$obligacione->montopagado}}</td>
 								<td>{{$obligacione->montofinal}}</td>
 								<td>
 									@switch ($obligacione->estado)
