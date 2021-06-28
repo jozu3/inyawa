@@ -34,14 +34,12 @@
                     <label class="form-check-label" for="iniciado">
                     Iniciado
                     </label>
-                    
                   </div>
                   <div class="custom-control custom-checkbox mr-sm-2 d-inline">
                     <input class="form-check-input" wire:model= "terminado" type="checkbox" value="" id="terminado">
                     <label class="form-check-label" for="terminado">
                     	Terminado
                     </label>
-                    
                   </div>
                 </div>
             </div>

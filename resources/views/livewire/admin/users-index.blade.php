@@ -2,6 +2,55 @@
     <div class="card">
     	<div class="card-header">
     		<input wire:model="search" class="form-control" placeholder="Ingrese nombre o correo de un usuario">
+            @for ($i = 0; $i < count($roles); $i++)
+            {{ $roles[$i]}}
+            @endfor
+            <div class="form-row align-items-center">
+                <div class="col-auto my-1">
+                  <div class="custom-control custom-checkbox mr-sm-2 d-inline">
+                    <input class="form-check-input" wire:model= "admin" type="checkbox" value="" id="admin">
+                    <label class="form-check-label" for="admin">
+                        Administrador
+                    </label>
+                  </div>
+                  <div class="custom-control custom-checkbox mr-sm-2 d-inline">
+                    <input class="form-check-input" wire:model= "asistente" type="checkbox" value="" id="asistente">
+                    <label class="form-check-label" for="asistente">
+                        Asistente
+                    </label>
+                  </div>
+                  <div class="custom-control custom-checkbox mr-sm-2 d-inline">
+                    <input class="form-check-input" wire:model= "vendedor" type="checkbox" value="" id="vendedor">
+                    <label class="form-check-label" for="vendedor">
+                        Vendedor
+                    </label>
+                  </div>
+                  <div class="custom-control custom-checkbox mr-sm-2 d-inline">
+                    <input class="form-check-input" wire:model= "coord_academico" type="checkbox" value="" id="coord-academico">
+                    <label class="form-check-label" for="coord-academico">
+                        Coordinador académico
+                    </label>
+                  </div>
+                  <div class="custom-control custom-checkbox mr-sm-2 d-inline">
+                    <input class="form-check-input" wire:model= "profesor" type="checkbox" value="" id="profesor">
+                    <label class="form-check-label" for="profesor">
+                        Profesor
+                    </label>
+                  </div>
+                  <div class="custom-control custom-checkbox mr-sm-2 d-inline">
+                    <input class="form-check-input" wire:model= "alumno" type="checkbox" value="" id="alumno">
+                    <label class="form-check-label" for="alumno">
+                        Alumno
+                    </label>
+                  </div>
+                  <div class="custom-control custom-checkbox mr-sm-2 d-inline">
+                    <input class="form-check-input" wire:model= "otros" type="checkbox" value="" id="otros">
+                    <label class="form-check-label" for="otros">
+                        Otros
+                    </label>
+                  </div>
+                </div>
+            </div>
     	</div>
         @if ($users->count())
     	<div class="card-body">
