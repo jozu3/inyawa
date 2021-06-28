@@ -32,7 +32,7 @@
 						@if (auth()->user()->hasRole(['Admin', 'Asistente', 'Coordinador académico']))
 							<td>Promedio</td>
 							@foreach($unidad->notas as $nota)
-								<td width="100px">	
+								<td width="100">	
 									<b>{{ $nota->descripcion }}@if ($nota->tipo == 1)
 										{{ '(Nota recuperatoria)' }}
 									@endif()</b>
@@ -42,13 +42,12 @@
 							@if (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id)
 								<td>Promedio</td>
 								@foreach($unidad->notas as $nota)
-								<td width="100px">	
+								<td width="100">	
 									<b>{{ $nota->descripcion }}@if ($nota->tipo == 1)
 										{{ '(Nota recuperatoria)' }}
 									@endif()</b>
 								</td>
 								@endforeach
-							</th>
 							@else
 							@endif
 						@endif
@@ -99,7 +98,6 @@
 										</div>
 									</td>
 								@endforeach
-							</th>
 							@else
 							@endif
 						@endif

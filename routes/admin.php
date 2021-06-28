@@ -22,9 +22,7 @@ use App\Http\Controllers\Admin\PDFController;
 use App\Http\Controllers\Admin\ClaseController;
 use App\Http\Controllers\Admin\AlumnoUnidadeController;
 use App\Http\Controllers\Admin\AlumnoNotaController;
-
-
-
+use App\Http\Controllers\Admin\ExcelController;
 
 Route::resource('', HomeController::class)->names('admin');
 Route::resource('users', UserController::class)->names('admin.users');
@@ -60,3 +58,6 @@ Route::get('reportpagos', [PDFController::class, 'pagos'])->name('admin.print.pa
 /*Route::resource('grupos', GrupoController::class, ['except' => ['create']])->names('admin.grupos');
 Route::get('grupos/create/{id}', [GrupoController::class, 'create'])->name('admin.grupos.create');
 */
+
+Route::get('/report-alumnos-grupo/{grupo}', [ExcelController::class, 'alumnosGrupo'])->name('admin.excel.alumnosGrupo');
+	

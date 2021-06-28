@@ -34,7 +34,7 @@ class GruposIndex extends Component
 	    $this->terminado == true ? array_push($states, "2") : '';
 	    //$curso_id = $this->curso_id;
 
-    	$grupos = Grupo::select('cursos.nombre', 'grupos.fecha', 'grupos.estado', 'grupos.id', 'cursos.id as idcurso')->join('cursos', 'cursos.id', '=', 'grupos.curso_id');
+    	$grupos = Grupo::select('grupos.id as idgrupo','cursos.nombre', 'grupos.fecha', 'grupos.estado', 'grupos.id', 'cursos.id as idcurso')->join('cursos', 'cursos.id', '=', 'grupos.curso_id');
 
 		if($this->curso_id != ''){
 			$grupos = $grupos->where('cursos.id', '=', $this->curso_id)	;
@@ -46,7 +46,7 @@ class GruposIndex extends Component
 		    ->paginate($this->cant);
 
 		if (auth()->user()->hasRole('Profesor')) {
-        	$grupos = Grupo::select('cursos.nombre','grupos.fecha', 'grupos.estado', 'grupos.id', 'cursos.id as idcurso')
+        	$grupos = Grupo::select('grupos.id as idgrupo', 'cursos.nombre','grupos.fecha', 'grupos.estado', 'grupos.id', 'cursos.id as idcurso')
         					->join('unidads', 'unidads.grupo_id', '=', 'grupos.id')
         					->join('cursos', 'grupos.curso_id', '=', 'cursos.id')
         					->where('unidads.profesore_id', auth()->user()->profesore->id)

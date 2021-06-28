@@ -6,6 +6,8 @@
 	@can('admin.grupos.edit')
 		<a href="{{ route('admin.grupos.edit', $grupo) }}" class="btn btn-success btn-sm float-right">Editar grupo</a>
 	@endcan
+		<a href="{{ route('admin.excel.alumnosGrupo', $grupo) }}" class="btn btn-success btn-sm float-right mr-3"><i class="far fa-file-excel"></i> Registro de alumnos</a>
+
     <h1>Grupo: {{ $grupo->curso->nombre.' '.$grupo->fecha }}</h1>
 @stop
 

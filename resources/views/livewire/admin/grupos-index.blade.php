@@ -51,6 +51,7 @@
     		<table class="table table-striped">
     			<thead>
     				<tr>
+                        <th>ID</th>
     					<th>Curso</th>
     					<th>Grupo</th>
                         <th>Estado</th>
@@ -64,6 +65,7 @@
     			<tbody>
     				@foreach($grupos as $grupo)
     				  <tr>
+                        <td>{{ $grupo->idgrupo }}</td>
     				  	<td>{{ $grupo->nombre }}</td>
     				  	<td>{{ $grupo->fecha }}</td>
     				  	<td>
