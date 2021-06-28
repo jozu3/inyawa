@@ -2,9 +2,6 @@
     <div class="card">
     	<div class="card-header">
     		<input wire:model="search" class="form-control" placeholder="Ingrese nombre o correo de un usuario">
-            @for ($i = 0; $i < count($roles); $i++)
-            {{ $roles[$i]}}
-            @endfor
             <div class="form-row align-items-center">
                 <div class="col-auto my-1">
                   <div class="custom-control custom-checkbox mr-sm-2 d-inline">

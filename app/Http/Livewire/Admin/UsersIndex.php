@@ -52,6 +52,6 @@ class UsersIndex extends Component
 		  							})
   								->paginate();
 
-      return view('livewire.admin.users-index', compact('users', 'roles'));
+      return view('livewire.admin.users-index', compact('users'));
   }
 }
