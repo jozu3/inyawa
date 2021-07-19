@@ -45,6 +45,8 @@ Route::resource('alumno_unidades', AlumnoUnidadeController::class)->names('admin
 Route::resource('alumno_notas', AlumnoNotaController::class)->names('admin.alumno_notas');
 
 Route::delete('alumno_unidades/destroyfromgroup/{grupo}', [AlumnoUnidadeController::class, 'destroyfromgroup'])->name('admin.alumno_unidades.destroyfromgroup');
+Route::post('clases/updatefromgroup/{grupo}', [AlumnoUnidadeController::class, 'updatefromgroup'])->name('admin.alumno_unidades.updatefromgroup');
+
 Route::delete('clases/destroyfromgroup/{grupo}', [ClaseController::class, 'destroyfromgroup'])->name('admin.clases.destroyfromgroup');
 Route::post('clases/storeforgroup/{grupo}', [ClaseController::class, 'storeforgroup'])->name('admin.clases.storeforgroup');
   

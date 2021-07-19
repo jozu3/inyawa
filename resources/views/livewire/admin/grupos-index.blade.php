@@ -53,7 +53,11 @@
     					<th>Curso</th>
     					<th>Grupo</th>
                         <th>Estado</th>
-                        <th>Unidades</th>
+                        @if (!auth()->user()->hasRole('Profesor'))
+                            <th>Unidades</th>
+                        @else
+                            <th>Unidades que enseño</th>
+                        @endif
                         <th>Alumnos</th>
                         @can('admin.grupos.edit')
     					<th colspan="2"></th>
@@ -65,7 +69,7 @@
     				  <tr>
                         <td>{{ $grupo->idgrupo }}</td>
     				  	<td>{{ $grupo->nombre }}</td>
-    				  	<td>{{ $grupo->fecha }}</td>
+    				  	<td>{{ date('d/m/Y', strtotime($grupo->fecha)) }}</td>
     				  	<td>
                             @if ( $grupo->estado == '0')
                                 {{ 'Por iniciar' }}
@@ -85,8 +89,8 @@
                             @endif
                         </td>
                         <td>
-                            @if (!auth()->user()->hasRole('Profesor'))
                             {{ $grupo->matriculas->count() }}
+                            @if (!auth()->user()->hasRole('Profesor'))
                             @endif
                         </td>
                         @can('admin.grupos.edit')

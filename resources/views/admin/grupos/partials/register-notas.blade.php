@@ -72,32 +72,34 @@
 						                	@livewire('admin.create-nota', [
 						                		'nota_id' => $alumnoNota->nota->id,
 						                		'alumno_unidade_id' => $alumnoNota->alumnoUnidade->id,
-						                		//'alumnoNota' => $alumnoNota
 						                		])
-						                	
+											<div style="display: none;">
+						                	{{ $alumnoNota->valor }}
+											</div>						                		
 						                </div>
 									</div>
 								</td>
 							@endforeach
 						@else
 							@if (auth()->user()->hasRole('Profesor') && $alumnoUnidade->unidad->profesore_id == auth()->user()->profesore->id)
-								<td class="border-left text-center">
-									@livewire('admin.unidad-nota-show', ['alumnoUnidade_id' => $alumnoUnidade->id])
+							<td class="border-left text-center">
+								@livewire('admin.unidad-nota-show', ['alumnoUnidade_id' => $alumnoUnidade->id])
+							</td>
+							@foreach($alumnoUnidade->alumnoNotas as $alumnoNota)
+								<td>
+									<div class="form-row align-items-center una-fila">
+						                <div class="col-auto my-1 mx-2">
+						                	@livewire('admin.create-nota', [
+						                		'nota_id' => $alumnoNota->nota->id,
+						                		'alumno_unidade_id' => $alumnoNota->alumnoUnidade->id,
+						                		])
+						                	<div style="display: none;">
+						                	{{ $alumnoNota->valor }}
+											</div>	
+						                </div>
+									</div>
 								</td>
-								@foreach($alumnoUnidade->alumnoNotas as $alumnoNota)
-									<td>
-										<div class="form-row align-items-center una-fila">
-							                <div class="col-auto my-1 mx-2">
-							                	@livewire('admin.create-nota', [
-							                		'nota_id' => $alumnoNota->nota->id,
-							                		'alumno_unidade_id' => $alumnoNota->alumnoUnidade->id,
-							                		//'alumnoNota' => $alumnoNota
-							                		])
-							                	
-							                </div>
-										</div>
-									</td>
-								@endforeach
+							@endforeach
 							@else
 							@endif
 						@endif

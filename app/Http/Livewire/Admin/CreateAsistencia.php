@@ -12,6 +12,7 @@ class CreateAsistencia extends Component
 	public $asistencia;
 	public $result = false;
 	public $readyToLoad = false;
+	public $is_report = false;
 
 	public function saveAsistencia(){
 		
@@ -53,7 +54,6 @@ class CreateAsistencia extends Component
     	/*} else {
     		$asis = [];
     	}*/
-
 
         return view('livewire.admin.create-asistencia');
     }

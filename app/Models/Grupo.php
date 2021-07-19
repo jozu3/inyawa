@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Curso;
 use App\Models\Matricula;
+use App\Models\Alumno_unidade;
 
 class Grupo extends Model
 {
@@ -47,6 +48,16 @@ class Grupo extends Model
         }
 
         return $clases_generadas;
+    }
+
+    public function alumnoUnidadesporMatricula(){
+        $alumno_unidades = 0;
+
+        foreach ($this->unidads as $unidad){
+            $alumno_unidades = Alumno_unidade::select('unidad_id', 'matricula_id')->where('unidad_id', $unidad->id)->count();
+        }
+
+        return $alumno_unidades;
     }
 
 }

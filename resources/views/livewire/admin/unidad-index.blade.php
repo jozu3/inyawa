@@ -56,7 +56,7 @@
 								@if ($nota->tipo == 1)
 								<ul class="list-group list-group-horizontal">
 								  <li class="list-group-item list-nota">{{'Nota Recuperatoria'}}</li>
-								  <li class="list-group-item list-nota">Reemplaza a la nota más baja</li>
+								  <li class="list-group-item list-nota">Reemplaza la nota final de la unidad</li>
 								  <li class="list-group-item list-nota list-nota2">{{$nota->descripcion}}</li>
 								</ul>
 								@endif

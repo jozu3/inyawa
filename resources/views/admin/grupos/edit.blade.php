@@ -41,10 +41,14 @@
     @endif
 	<div class="card">
 		<div class="card-header">
-			Unidades
 			@php
 				$iniciado = false;
+				$hay_alumnos_nuevos = false;
+				if ($grupo->matriculas->count() != $grupo->alumnoUnidadesporMatricula()) {
+					$hay_alumnos_nuevos = true;
+				}
 			@endphp
+			Unidades{{ $hay_alumnos_nuevos}}
 			@if ($grupo->unidads->count())
 				@if(!$grupo->notasGenerateds())
 					<div class="float-right">
@@ -63,6 +67,14 @@
 						{!! Form::submit('Eliminar registro de notas', ['class' =>'btn btn-danger float-right mx-2']) !!}
 					{!! Form::close() !!} 
 					</div>
+					@if ($hay_alumnos_nuevos)
+					<div class="float-right">
+					{!! Form::open(['route' => ['admin.alumno_unidades.updatefromgroup', $grupo], 'class' =>'crear_notas_clases']) !!}
+						{!! Form::hidden('grupo_id', $grupo->id) !!}
+						{!! Form::submit('Generar notas', ['class' =>'btn btn-primary float-right mx-2']) !!}
+					{!! Form::close() !!} 
+					</div>
+					@endif
 				@endif
 
 				@if(!$grupo->clasesGenerateds())

@@ -92,13 +92,13 @@ class AlumnoUnidadeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request    }
      * @param  \App\Models\Alumno_unidade  $alumno_unidade
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Alumno_unidade $alumno_unidade)
     {
-        //
+       
     }
 
     /**
@@ -133,5 +133,35 @@ class AlumnoUnidadeController extends Controller
 
         return redirect()->route('admin.grupos.edit', compact('grupo'))->with($var_msg, $msg);
 
+    }
+    
+    public function updatefromgroup(Request $request, Grupo $grupo){
+
+        $grupo = Grupo::find($request->grupo_id);
+        $matriculas = $grupo->matriculas;
+
+        foreach ($matriculas as $matricula){
+            $existe = Alumno_unidade::where('matricula_id',$matricula->id)->count();
+
+            foreach ($grupo->unidads as $unidad){
+
+                if (!$existe) {
+                    $alumno_unidade = Alumno_unidade::create([
+                        'unidad_id' => $unidad->id,
+                        'matricula_id' => $matricula->id,
+                    ]);
+
+                    foreach($alumno_unidade->unidad->notas as $nota){
+                        Alumno_nota::create([
+                            'nota_id' => $nota->id,
+                            'alumno_unidade_id' => $alumno_unidade->id,
+                        ]);
+                    }
+                }
+                
+            }
+        }
+
+        return redirect()->route('admin.grupos.edit', compact('grupo'))->with('info_alumno_nota', 'Los registros de notas para los alumnos se generaron correctamente.');
     }
 }
