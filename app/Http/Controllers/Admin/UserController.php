@@ -80,7 +80,7 @@ class UserController extends Controller
             if (isset($request->empleado_id) && $user) {
                 
                 if ($empleado->update(['user_id' => $user->id])) {
-                    return redirect()->route('admin.users.index')->with('info', 'El usuario se creó correctamente');
+                    return redirect()->route('admin.users.edit', $user)->with('info', 'El usuario se creó correctamente, ahora puede asignarle un rol.');
                 }
             }
 

@@ -47,11 +47,18 @@ class UsersIndex extends Component
   								->whereHas("roles", function($q) use ($roles, $that){
 		  										$q->whereIn("name", $roles); 
 		  									if($that->otros == true){
-		  										$q->whereIn("name", $roles)->orWhereNotIn('name', ['Admin', 'Asistente', 'Vendedor', 'Coordinador académico', 'Profesor', 'Alumno']);
+		  										$q->whereIn("name", $roles)
+                            ->orWhereNotIn('name', ['Admin', 'Asistente', 'Vendedor', 'Coordinador académico', 'Profesor', 'Alumno']);
 		  									}
-		  							})
-  								->paginate();
+		  							});
 
-      return view('livewire.admin.users-index', compact('users'));
+    if ($this->otros == true) {
+      $users = User::doesntHave('roles')
+                    ->union($users);
+    }
+
+    $users = $users->paginate();
+
+    return view('livewire.admin.users-index', compact('users'));
   }
 }
