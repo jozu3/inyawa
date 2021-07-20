@@ -16,7 +16,11 @@
 @stop
 
 @section('css')
-    
+    <style type="text/css">
+        .card-body {
+            overflow: auto;
+        }
+    </style>
 @stop
 
 @section('js')
