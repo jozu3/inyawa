@@ -16,6 +16,8 @@ use App\Models\Alumno;
 use App\Models\Empleado;
 use App\Models\Profesore;
 
+use App\Notifications\ResetPasswordNotification;
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -64,6 +66,17 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
 
     public function adminlte_profile_url(){
         return 'user/profile';
