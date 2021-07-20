@@ -30,28 +30,4 @@
  		      {{ '' }}
  		@endswitch
  	@endif
- 	<script>
- 		
- 		/*$('input[type="radio"]').change(function () {
-
-    		var color = 'as';
-    		switch ($(this).val()){
-    			case 0:
-    				color = 'text-danger'
-    				break;
-    			case 1:
-    				color = 'text-success'
-    				break;
-    			case 2:
-    				color = 'text-warning'
-    				break;
-    		}
-
-		  if($(this).is(":checked")){
-		  	console.log($(this).val());
-		    $(this).parent().addClass(color);
-		  }
-
-		});*/
- 	</script>
 </div>
