@@ -54,7 +54,7 @@ class UserSeeder extends Seeder
         $nom_admin_3 = 'Carlos';
         $ape_admin_3 = 'Cumba';
 
-
+//Coordinador academico
         User::create([
             'name' => $nom_admin_3.' '.$ape_admin_3,
             'email' => 'direccionacademica@inyawaperu.com',
@@ -70,7 +70,7 @@ class UserSeeder extends Seeder
         ]);
 
 
-
+//Asistente
         $nom_admin_4 = 'Karol';
         $ape_admin_4 = 'Mendoza';
 
@@ -90,6 +90,8 @@ class UserSeeder extends Seeder
         ]);
 
 
+//Vendedor
+
         $nom_admin_5 = 'Martin';
         $ape_admin_5 = 'Carbajal';
 
@@ -105,7 +107,7 @@ class UserSeeder extends Seeder
             'nombres' => $nom_admin_5,
             'apellidos' => $ape_admin_5,
             'telefono' => '987564321',
-            'user_id' => 4,
+            'user_id' => 5,
         ]);        
 
     }
