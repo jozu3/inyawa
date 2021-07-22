@@ -1,9 +1,7 @@
-{!! Form::hidden('empleado_id', auth()->user()->empleado->id) !!}
-{!! Form::hidden('empleado_id_logged', auth()->user()->empleado->id) !!}
 <div class="row">
 <div class="col-md-4">
 	{!! Form::label('codigo_c', 'Código de contacto') !!}
-	{!! Form::text('codigo_c', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el codigo para el nuevo contacto']) !!}
+	{!! Form::text('codigo_c', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el código para el nuevo contacto']) !!}
 	@error('codigo_c')
 		<small class="text-danger">{{ $message }}</small>
 	@enderror
@@ -62,14 +60,16 @@
 		<small class="text-danger">{{ $message }}</small>
 	@enderror
 </div> 
-@if (auth()->user()->hasRole(['Admin', 'Asistente']))
+@if (auth()->user()->can('admin.contactos.asignarVendedor'))
 <div class="col-md-12">
-	{!! Form::label('vendedor_id', 'Vendedor') !!}
-	{!! Form::select('vendedor_id', $vendedores, null, ['class' => 'form-control', 'placeholder' => '-- Seleccione --']); !!}
-	@error('vendedor_id')
+	{!! Form::label('empleado_id', 'Vendedor') !!}
+	{!! Form::select('empleado_id', $vendedores, null, ['class' => 'form-control', 'placeholder' => '-- Seleccione --']); !!}
+	@error('empleado_id')
 		<small class="text-danger">{{ $message }}</small>
 	@enderror
-</div> 
+</div>
+@else
+{!! Form::hidden('empleado_id', null) !!}
 @endif
 {{-- <div class="col-md-6">
 	{!! Form::label('estado', 'Estado') !!}

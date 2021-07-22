@@ -27,14 +27,15 @@ class AlumnosIndex extends Component
                     //->join('matriculas', 'matriculas.alumno_id', '=', 'alumnos.id')
                     ->where(function($query) use ($that) {
                           $query->orWhere('contactos.apellidos', 'like','%'.$that->search.'%')
-	 			                ->orWhere('contactos.nombres', 'like','%'.$this->search.'%')
+	 			                ->orWhere('contactos.nombres', 'like','%'.$that->search.'%')
                                 ->orWhere('contactos.telefono', 'like','%'.$that->search.'%')
                                 ->orWhere('contactos.email', 'like','%'.$that->search.'%');
                         });
 
-        $user = auth()->user();
-        if ($user->hasRole(['Vendedor'])) {
-            $alumnos = $alumnos->whereHas('matriculas', function($q) use ($user){ $q->where("matriculas.empleado_id", [$user->empleado->id]); });
+        if (auth()->user()->hasRole(['Vendedor'])) {
+            $alumnos = $alumnos->whereHas('matriculas', function($q){ 
+                $q->where("matriculas.empleado_id", auth()->user()->empleado->id); 
+            });
         }
         $alumnos = $alumnos->paginate();
 

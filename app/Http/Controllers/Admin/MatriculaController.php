@@ -50,7 +50,7 @@ class MatriculaController extends Controller
         $vendedores = [];
         if (auth()->user()->hasRole(['Admin', 'Asistente'])) {
             $vendedores = Empleado::select(DB::raw('concat(nombres, " ", apellidos) as nombre'), 'id')->pluck('nombre', 'id');
-            $contacto['vendedor_id'] = $contacto->empleado_id;
+            //$contacto['vendedor_id'] = $contacto->empleado_id;
         }
 
         return view('admin.matriculas.create', compact('contacto', 'alumno_existe', 'vendedores'));
@@ -67,12 +67,13 @@ class MatriculaController extends Controller
 
         //actualizar daotos del contacto
         $contacto = Contacto::find($request->contacto_id);
-        $this->authorize('updating', $contacto);
+        //$this->authorize('updating', $contacto);// no se que hacia esto aquí
         $request['estado'] = 5;
 
-        if (isset($request['vendedor_id'])) {
+        /*if (isset($request['vendedor_id'])) {
+            //para actualizar el vendedor del contacto si fuera necesario
             $request['empleado_id'] = $request['vendedor_id'];
-        }
+        }*/
 
         $alumno_existe = Alumno::where('contacto_id', '=', $request->contacto_id)->get();
 
@@ -82,7 +83,7 @@ class MatriculaController extends Controller
             $usuario_existe = User::where('email', $request->email)->get();
 
             if (count($usuario_existe)>0){
-                return redirect()->back()->with('error', 'El correo electrónico ya está asociado a otro usuario, debe ingresar uno diferente');
+                return redirect()->back()->with('error', 'El correo electrónico ya está asociado a otro usuario, debe ingresar uno diferente.');
             }
 
             $contacto->update($request->all());

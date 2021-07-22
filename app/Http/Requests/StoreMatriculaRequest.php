@@ -13,7 +13,7 @@ class StoreMatriculaRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->empleado_id == auth()->user()->empleado->id ) {
+        if ($this->empleado_id == auth()->user()->empleado->id || auth()->user()->can('admin.matriculas.createAll')) {
             return true;
         } else {
             return false;

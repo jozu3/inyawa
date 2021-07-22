@@ -25,17 +25,17 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => $nom_admin_1.' '.$ape_admin_1,
-            'email' => $nom_admin_1.'.'.$ape_admin_1.'@admin.org',
+            'email' => 'scruz@inyawaperu.com',
             'estado' => 1,
             'password' => bcrypt('password')
         ])->assignRole('Admin');
 
         User::create([
             'name' => $nom_admin_2.' '.$ape_admin_2,
-            'email' => $nom_admin_2.'.'.$ape_admin_2.'@admin.org',
+            'email' => 'briksonalarcon660@gmail.com',
             'estado' => 1,
             'password' => bcrypt('password')
-        ])->assignRole('Asistente');
+        ])->assignRole('Admin');
 
         Empleado::create([
             'nombres' => $nom_admin_1,
@@ -50,6 +50,27 @@ class UserSeeder extends Seeder
             'telefono' => '987564321',
             'user_id' => 2,
         ]);
+
+        $nom_admin_3 = 'Carlos';
+        $ape_admin_3 = 'Cumba';
+
+
+        User::create([
+            'name' => $nom_admin_3.' '.$ape_admin_3,
+            'email' => 'direccionacademica@inyawaperu.com',
+            'estado' => 1,
+            'password' => bcrypt('password')
+        ])->assignRole('Admin');
+
+        Empleado::create([
+            'nombres' => $nom_admin_3,
+            'apellidos' => $ape_admin_3,
+            'telefono' => '987564321',
+            'user_id' => 3,
+        ]);
+
+
+        
 
     }
 }

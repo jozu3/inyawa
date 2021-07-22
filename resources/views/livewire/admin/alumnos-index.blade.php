@@ -29,6 +29,13 @@
                             <a href="{{ route('admin.users.create', ['alumno' => $alumno]) }}" class="btn btn-primary" >Crear usuario</a>
                             @endif
                         </td>
+                        {{--ver por quienes fue matriculado 
+                        <td>
+                            @foreach ($alumno->matriculas as $matricula)
+                                {{ '-'.$matricula->empleado->user->name }}
+                            @endforeach
+                        </td>
+                        --}}
                         <td width="10px">
                             <a href="{{ route('admin.alumnos.edit', $alumno) }}" class="btn btn-primary" >Ver</a>
                         </td>

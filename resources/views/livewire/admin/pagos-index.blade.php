@@ -3,7 +3,7 @@
     	<div class="card-header">
             <div class="form-row align-items-center">
                 <div class="col-md-10 my-1">
-                	<input wire:model="search" class="form-control" style="" placeholder="Ingrese  código de matricula para ver los pagos correspondientes">
+                	<input wire:model="search" class="form-control" style="" placeholder="Ingrese código de matricula o nombre de un alumno para ver los pagos correspondientes">
                 </div>
                 <div class="col-md-1 my-1">
                     <div style="text-align:right; font-weight:bold">Mostrar:</div>

@@ -13,6 +13,12 @@ class MatriculaObserver
      * @param  \App\Models\Matricula  $matricula
      * @return void
      */
+    public function creating(Matricula $matricula){
+        if (! \App::runningInConsole()) {
+            $matricula->empleado_id = auth()->user()->empleado->id;
+        }
+    }
+
     public function created(Matricula $matricula)
     {
         $precio_matricula = $matricula->grupo->matricula;

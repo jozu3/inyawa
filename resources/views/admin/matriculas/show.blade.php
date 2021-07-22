@@ -96,7 +96,7 @@
 		                                <small class="text-danger">({{ date('d/m/Y', strtotime($obligacione->fechapagadototal)) }})</small>
 		                            @endif
 								</td>
-								<td>{{$obligacione->montofinal}}</td>
+								<td>{{$obligacione->monto}}</td>
 								<td>{{$obligacione->descuento}}</td>
 								<td>{{$obligacione->montopagado}}</td>
 								<td>{{$obligacione->montofinal}}</td>

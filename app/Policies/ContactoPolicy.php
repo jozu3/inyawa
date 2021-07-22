@@ -50,11 +50,11 @@ class ContactoPolicy
 
     public function updating(User $user, Contacto $contacto){
         
-        if ($user->id == $contacto->empleado_id || $user->hasRole(['Admin', 'Asistente'])) {
+        /*if ($user->id == $contacto->empleado_id || $user->hasRole(['Admin', 'Asistente'])) {
             return true;
         } else {
             return false;
-        }
+        }*/
 
     }
 

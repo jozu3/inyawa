@@ -48,13 +48,13 @@ class SeguimientosIndex extends Component
     		->paginate();
 
             //vendedor
-        if (auth()->user()->roles[0]->id == 3) {
+        if (auth()->user()->hasRole('Vendedor')) {
             $that = $this;
 
             $seguimientos = Seguimiento::select('*', 'seguimientos.empleado_id', 'contactos.nombres', 'cursos.nombre')
                 ->join('contactos', 'seguimientos.contacto_id', '=', 'contactos.id')
                 ->join('cursos', 'seguimientos.curso_id', '=', 'cursos.id')
-                ->where('seguimientos.empleado_id', '=', auth()->user()->id)
+                ->where('seguimientos.empleado_id', auth()->user()->empleado->id)
                 ->where(function($query) use ($that) {
                                       $query->orwhere('contactos.nombres', 'like','%'.$this->search.'%')
                                             ->orWhere('seguimientos.fecha', 'like','%'.$this->search.'%')

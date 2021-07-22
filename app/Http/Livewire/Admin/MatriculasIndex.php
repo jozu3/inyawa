@@ -47,7 +47,10 @@ class MatriculasIndex extends Component
 			                            });
     		$user = auth()->user();
     		if ($user->hasRole('Vendedor')) {
-				$matriculas = $matriculas->where('matriculas.empleado_id', $user->empleado->id);
+				$matriculas = $matriculas->where(function($query) {
+			                          $query->orWhere('matriculas.empleado_id', auth()->user()->empleado->id)
+			                                ->orWhere('contactos.empleado_id', auth()->user()->empleado->id);
+			                            });
     		}
 
     		$matriculas = $matriculas->orderBy('matriculas.id', 'desc')->paginate();

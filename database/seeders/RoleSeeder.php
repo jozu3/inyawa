@@ -38,8 +38,11 @@ class RoleSeeder extends Seeder
         //Permisos Contacto
         Permission::create(['name' => 'admin.contactos.index', 'description' => 'Ver listado de contactos'])->syncRoles([$role1, $role2, $role3]);
         Permission::create(['name' => 'admin.contactos.create', 'description' => 'Crear contactos'])->syncRoles([$role1, $role2, $role3]);
-        Permission::create(['name' => 'admin.contactos.edit', 'description' => 'Editar contatos'])->syncRoles([$role1, $role2, $role3]);
+        Permission::create(['name' => 'admin.contactos.edit', 'description' => 'Editar contactos'])->syncRoles([$role1, $role2, $role3]);
+        Permission::create(['name' => 'admin.contactos.editAll', 'description' => 'Editar cualquier contacto'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'admin.contactos.asignarVendedor', 'description' => 'Asignar vendedor'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'admin.contactos.destroy', 'description' => 'Eliminar Contactos'])->syncRoles([$role1, $role2, $role3]);
+        Permission::create(['name' => 'admin.contactos.destroyAll', 'description' => 'Eliminar cualquier contacto'])->syncRoles([$role1, $role2]);
 
         //Permisos Seguimiento
         Permission::create(['name' => 'admin.seguimientos.index', 'description' => 'Ver listado de comentarios'])->syncRoles([$role1, $role2, $role3]);
@@ -92,6 +95,7 @@ class RoleSeeder extends Seeder
         //Permisos Matriculas
         Permission::create(['name' => 'admin.matriculas.index', 'description' => 'Ver listado de matriculas'])->syncRoles([$role1, $role2, $role3, $role4]);
         Permission::create(['name' => 'admin.matriculas.create', 'description' => 'Crear matriculas'])->syncRoles([$role1, $role2, $role3,]);
+        Permission::create(['name' => 'admin.matriculas.createAll', 'description' => 'Crear matriculas de cualquier contacto'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'admin.matriculas.edit', 'description' => 'Editar matriculas'])->syncRoles([$role1, $role2, $role3,]);
         Permission::create(['name' => 'admin.matriculas.destroy', 'description' => 'Eliminar matriculas'])->syncRoles([$role1, $role2, $role3,]);
 

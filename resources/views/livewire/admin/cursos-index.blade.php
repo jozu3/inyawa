@@ -17,7 +17,7 @@
     					<th>Curso</th>
                         <th>Estado</th>
                         <th width="200px">Grupos por inciciar</th>
-                        <th width="200px">Grupos por inciciar</th>
+                        <th width="200px">Grupos Iniciados</th>
                         <th width="200px">Grupos terminados</th>
                         @can('admin.cursos.edit')
     					<th colspan="2"></th>

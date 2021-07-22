@@ -42,7 +42,7 @@
 				  	</td>
 				  	<td>
 				  		@if($nota->valor == 0 && $nota->tipo == 1)
-				  		{{ 'Reemplaza a la nota más baja' }}
+				  		{{ 'Reemplaza la nota final de la unidad' }}
 				  		@else
 				  		{{ $nota->valor*100 }}%
 				  		@endif

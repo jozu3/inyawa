@@ -56,9 +56,9 @@ class ContactoController extends Controller
     public function store(StoreContactoRequest $request)
     {
         $request['estado'] = 1;
-        if (isset($request['vendedor_id'])) {
+        /*if (isset($request['vendedor_id'])) {
             $request['empleado_id'] = $request['vendedor_id'];
-        }
+        }*/
         $contacto = Contacto::create($request->all());
 
         return redirect()->route('admin.contactos.show', compact('contacto'))->with('info', 'Contacto creado con éxito');
@@ -111,9 +111,9 @@ class ContactoController extends Controller
     {
         $this->authorize('vendiendo', $contacto);
 
-        if (isset($request['vendedor_id'])) {
+        /*if (isset($request['vendedor_id'])) {
             $request['empleado_id'] = $request['vendedor_id'];
-        }
+        }*/
 
         if (!$contacto->update($request->all())) {
             return redirect()->route('admin.contactos.show', compact('contacto'))->with('error', 'Hubo un error al actualizar');

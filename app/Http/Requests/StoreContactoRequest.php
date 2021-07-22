@@ -13,11 +13,11 @@ class StoreContactoRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->empleado_id_logged == auth()->user()->empleado->id ) {
-            return true;
+        return true;
+        /*if ($this->empleado_id_logged == auth()->user()->empleado->id ) {
         } else {
             return false;
-        }
+        }*/
     }
 
     /**
@@ -43,9 +43,9 @@ class StoreContactoRequest extends FormRequest
                 //'estado' => 'required|in:1,2,3,4,5', //el estado se actuliza solo
             ];
 
-            if (auth()->user()->hasRole(['Admin', 'Asistente'])) {
+            /*if (auth()->user()->hasRole(['Admin', 'Asistente'])) {
                 $rules['vendedor_id'] = 'required';
-            }
+            }*/
 
             if ($this->grado_academico) {
                 $rules = array_merge($rules, [
@@ -56,6 +56,12 @@ class StoreContactoRequest extends FormRequest
             if ($this->email) {
                 $rules = array_merge($rules, [
                     'email' => 'email',
+                ]);   
+            }
+
+            if (auth()->user()->can('admin.contactos.asignarVendedor')) {
+                $rules = array_merge($rules, [
+                    'empleado_id' => 'required',
                 ]);   
             }
 

@@ -21,6 +21,7 @@ class CreateMatriculasTable extends Migration
             $table->tinyInteger('estado');
             $table->tinyInteger('tipomatricula');
             $table->date('fecha');
+            $table->longText('comentario')->nullable();
             $table->timestamps();
         });
     }

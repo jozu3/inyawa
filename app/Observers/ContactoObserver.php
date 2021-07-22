@@ -12,9 +12,13 @@ class ContactoObserver
      * @param  \App\Models\Contacto  $contacto
      * @return void
      */
-    public function created(Contacto $contacto)
+    public function creating(Contacto $contacto)
     {
-        //
+        if (! \App::runningInConsole()) {
+            if (!auth()->user()->can('admin.contactos.asignarVendedor')) {
+                $contacto->empleado_id = auth()->user()->empleado->id;
+            }   
+        }
     }
 
     /**
