@@ -76,7 +76,7 @@ class ObligacioneController extends Controller
         $obligacione->update([
             'fechalimite' => $request->fechalimite,
             'descuento' => $request->descuento,
-            'montofinal' => $obligacione->monto - $request->descuento,
+          //  'montofinal' => $obligacione->monto - $request->descuento,
         ]);
 
         $matricula = $obligacione->matricula;

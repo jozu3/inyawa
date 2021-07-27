@@ -59,5 +59,6 @@ class Matricula extends Model
         0 => Activo/Matriculado
         1 => Retirado
         2 => Suspendido
+        3 => Terminado
     ]
 */

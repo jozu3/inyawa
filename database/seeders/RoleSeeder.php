@@ -73,6 +73,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.grupos.create', 'description' => 'Crear grupos'])->syncRoles([$role1, $role2, $role4]);
         Permission::create(['name' => 'admin.grupos.edit', 'description' => 'Editar grupos'])->syncRoles([$role1, $role2, $role4]);
         Permission::create(['name' => 'admin.grupos.destroy', 'description' => 'Eliminar grupos'])->syncRoles([$role1, $role2, $role4]);
+        Permission::create(['name' => 'admin.grupos.viewList', 'description' => 'Ver lista de todos los grupos'])->syncRoles([$role1, $role2, $role4]);
 
         //Permisos Unidad
         Permission::create(['name' => 'admin.unidads.index', 'description' => 'Ver listado de unidades'])->syncRoles([$role1, $role2, $role4, $role5]);

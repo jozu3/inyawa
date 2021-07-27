@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Obligacione;
+use App\Models\Empleado;
 use DB;
 
 class ObligacionesIndex extends Component
@@ -17,7 +18,8 @@ class ObligacionesIndex extends Component
    public $mes;
    public $year;
    public $vertodas = false;
-
+   public $estado = -1;
+   public $vendedor = -1;
 
    protected $paginationTheme = 'bootstrap';
 
@@ -30,7 +32,6 @@ class ObligacionesIndex extends Component
    {
       $years = Obligacione::select(DB::raw('year(fechalimite) as year'))->groupBy('year')->get();
 
-
    	$obligaciones = Obligacione::where('estado','<>', '');
       $that = $this;
 
@@ -38,7 +39,7 @@ class ObligacionesIndex extends Component
         $obligaciones = $obligaciones->where(function($query) use ($that) {
                        $query
                          ->orWhere('matricula_id', 'like','%'.$that->search.'%')
-                        ->orWhere('obligaciones.id', 'like','%'.$that->search.'%');
+                         ->orWhere('obligaciones.id', 'like','%'.$that->search.'%');
                      });
       }
 
@@ -47,8 +48,24 @@ class ObligacionesIndex extends Component
                             ->where(DB::raw('year(fechalimite)'), $this->year);
       }
 
-      $obligaciones = $obligaciones->orderBy('fechalimite', 'desc')->paginate($this->cant);         
+      if ($this->estado != -1) {
+         $obligaciones = $obligaciones->where('estado', $this->estado);
+      }
 
-      return view('livewire.admin.obligaciones-index', compact('obligaciones', 'years'));
+      if ($this->vendedor != -1) {
+         $obligaciones = $obligaciones->whereHas('matricula', function($q) use ($that){
+                                          $q->whereHas('alumno', function($qu) use ($that){
+                                             $qu->whereHas('contacto', function($que) use ($that){
+                                                $que->where('empleado_id', $that->vendedor);
+                                             });
+                                          });
+                                       });
+      }
+
+      $obligaciones = $obligaciones->orderBy('fechalimite', 'desc')->paginate($this->cant);
+
+      $empleados = Empleado::all();
+
+      return view('livewire.admin.obligaciones-index', compact('obligaciones', 'years', 'empleados'));
    }
 }

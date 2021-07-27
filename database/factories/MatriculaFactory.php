@@ -29,7 +29,7 @@ class MatriculaFactory extends Factory
         $contacto = Contacto::all()->random();
         $alumno_existe = Alumno::where('contacto_id', '=', $contacto->id)->get();
 
-        if (!count($alumno_existe)){//entra si el alumno no existe
+        if (count($alumno_existe) == 0){//entra si el alumno no existe
     
             //crear el usuario y asignarlo al request
             $user = User::create([
@@ -51,6 +51,12 @@ class MatriculaFactory extends Factory
 
         } else {
             $alumno = $contacto->alumno;
+        }
+
+        if (isset($alumno)) {
+            $contacto->update([
+                'estado' => 5
+            ]);
         }
 
 

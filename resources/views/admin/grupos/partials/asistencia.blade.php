@@ -7,8 +7,14 @@
 			<thead>
 				<tr>
 					<th class="nombre-fijo">Nombre</th>
+					@if (isset($is_report) && $is_report == true)
+	                	<th class="">Código de matrícula</th>
+						<th class="">DNI/Documento de identidad</th>
+						<th class="">Grado académico</th>
+						<th class="">Teléfono</th>
+	                @endif
 					@foreach($grupo->unidads as $unidad)
-						@if (auth()->user()->hasRole(['Admin', 'Asistente', 'Coordinador académico']) || (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id))
+						@if (auth()->user()->can('admin.grupos.viewList') || (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id))
 							<th colspan="{{ $unidad->clases->count() }}" class="text-center border-left">
 								{{ $unidad->descripcion }}
 							</th>
@@ -29,8 +35,18 @@
 				<tr>
 					<td class="nombre-fijo">
 					</td>
-					@foreach($grupo->unidads as $unidad)
-						@if (auth()->user()->hasRole(['Admin', 'Asistente', 'Coordinador académico']) || (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id))
+					@if (isset($is_report) && $is_report == true)
+	                	<td class="">
+						</td>
+						<td class="">
+						</td>
+						<td class="">
+						</td>
+						<td class="">
+						</td>
+	                @endif
+					@forelse($grupo->unidads as $unidad)
+						@if (auth()->user()->can('admin.grupos.viewList') || (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id))
 							@foreach($unidad->clases as $clase)
 							<td>	
 								<b>{{ date('d/m/Y', strtotime($clase->fechaclase)) }}</b>
@@ -48,16 +64,32 @@
 							@endif
 							--}}
 						@endif
-					@endforeach
+					@empty
+						<td></td>
+					@endforelse
 				</tr>
 				@foreach($grupo->matriculasEstado([0,2]) as $matricula)
 					<tr>
 						<td class="nombre-fijo">
 							<b>{{$matricula->alumno->contacto->apellidos.' ' }}</b>{{ $matricula->alumno->contacto->nombres }} 
 						</td>
+						@if (isset($is_report) && $is_report == true)
+	                	<td class="">
+	                		{{ $matricula->id }}
+						</td>
+						<td class="">
+	                		{{ $matricula->alumno->contacto->doc }}
+						</td>
+						<td class="">
+	                		{{ $matricula->alumno->contacto->gradoacademico }}
+						</td>
+						<td class="">
+	                		{{ $matricula->alumno->contacto->telefono }}
+						</td>
+	                	@endif
 						@if ($matricula->grupo->unidads[0]->clases->count())
 							@foreach($matricula->grupo->unidads as $unidad)
-								@if (auth()->user()->hasRole(['Admin', 'Asistente', 'Coordinador académico']) || (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id))
+								@if (auth()->user()->can('admin.grupos.viewList') || (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id))
 									@foreach($unidad->clases as $clase)
 										<td class="border-left">
 											<div class="form-row align-items-center una-fila">

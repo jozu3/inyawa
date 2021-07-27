@@ -93,6 +93,12 @@ class AlumnoController extends Controller
             'grado_academico' => $request->grado_academico,
         ]);
 
+        if(isset($request->empleado_id)){
+            $alumno->contacto->update([
+                'empleado_id' => $request->empleado_id
+            ]);
+        }
+
         return redirect()->route('admin.alumnos.edit', compact('alumno'))->with('info', 'El alumno se actualizó correctamente');   
     }
 

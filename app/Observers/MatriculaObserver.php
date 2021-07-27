@@ -127,7 +127,49 @@ class MatriculaObserver
      */
     public function updated(Matricula $matricula)
     {
-        //
+
+        if ($matricula->isDirty('tipomatricula')) {
+            
+            $precio_matricula = $matricula->grupo->matricula;
+            $precio_cuota = $matricula->grupo->cuota;
+            $precio_certificacion = $matricula->grupo->certificacion;
+            
+            switch ($matricula->tipomatricula) {
+                case 0:
+                    $precio_matricula = $matricula->grupo->matricula;
+                    $precio_cuota = $matricula->grupo->cuota;
+                    $precio_certificacion = $matricula->grupo->certificacion;
+                    break;
+                case 1:
+                    $precio_matricula = $matricula->grupo->matricula2;
+                    $precio_cuota = $matricula->grupo->cuota2;
+                    $precio_certificacion = $matricula->grupo->certificacion2;
+                    break;
+                default:
+                    $precio_matricula = 0;
+                    $precio_cuota = 0;
+                    $precio_certificacion = 0;
+                    break;
+            }
+
+            Obligacione::where('matricula_id', $matricula->id)->where('concepto', 'Matricula')->update([ 
+                'monto' => $precio_matricula,
+                'descuento' => 0,
+                'montofinal' => $precio_matricula
+            ]);
+            Obligacione::where('matricula_id', $matricula->id)->where('concepto', 'like', 'Cuota%')->update([ 
+                'monto' => $precio_cuota,
+                'descuento' => 0,
+                'montofinal' => $precio_cuota
+            ]);
+            Obligacione::where('matricula_id', $matricula->id)->where('concepto', 'Certificación')->update([ 
+                'monto' => $precio_certificacion,
+                'descuento' => 0,
+                'montofinal' => $precio_certificacion
+            ]);
+
+            //Obligacione::where('matricula_id', $matricula->id)->update()
+        }
     }
 
     /**

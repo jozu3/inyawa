@@ -67,8 +67,8 @@
 							<th>Estado</th>
 							<th>Monto</th>
 							<th>Descuento</th>
-							<th>Monto pagado</th>
 							<th>Monto final</th>
+							<th>Monto pagado</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -98,8 +98,8 @@
 								</td>
 								<td>{{$obligacione->monto}}</td>
 								<td>{{$obligacione->descuento}}</td>
-								<td>{{$obligacione->montopagado}}</td>
 								<td>{{$obligacione->montofinal}}</td>
+								<td>{{$obligacione->montopagado}}</td>
 								<td>
 									@switch ($obligacione->estado)
 										@case(0)

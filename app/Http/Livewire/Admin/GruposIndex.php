@@ -51,6 +51,7 @@ class GruposIndex extends Component
         					->join('cursos', 'grupos.curso_id', '=', 'cursos.id')
         					->where('unidads.profesore_id', auth()->user()->profesore->id)
         					->where('cursos.nombre', 'like','%'.$this->search.'%')
+        					->groupBy('grupos.id', 'cursos.nombre', 'grupos.fecha', 'grupos.estado', 'idcurso')
         					->paginate();
         }
 

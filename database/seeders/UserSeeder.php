@@ -51,10 +51,10 @@ class UserSeeder extends Seeder
             'user_id' => 2,
         ]);
 
+//Coordinador academico
         $nom_admin_3 = 'Carlos';
         $ape_admin_3 = 'Cumba';
 
-//Coordinador academico
         User::create([
             'name' => $nom_admin_3.' '.$ape_admin_3,
             'email' => 'direccionacademica@inyawaperu.com',

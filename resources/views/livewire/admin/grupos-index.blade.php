@@ -90,8 +90,6 @@
                         </td>
                         <td>
                             {{ $grupo->matriculas->count() }}
-                            @if (!auth()->user()->hasRole('Profesor'))
-                            @endif
                         </td>
                         @can('admin.grupos.edit')
     				  	<td width="10px">

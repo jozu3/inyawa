@@ -35,4 +35,9 @@
 	@error('tipomatricula')
 		<small class="text-danger">{{ $message }}</small>
 	@enderror
+	<div>
+	@if(session('haypagos'))
+		<small class="text-danger">{{ session('haypagos') }}</small>
+	@endif
+	</div>
 </div> 

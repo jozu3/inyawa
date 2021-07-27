@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Contacto;
 use App\Models\Curso;
+use App\Models\Empleado;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -44,7 +45,7 @@ class ContactoFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'doc' => $this->faker->unique()->dni,
             'estado' => $this->faker->numberBetween($min = 0, $max = 3),
-            'empleado_id' => $this->faker->numberBetween($min = 3, $max = 9)
+            'empleado_id' => Empleado::all()->random()->id
         ];
     }
 }

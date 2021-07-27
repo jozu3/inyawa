@@ -11,6 +11,7 @@ use App\Models\Contacto;
 use App\Models\User;
 use App\Models\Empleado;
 use App\Models\Matricula;
+use App\Models\Pago;
 use App\Models\Obligacione;
 use DB;
 
@@ -161,7 +162,29 @@ class MatriculaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Matricula $matricula)
-    {
+    {   
+
+        if ($request->tipomatricula != $matricula->tipomatricula) {
+            
+            $haypagos = Pago::whereHas('obligacione', function($query) use ($matricula){
+                $query->where('matricula_id', $matricula->id);
+            })->count();
+            //dd($haypagos);
+            if ($haypagos > 0 ){
+                return redirect()->back()->with('haypagos', 'No puede cambiar el tipo de matricula porque algunas obligaciones ya fueron pagadas.');
+            }
+            
+        }
+
+       /* $request->validate([
+            'estado' => 'in:0,1,2,3',
+            'tipomatricula' => 'in:0,1',
+           // 'haypagos' => 'in:0'
+        ], [
+            'haypagos.in' => 'No puede cambiar el tipo de matricula porque algunas obligaciones ya fueron pagadas.'
+        ]);*/
+
+
         $matricula->update([
             'tipomatricula' => $request->tipomatricula,
             'estado' => $request->estado

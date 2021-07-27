@@ -49,14 +49,36 @@
                     <label class="ml-1" for="">Año</label>
                 </div>
                 <div class="col-auto my-1 mx-2">
-                    <select wire:model="year" type="date" class="form-control">
+                    <select wire:model="year" class="form-control">
                        @foreach ($years as $y)
                             <option value="{{$y->year}}">{{ $y->year}}</option>
                        @endforeach
                     </select>
                 </div>
                 @endif
-            
+                <div class="col-auto my-1">
+                    <label class="ml-1" for="">Estado</label>
+                </div>
+                <div class="col-auto my-1 mx-2">
+                    <select wire:model="estado" class="form-control">
+                        <option value="-1"> -Todas- </option>
+                        <option value="0">Exonerado</option>
+                        <option value="1">Por pagar</option>
+                        <option value="2">Parcial</option>
+                        <option value="3">Pagado</option>
+                    </select>
+                </div>
+                <div class="col-auto my-1">
+                    <label class="ml-1" for="">Vendedor</label>
+                </div>
+                <div class="col-auto my-1 mx-2">
+                    <select wire:model="vendedor" class="form-control">
+                        <option value="-1"> -Todos- </option>
+                        @foreach ($empleados as $empleado)
+                            <option value="{{ $empleado->id }}">{{ $empleado->user->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
     	</div>
         @if ($obligaciones->count())
@@ -71,7 +93,7 @@
     					<th>Estado</th>
                         <th>Monto pagado</th>
                         <th>Monto final</th>
-                        <th></th>
+                        <th>Vendedor</th>
     				</tr>
     			</thead>
     			<tbody>
@@ -105,6 +127,7 @@
                         </td>
                         <td>{{ $obligacione->montopagado }}</td>
                         <td>{{ $obligacione->montofinal }}</td>
+                        <td>{{ $obligacione->matricula->alumno->contacto->empleado->user->name }}</td>
     				  	<td width="10px">
     				  	</td>
     				  </tr>

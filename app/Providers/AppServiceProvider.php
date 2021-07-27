@@ -12,6 +12,7 @@ use App\Models\Seguimiento;
 use App\Models\Unidad;
 use App\Models\Empleado;
 use App\Models\Profesore;
+use App\Models\Obligacione;
 use App\Observers\AlumnoObserver;
 use App\Observers\AlumnoNotaObserver;
 use App\Observers\ContactoObserver;
@@ -21,6 +22,7 @@ use App\Observers\SeguimientoObserver;
 use App\Observers\UnidadObserver;
 use App\Observers\EmpleadoObserver;
 use App\Observers\ProfesoreObserver;
+use App\Observers\ObligacioneObserver;
 use Illuminate\Contracts\Events\Dispatcher;
 use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 
@@ -84,5 +86,6 @@ class AppServiceProvider extends ServiceProvider
         Alumno_nota::observe(AlumnoNotaObserver::class);
         Empleado::observe(EmpleadoObserver::class);
         Profesore::observe(ProfesoreObserver::class);
+        Obligacione::observe(ObligacioneObserver::class);
     }
 }

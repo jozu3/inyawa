@@ -91,8 +91,8 @@ class ProfesoreController extends Controller
                             ->join('unidads', 'unidads.grupo_id', '=', 'grupos.id')
                             ->join('cursos', 'grupos.curso_id', '=', 'cursos.id')
                             ->where('unidads.profesore_id', $profesore->id)
+                            ->groupBy('grupos.id', 'cursos.nombre', 'grupos.fecha', 'grupos.estado', 'idcurso')
                             ->get();
-
 
         return view('admin.profesores.edit', compact('profesore', 'grupos'));
     }

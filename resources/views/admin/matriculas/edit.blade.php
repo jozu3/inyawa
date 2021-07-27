@@ -29,7 +29,7 @@
                     ], null, ['class' => 'form-control']) !!}
                 </div>
                 @include('admin.matriculas.partials.formedit')
-                {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
     		{!! Form::close() !!}
         </div>  
     </div>
@@ -53,8 +53,8 @@
                             <th>Estado</th>
                             <th>Monto</th>
                             <th>Descuento</th>
-                            <th>Monto pagado</th>
                             <th>Monto final</th>
+                            <th>Monto pagado</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,8 +89,8 @@
                                 <td>
                                     {!! Form::number('descuento',null,['class' => 'form-control', 'style' => 'max-width:100px', 'min' => '0', 'step' => '0.01']) !!}
                                 </td>
-                                <td>{{$obligacione->montopagado}}</td>
                                 <td>{{$obligacione->montofinal}}</td>
+                                <td>{{$obligacione->montopagado}}</td>
                                 <td>
                                     {!! Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) !!}
                                 </td>

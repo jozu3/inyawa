@@ -25,7 +25,4 @@ class Contacto extends Model
         return $this->belongsTo(Empleado::class);
     }
 
-    public function seguimientosVendedor(){
-        
-    }
 }
