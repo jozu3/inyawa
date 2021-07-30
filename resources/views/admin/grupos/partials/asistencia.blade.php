@@ -81,7 +81,21 @@
 	                		{{ $matricula->alumno->contacto->doc }}
 						</td>
 						<td class="">
-	                		{{ $matricula->alumno->contacto->gradoacademico }}
+							@php
+								$grados = [
+									'1' => 'Profesor',
+									'2' => 'Bachiller',
+									'3' => 'Licenciado',
+									'4' => 'Magister',
+									'5' => 'Doctor',
+									'6' => 'Phd',
+									'7' => 'Estudiante',
+									'8' => 'No registra',
+								];
+							@endphp
+							@if ($matricula->alumno->contacto->grado_academico > 0)
+	                			{{ $grados[$matricula->alumno->contacto->grado_academico] }}
+							@endif
 						</td>
 						<td class="">
 	                		{{ $matricula->alumno->contacto->telefono }}
