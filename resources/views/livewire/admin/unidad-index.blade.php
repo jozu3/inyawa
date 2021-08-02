@@ -16,7 +16,7 @@
 			  	<td width="250px">
 					<a class="btn dropdown-toggle" data-toggle="collapse" href="#list-notas{{ $unidad->id }}" role="button" aria-expanded="false" aria-controls="list-notas{{ $unidad->id }}">{{ $unidad->descripcion }}  </a>
 			  	</td>
-			  	<td width="250px">{{ $unidad->fechainicio }}</td>
+			  	<td width="250px">{{ date('d/m/Y', strtotime($unidad->fechainicio)) }}</td>
 			  	<td width="250px">{{ $unidad->cantidad_clases }}</td>
 			  	<td width="250px">{{ $unidad->profesore->nombres.' '.$unidad->profesore->apellidos }}</td>
 			 
@@ -94,16 +94,16 @@
 					@error('cantidad_clases')<small class="text-danger">{{ $message }}</small> @enderror
 				</td>
 				<td>
-					<select name="profesore_id" wire:model="profesore_id" class="form-control">
+					<select name="profesor" wire:model="profesor" class="form-control">
 						<option value="-1">- Seleccione -</option>
 						@foreach ($profesores as $profesore)
 						<option value="{{ $profesore->id }}">{{ $profesore->nombres.' '.$profesore->apellidos }}</option>
 						@endforeach
 					</select>
-					@error('profesore_id')<small class="text-danger">{{ $message }}</small> @enderror
+					@error('profesor')<small class="text-danger">{{ $message }}</small> @enderror
 				</td>
 				<td>
-					<input type="submit" value="Guardar"  wire:loading.attr="disabled" wire:target="submit" class="btn btn-sm btn-primary disabled:opacity-25">
+					<input type="submit" value="Guardar" wire:click="submit"  wire:loading.attr="disabled" wire:target="submit" class="btn btn-sm btn-primary disabled:opacity-25">
 				</td>
 				</form>
 			</tr>

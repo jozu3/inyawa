@@ -16,7 +16,7 @@
             {{ session('info') }}
         </div>
     @endif
-    @if (auth()->user()->hasRole(['Admin', 'Asistente']))
+    @if (auth()->user()->can('admin.grupos.edit'))
 	<div class="card">
 		<div class="card-body">
 			{!! Form::model($grupo, ['route' => ['admin.grupos.update', $grupo], 'method' => 'put']) !!}

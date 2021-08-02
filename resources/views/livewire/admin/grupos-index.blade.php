@@ -96,11 +96,11 @@
                             <a href="{{ route('admin.grupos.edit', $grupo) }}" class="btn btn-sm btn-primary" >Editar</a>
                         </td>
                         @endcan
-                        @if (!Auth::user()->hasRole('Vendedor'))
+                        @can(['admin.asistencias.create', 'admin.alumno_notas.create'])
                         <td width="10px">
                             <a href="{{ route('admin.grupos.show', $grupo) }}" class="btn btn-sm btn-primary" >Alumnos</a>
                         </td>
-                        @endif
+                        @endcan
                         @can('admin.grupos.destroy')
     				  	<td width="10px">
 							<form method="POST" action="{{ route('admin.grupos.destroy', $grupo) }}">
@@ -110,6 +110,11 @@
 							</form>
 						</td>
                         @endcan
+                        @if (auth()->user()->hasRole('Profesor') or auth()->user()->can('admin.grupos.viewList'))
+                            <td width="200px">
+                                <a href="{{ route('admin.excel.alumnosGrupo', $grupo) }}" class="btn btn-success btn-sm float-right mr-3"><i class="far fa-file-excel"></i> Registro de alumnos</a>
+                            </td>
+                        @endif
     				  </tr>
     				@endforeach
 

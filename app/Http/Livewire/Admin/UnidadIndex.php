@@ -14,14 +14,14 @@ class UnidadIndex extends Component
 	public $descripcion;
 	public $fechainicio;
 	public $cantidad_clases;
-	public $profesore_id;
+	public $profesor;
 	public $iniciado;
 
 	protected $rules = [
 		'descripcion' => 'required',
 		'fechainicio' => 'required|date',
 		'cantidad_clases' => 'required|numeric|min:1',
-		'profesore_id' => 'required',
+		'profesor' => 'required',
 	];
 
 	public function submit(){
@@ -33,7 +33,7 @@ class UnidadIndex extends Component
 			'fechainicio' => $this->fechainicio,
 			'cantidad_clases' => $this->cantidad_clases,
 			'grupo_id' => $this->grupo->id,
-			'profesore_id' => $this->profesore_id,
+			'profesore_id' => $this->profesor,
 		]);
 
 		$unidad->save();

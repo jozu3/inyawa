@@ -1,0 +1,760 @@
+<div class="card cont-pestaña">
+	<div class="card-header">
+		<b>Listado de Alumnos</b>
+	</div>
+	<div class="card-body card-body-2 cont-table-div">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th class="nombre-fijo">Nombre</th>
+																		
+																								<th colspan="4" class="border-left">
+								<center>Unidad 3</center>
+							</th>
+																								
+																								
+																								
+																								
+																								
+																								
+																								
+															</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="nombre-fijo">
+					</td>
+																		
+																								<td>Promedio</td>
+															<td width="100">	
+									<b>architecto										(Nota recuperatoria)
+									</b>
+								</td>
+															<td width="100">	
+									<b>et</b>
+								</td>
+															<td width="100">	
+									<b>tempora</b>
+								</td>
+																															
+																								
+																								
+																								
+																								
+																								
+																								
+															</tr>
+									<tr>
+						<td class="nombre-fijo">
+							<b>Valladares Armas </b>María Alejandra Andrés 
+						</td>
+																									
+																									<td class="border-left text-center">
+								<div wire:id="yJWgbIm6ZhKLlWVBAc82" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;yJWgbIm6ZhKLlWVBAc82&quot;,&quot;name&quot;:&quot;admin.unidad-nota-show&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[&quot;show-promedio2&quot;]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;d86246a5&quot;,&quot;data&quot;:{&quot;alumnoUnidade_id&quot;:2,&quot;alumnoUnidad&quot;:[],&quot;icon_comment&quot;:&quot;fa-comment-dots&quot;,&quot;open_modalComentario&quot;:false,&quot;comentario&quot;:&quot;&quot;},&quot;dataMeta&quot;:{&quot;models&quot;:{&quot;alumnoUnidad&quot;:{&quot;class&quot;:&quot;App\\Models\\Alumno_unidade&quot;,&quot;id&quot;:2,&quot;relations&quot;:[&quot;matricula&quot;,&quot;matricula.alumno&quot;,&quot;matricula.alumno.user&quot;],&quot;connection&quot;:&quot;mysql&quot;}}},&quot;checksum&quot;:&quot;b9ce896a5775e91ce5b9fada8b7bfedde3045e071e81a27570fdcb0a366cea3a&quot;}}">
+    <b class="">5.6</b>
+    <i class="fas fa-comment-dots text-green-400 cursor-pointer" wire:click="openModalComentario"></i>
+    <div
+    x-data="{
+        show: window.Livewire.find('yJWgbIm6ZhKLlWVBAc82').entangle('open_modalComentario') .defer,
+        focusables() {
+            // All focusable element types...
+            let selector = 'a, button, input, textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
+
+            return [...$el.querySelectorAll(selector)]
+                // All non-disabled elements...
+                .filter(el => ! el.hasAttribute('disabled'))
+        },
+        firstFocusable() { return this.focusables()[0] },
+        lastFocusable() { return this.focusables().slice(-1)[0] },
+        nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
+        prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
+        nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
+        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
+    }"
+    x-init="$watch('show', value => {
+        if (value) {
+            document.body.classList.add('overflow-y-hidden');
+        } else {
+            document.body.classList.remove('overflow-y-hidden');
+        }
+    })"
+    x-on:close.stop="show = false"
+    x-on:keydown.escape.window="show = false"
+    x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
+    x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
+    x-show="show"
+    id="eaf1d6a4fbf4295d6b0021261b9d7e79"
+    class="jetstream-modal fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50"
+    style="display: none;"
+>
+    <div x-show="show" class="fixed inset-0 transform transition-all" x-on:click="show = false" x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0">
+        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+
+    <div x-show="show" class="mb-6 mt-5 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:max-w-2xl sm:mx-auto"
+                    x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+        <div class="px-6 py-4">
+        <div class="text-lg">
+            Agregar Comentario
+        </div>
+
+        <div class="mt-4">
+            <div class="mb-4 text-left">
+                <label class="block font-medium text-sm text-gray-700">
+    Alumno
+</label>
+                <input type="text" class="w-full form-control" value="María Alejandra Andrés Valladares Armas" disabled>
+            </div>
+            <div class="mb-4 text-left">
+                <label class="block font-medium text-sm text-gray-700">
+    Comentario
+</label>
+                <div class="input-group">
+                    <textarea name="comentario" class="form-control w-full" id="" cols="30" rows="10" wire:model="comentario"></textarea>
+                </div>
+                            </div>
+        </div>
+    </div>
+
+    <div class="px-6 py-4 bg-gray-100 text-right">
+        <button type="button" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150" wire:click="$set('open_modalComentario', false)">
+    Cancelar
+</button>
+            <button type="button" class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150 disabled:opacity-25" wire:click="saveComentario" wire:loading.attr="disabled" wire.target="saveComentario">
+    Guardar
+</button>
+    </div>
+    </div>
+</div>
+</div>
+	                		
+							</td>
+															<td>
+									<div class="form-row align-items-center una-fila">
+						                <div class="col-auto my-1 mx-2">
+						                	<div wire:id="y5ZXYz8Zato0cvQMF6Sg" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;y5ZXYz8Zato0cvQMF6Sg&quot;,&quot;name&quot;:&quot;admin.create-nota&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5c692485&quot;,&quot;data&quot;:{&quot;nota_id&quot;:691,&quot;alumno_unidade_id&quot;:2,&quot;valor&quot;:null,&quot;result&quot;:false,&quot;valor_classdanger&quot;:&quot;&quot;,&quot;notaActual&quot;:null},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;3464ec713358f58f70ceb011e4ae1e2454d2cb95b160d46f879cd051df6aeeb3&quot;}}">
+<form wire:submit.prevent="submit">
+	<input type="number" wire:model="valor" class="form-control  input-nota" step="0.5" min="0" max="20" >
+	</form>
+</div>											<div style="display: none;">
+						                	
+											</div>
+						                </div>
+									</div>
+								</td>
+															<td>
+									<div class="form-row align-items-center una-fila">
+						                <div class="col-auto my-1 mx-2">
+						                	<div wire:id="OOyR5u0HuVW8fWRVPf27" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;OOyR5u0HuVW8fWRVPf27&quot;,&quot;name&quot;:&quot;admin.create-nota&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5c692485&quot;,&quot;data&quot;:{&quot;nota_id&quot;:692,&quot;alumno_unidade_id&quot;:2,&quot;valor&quot;:14,&quot;result&quot;:false,&quot;valor_classdanger&quot;:&quot;&quot;,&quot;notaActual&quot;:14},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;132a5dd61e8ef0b698215757335786698df437894bfd173be48745f18a20c809&quot;}}">
+<form wire:submit.prevent="submit">
+	<input type="number" wire:model="valor" class="form-control  input-nota" step="0.5" min="0" max="20" >
+	</form>
+</div>											<div style="display: none;">
+						                	14
+											</div>
+						                </div>
+									</div>
+								</td>
+															<td>
+									<div class="form-row align-items-center una-fila">
+						                <div class="col-auto my-1 mx-2">
+						                	<div wire:id="ViXjncZ4ONtaoZSOXDmB" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;ViXjncZ4ONtaoZSOXDmB&quot;,&quot;name&quot;:&quot;admin.create-nota&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5c692485&quot;,&quot;data&quot;:{&quot;nota_id&quot;:693,&quot;alumno_unidade_id&quot;:2,&quot;valor&quot;:null,&quot;result&quot;:false,&quot;valor_classdanger&quot;:&quot;&quot;,&quot;notaActual&quot;:null},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;55832d342b50a3abe8bac7d2aff4767d40ca58a3361da199963cbbb611ceb864&quot;}}">
+<form wire:submit.prevent="submit">
+	<input type="number" wire:model="valor" class="form-control  input-nota" step="0.5" min="0" max="20" >
+	</form>
+</div>											<div style="display: none;">
+						                	
+											</div>
+						                </div>
+									</div>
+								</td>
+																																
+																									
+																									
+																									
+																									
+																									
+																									
+																							</tr>
+									<tr>
+						<td class="nombre-fijo">
+							<b>Rosario Anguiano </b>Fernando Elizabeth 
+						</td>
+																									
+																									<td class="border-left text-center">
+								<div wire:id="gtHHJtx1EGoP6Zl8C9WR" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;gtHHJtx1EGoP6Zl8C9WR&quot;,&quot;name&quot;:&quot;admin.unidad-nota-show&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[&quot;show-promedio11&quot;]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5bb0dc59&quot;,&quot;data&quot;:{&quot;alumnoUnidade_id&quot;:11,&quot;alumnoUnidad&quot;:[],&quot;icon_comment&quot;:&quot;fa-comment&quot;,&quot;open_modalComentario&quot;:false,&quot;comentario&quot;:&quot;&quot;},&quot;dataMeta&quot;:{&quot;models&quot;:{&quot;alumnoUnidad&quot;:{&quot;class&quot;:&quot;App\\Models\\Alumno_unidade&quot;,&quot;id&quot;:11,&quot;relations&quot;:[&quot;matricula&quot;,&quot;matricula.alumno&quot;,&quot;matricula.alumno.user&quot;],&quot;connection&quot;:&quot;mysql&quot;}}},&quot;checksum&quot;:&quot;9b41a3aca376415a73b3b43d0347a4b6bd25299245703f74f5416bb7774469bb&quot;}}">
+    <b class="">15</b>
+    <i class="fas fa-comment text-green-400 cursor-pointer" wire:click="openModalComentario"></i>
+    <div
+    x-data="{
+        show: window.Livewire.find('gtHHJtx1EGoP6Zl8C9WR').entangle('open_modalComentario') .defer,
+        focusables() {
+            // All focusable element types...
+            let selector = 'a, button, input, textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
+
+            return [...$el.querySelectorAll(selector)]
+                // All non-disabled elements...
+                .filter(el => ! el.hasAttribute('disabled'))
+        },
+        firstFocusable() { return this.focusables()[0] },
+        lastFocusable() { return this.focusables().slice(-1)[0] },
+        nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
+        prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
+        nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
+        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
+    }"
+    x-init="$watch('show', value => {
+        if (value) {
+            document.body.classList.add('overflow-y-hidden');
+        } else {
+            document.body.classList.remove('overflow-y-hidden');
+        }
+    })"
+    x-on:close.stop="show = false"
+    x-on:keydown.escape.window="show = false"
+    x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
+    x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
+    x-show="show"
+    id="eaf1d6a4fbf4295d6b0021261b9d7e79"
+    class="jetstream-modal fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50"
+    style="display: none;"
+>
+    <div x-show="show" class="fixed inset-0 transform transition-all" x-on:click="show = false" x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0">
+        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+
+    <div x-show="show" class="mb-6 mt-5 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:max-w-2xl sm:mx-auto"
+                    x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+        <div class="px-6 py-4">
+        <div class="text-lg">
+            Agregar Comentario
+        </div>
+
+        <div class="mt-4">
+            <div class="mb-4 text-left">
+                <label class="block font-medium text-sm text-gray-700">
+    Alumno
+</label>
+                <input type="text" class="w-full form-control" value="Fernando Elizabeth Rosario Anguiano" disabled>
+            </div>
+            <div class="mb-4 text-left">
+                <label class="block font-medium text-sm text-gray-700">
+    Comentario
+</label>
+                <div class="input-group">
+                    <textarea name="comentario" class="form-control w-full" id="" cols="30" rows="10" wire:model="comentario"></textarea>
+                </div>
+                            </div>
+        </div>
+    </div>
+
+    <div class="px-6 py-4 bg-gray-100 text-right">
+        <button type="button" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150" wire:click="$set('open_modalComentario', false)">
+    Cancelar
+</button>
+            <button type="button" class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150 disabled:opacity-25" wire:click="saveComentario" wire:loading.attr="disabled" wire.target="saveComentario">
+    Guardar
+</button>
+    </div>
+    </div>
+</div>
+</div>
+	                		
+							</td>
+															<td>
+									<div class="form-row align-items-center una-fila">
+						                <div class="col-auto my-1 mx-2">
+						                	<div wire:id="TT1lRvPScFCnU5IhawkC" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;TT1lRvPScFCnU5IhawkC&quot;,&quot;name&quot;:&quot;admin.create-nota&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5c692485&quot;,&quot;data&quot;:{&quot;nota_id&quot;:691,&quot;alumno_unidade_id&quot;:11,&quot;valor&quot;:15,&quot;result&quot;:false,&quot;valor_classdanger&quot;:&quot;&quot;,&quot;notaActual&quot;:15},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;d9324ee72e8ba891a86537d21b44e9de291f8085018097623bb613f3d6aab994&quot;}}">
+<form wire:submit.prevent="submit">
+	<input type="number" wire:model="valor" class="form-control  input-nota" step="0.5" min="0" max="20" >
+	</form>
+</div>											<div style="display: none;">
+						                	15
+											</div>
+						                </div>
+									</div>
+								</td>
+															<td>
+									<div class="form-row align-items-center una-fila">
+						                <div class="col-auto my-1 mx-2">
+						                	<div wire:id="ia8dzKIZDrBFVQJSiMKx" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;ia8dzKIZDrBFVQJSiMKx&quot;,&quot;name&quot;:&quot;admin.create-nota&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5c692485&quot;,&quot;data&quot;:{&quot;nota_id&quot;:692,&quot;alumno_unidade_id&quot;:11,&quot;valor&quot;:10,&quot;result&quot;:false,&quot;valor_classdanger&quot;:&quot;&quot;,&quot;notaActual&quot;:10},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;bf7b2de14408037c7ab1917d184eb29f48c927d69d62eafdb1e155a5257f253b&quot;}}">
+<form wire:submit.prevent="submit">
+	<input type="number" wire:model="valor" class="form-control  input-nota" step="0.5" min="0" max="20" >
+	</form>
+</div>											<div style="display: none;">
+						                	10
+											</div>
+						                </div>
+									</div>
+								</td>
+															<td>
+									<div class="form-row align-items-center una-fila">
+						                <div class="col-auto my-1 mx-2">
+						                	<div wire:id="YOGPKaobWRDQUWhiizrL" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;YOGPKaobWRDQUWhiizrL&quot;,&quot;name&quot;:&quot;admin.create-nota&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5c692485&quot;,&quot;data&quot;:{&quot;nota_id&quot;:693,&quot;alumno_unidade_id&quot;:11,&quot;valor&quot;:null,&quot;result&quot;:false,&quot;valor_classdanger&quot;:&quot;&quot;,&quot;notaActual&quot;:null},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;a5a4b7313cadcbccf8a8c5c0266ba04b690be81e95774ef4ecd74a30cc825a28&quot;}}">
+<form wire:submit.prevent="submit">
+	<input type="number" wire:model="valor" class="form-control  input-nota" step="0.5" min="0" max="20" >
+	</form>
+</div>											<div style="display: none;">
+						                	
+											</div>
+						                </div>
+									</div>
+								</td>
+																																
+																									
+																									
+																									
+																									
+																									
+																									
+																							</tr>
+									<tr>
+						<td class="nombre-fijo">
+							<b>Pelayo Mejía </b>Mariangel José 
+						</td>
+																									
+																									<td class="border-left text-center">
+								<div wire:id="nFaDRMVXAQb0VZOYbWAU" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;nFaDRMVXAQb0VZOYbWAU&quot;,&quot;name&quot;:&quot;admin.unidad-nota-show&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[&quot;show-promedio20&quot;]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5fc4477a&quot;,&quot;data&quot;:{&quot;alumnoUnidade_id&quot;:20,&quot;alumnoUnidad&quot;:[],&quot;icon_comment&quot;:&quot;fa-comment-dots&quot;,&quot;open_modalComentario&quot;:false,&quot;comentario&quot;:&quot;&quot;},&quot;dataMeta&quot;:{&quot;models&quot;:{&quot;alumnoUnidad&quot;:{&quot;class&quot;:&quot;App\\Models\\Alumno_unidade&quot;,&quot;id&quot;:20,&quot;relations&quot;:[&quot;matricula&quot;,&quot;matricula.alumno&quot;,&quot;matricula.alumno.user&quot;],&quot;connection&quot;:&quot;mysql&quot;}}},&quot;checksum&quot;:&quot;c42b951983a76d7db1aa7e09504bec806cbb92b9a9b57c5b8ef268d20da511d0&quot;}}">
+    <b class="">2</b>
+    <i class="fas fa-comment-dots text-green-400 cursor-pointer" wire:click="openModalComentario"></i>
+    <div
+    x-data="{
+        show: window.Livewire.find('nFaDRMVXAQb0VZOYbWAU').entangle('open_modalComentario') .defer,
+        focusables() {
+            // All focusable element types...
+            let selector = 'a, button, input, textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
+
+            return [...$el.querySelectorAll(selector)]
+                // All non-disabled elements...
+                .filter(el => ! el.hasAttribute('disabled'))
+        },
+        firstFocusable() { return this.focusables()[0] },
+        lastFocusable() { return this.focusables().slice(-1)[0] },
+        nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
+        prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
+        nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
+        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
+    }"
+    x-init="$watch('show', value => {
+        if (value) {
+            document.body.classList.add('overflow-y-hidden');
+        } else {
+            document.body.classList.remove('overflow-y-hidden');
+        }
+    })"
+    x-on:close.stop="show = false"
+    x-on:keydown.escape.window="show = false"
+    x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
+    x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
+    x-show="show"
+    id="eaf1d6a4fbf4295d6b0021261b9d7e79"
+    class="jetstream-modal fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50"
+    style="display: none;"
+>
+    <div x-show="show" class="fixed inset-0 transform transition-all" x-on:click="show = false" x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0">
+        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+
+    <div x-show="show" class="mb-6 mt-5 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:max-w-2xl sm:mx-auto"
+                    x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+        <div class="px-6 py-4">
+        <div class="text-lg">
+            Agregar Comentario
+        </div>
+
+        <div class="mt-4">
+            <div class="mb-4 text-left">
+                <label class="block font-medium text-sm text-gray-700">
+    Alumno
+</label>
+                <input type="text" class="w-full form-control" value="Mariangel José Pelayo Mejía" disabled>
+            </div>
+            <div class="mb-4 text-left">
+                <label class="block font-medium text-sm text-gray-700">
+    Comentario
+</label>
+                <div class="input-group">
+                    <textarea name="comentario" class="form-control w-full" id="" cols="30" rows="10" wire:model="comentario"></textarea>
+                </div>
+                            </div>
+        </div>
+    </div>
+
+    <div class="px-6 py-4 bg-gray-100 text-right">
+        <button type="button" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150" wire:click="$set('open_modalComentario', false)">
+    Cancelar
+</button>
+            <button type="button" class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150 disabled:opacity-25" wire:click="saveComentario" wire:loading.attr="disabled" wire.target="saveComentario">
+    Guardar
+</button>
+    </div>
+    </div>
+</div>
+</div>
+	                		
+							</td>
+															<td>
+									<div class="form-row align-items-center una-fila">
+						                <div class="col-auto my-1 mx-2">
+						                	<div wire:id="xZEaA4IE5p5o0jn7e3ok" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;xZEaA4IE5p5o0jn7e3ok&quot;,&quot;name&quot;:&quot;admin.create-nota&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5c692485&quot;,&quot;data&quot;:{&quot;nota_id&quot;:691,&quot;alumno_unidade_id&quot;:20,&quot;valor&quot;:null,&quot;result&quot;:false,&quot;valor_classdanger&quot;:&quot;&quot;,&quot;notaActual&quot;:null},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;f9c4fd645ba7404fe1d336784028c842d984d81ff43a0bd1876b7ff999b2f607&quot;}}">
+<form wire:submit.prevent="submit">
+	<input type="number" wire:model="valor" class="form-control  input-nota" step="0.5" min="0" max="20" >
+	</form>
+</div>											<div style="display: none;">
+						                	
+											</div>
+						                </div>
+									</div>
+								</td>
+															<td>
+									<div class="form-row align-items-center una-fila">
+						                <div class="col-auto my-1 mx-2">
+						                	<div wire:id="1wUTbympexVwkATdRzGu" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;1wUTbympexVwkATdRzGu&quot;,&quot;name&quot;:&quot;admin.create-nota&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5c692485&quot;,&quot;data&quot;:{&quot;nota_id&quot;:692,&quot;alumno_unidade_id&quot;:20,&quot;valor&quot;:5,&quot;result&quot;:false,&quot;valor_classdanger&quot;:&quot;&quot;,&quot;notaActual&quot;:5},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;1804e13927ea1a06b73ff155e018943fdeb2dfe58e24cc0bc96d1a4f285b5ccf&quot;}}">
+<form wire:submit.prevent="submit">
+	<input type="number" wire:model="valor" class="form-control  input-nota" step="0.5" min="0" max="20" >
+	</form>
+</div>											<div style="display: none;">
+						                	5
+											</div>
+						                </div>
+									</div>
+								</td>
+															<td>
+									<div class="form-row align-items-center una-fila">
+						                <div class="col-auto my-1 mx-2">
+						                	<div wire:id="aE8AZrHfsv8KorENgk9c" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;aE8AZrHfsv8KorENgk9c&quot;,&quot;name&quot;:&quot;admin.create-nota&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5c692485&quot;,&quot;data&quot;:{&quot;nota_id&quot;:693,&quot;alumno_unidade_id&quot;:20,&quot;valor&quot;:null,&quot;result&quot;:false,&quot;valor_classdanger&quot;:&quot;&quot;,&quot;notaActual&quot;:null},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;6ae3613003fda5f2d05c3d4602460a47838e900826a8edb39efac9ebe12343e0&quot;}}">
+<form wire:submit.prevent="submit">
+	<input type="number" wire:model="valor" class="form-control  input-nota" step="0.5" min="0" max="20" >
+	</form>
+</div>											<div style="display: none;">
+						                	
+											</div>
+						                </div>
+									</div>
+								</td>
+																																
+																									
+																									
+																									
+																									
+																									
+																									
+																							</tr>
+									<tr>
+						<td class="nombre-fijo">
+							<b>Tirado Rosas </b>Alessandra Martina 
+						</td>
+																									
+																									<td class="border-left text-center">
+								<div wire:id="WNuNJOKlW9tWrOpHV2Jb" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;WNuNJOKlW9tWrOpHV2Jb&quot;,&quot;name&quot;:&quot;admin.unidad-nota-show&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[&quot;show-promedio29&quot;]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;2d6fd189&quot;,&quot;data&quot;:{&quot;alumnoUnidade_id&quot;:29,&quot;alumnoUnidad&quot;:[],&quot;icon_comment&quot;:&quot;fa-comment&quot;,&quot;open_modalComentario&quot;:false,&quot;comentario&quot;:&quot;&quot;},&quot;dataMeta&quot;:{&quot;models&quot;:{&quot;alumnoUnidad&quot;:{&quot;class&quot;:&quot;App\\Models\\Alumno_unidade&quot;,&quot;id&quot;:29,&quot;relations&quot;:[&quot;matricula&quot;,&quot;matricula.alumno&quot;,&quot;matricula.alumno.user&quot;],&quot;connection&quot;:&quot;mysql&quot;}}},&quot;checksum&quot;:&quot;dfc19aad0a48117eb4a7a465e616766eef50c9e9108b6be631abcca9392efca6&quot;}}">
+    <b class="">0</b>
+    <i class="fas fa-comment text-green-400 cursor-pointer" wire:click="openModalComentario"></i>
+    <div
+    x-data="{
+        show: window.Livewire.find('WNuNJOKlW9tWrOpHV2Jb').entangle('open_modalComentario') .defer,
+        focusables() {
+            // All focusable element types...
+            let selector = 'a, button, input, textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
+
+            return [...$el.querySelectorAll(selector)]
+                // All non-disabled elements...
+                .filter(el => ! el.hasAttribute('disabled'))
+        },
+        firstFocusable() { return this.focusables()[0] },
+        lastFocusable() { return this.focusables().slice(-1)[0] },
+        nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
+        prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
+        nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
+        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
+    }"
+    x-init="$watch('show', value => {
+        if (value) {
+            document.body.classList.add('overflow-y-hidden');
+        } else {
+            document.body.classList.remove('overflow-y-hidden');
+        }
+    })"
+    x-on:close.stop="show = false"
+    x-on:keydown.escape.window="show = false"
+    x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
+    x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
+    x-show="show"
+    id="eaf1d6a4fbf4295d6b0021261b9d7e79"
+    class="jetstream-modal fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50"
+    style="display: none;"
+>
+    <div x-show="show" class="fixed inset-0 transform transition-all" x-on:click="show = false" x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0">
+        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+
+    <div x-show="show" class="mb-6 mt-5 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:max-w-2xl sm:mx-auto"
+                    x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+        <div class="px-6 py-4">
+        <div class="text-lg">
+            Agregar Comentario
+        </div>
+
+        <div class="mt-4">
+            <div class="mb-4 text-left">
+                <label class="block font-medium text-sm text-gray-700">
+    Alumno
+</label>
+                <input type="text" class="w-full form-control" value="Alessandra Martina Tirado Rosas" disabled>
+            </div>
+            <div class="mb-4 text-left">
+                <label class="block font-medium text-sm text-gray-700">
+    Comentario
+</label>
+                <div class="input-group">
+                    <textarea name="comentario" class="form-control w-full" id="" cols="30" rows="10" wire:model="comentario"></textarea>
+                </div>
+                            </div>
+        </div>
+    </div>
+
+    <div class="px-6 py-4 bg-gray-100 text-right">
+        <button type="button" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150" wire:click="$set('open_modalComentario', false)">
+    Cancelar
+</button>
+            <button type="button" class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150 disabled:opacity-25" wire:click="saveComentario" wire:loading.attr="disabled" wire.target="saveComentario">
+    Guardar
+</button>
+    </div>
+    </div>
+</div>
+</div>
+	                		
+							</td>
+															<td>
+									<div class="form-row align-items-center una-fila">
+						                <div class="col-auto my-1 mx-2">
+						                	<div wire:id="oITIdUHd5MqIcGMfwyK6" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;oITIdUHd5MqIcGMfwyK6&quot;,&quot;name&quot;:&quot;admin.create-nota&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5c692485&quot;,&quot;data&quot;:{&quot;nota_id&quot;:691,&quot;alumno_unidade_id&quot;:29,&quot;valor&quot;:null,&quot;result&quot;:false,&quot;valor_classdanger&quot;:&quot;&quot;,&quot;notaActual&quot;:null},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;d8335b39b07e98f46ae552c23cd55bf52676e263eab5689098769b0a15b661d8&quot;}}">
+<form wire:submit.prevent="submit">
+	<input type="number" wire:model="valor" class="form-control  input-nota" step="0.5" min="0" max="20" >
+	</form>
+</div>											<div style="display: none;">
+						                	
+											</div>
+						                </div>
+									</div>
+								</td>
+															<td>
+									<div class="form-row align-items-center una-fila">
+						                <div class="col-auto my-1 mx-2">
+						                	<div wire:id="8iITWNIEvPweX3gEyqKI" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;8iITWNIEvPweX3gEyqKI&quot;,&quot;name&quot;:&quot;admin.create-nota&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5c692485&quot;,&quot;data&quot;:{&quot;nota_id&quot;:692,&quot;alumno_unidade_id&quot;:29,&quot;valor&quot;:null,&quot;result&quot;:false,&quot;valor_classdanger&quot;:&quot;&quot;,&quot;notaActual&quot;:null},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;213b25bcd9cae21b6780645e9152ff814a1fbe45e3eb556ae1e2b9ee579c907f&quot;}}">
+<form wire:submit.prevent="submit">
+	<input type="number" wire:model="valor" class="form-control  input-nota" step="0.5" min="0" max="20" >
+	</form>
+</div>											<div style="display: none;">
+						                	
+											</div>
+						                </div>
+									</div>
+								</td>
+															<td>
+									<div class="form-row align-items-center una-fila">
+						                <div class="col-auto my-1 mx-2">
+						                	<div wire:id="SEhM0nmEwgAIyQLvKR80" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;SEhM0nmEwgAIyQLvKR80&quot;,&quot;name&quot;:&quot;admin.create-nota&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5c692485&quot;,&quot;data&quot;:{&quot;nota_id&quot;:693,&quot;alumno_unidade_id&quot;:29,&quot;valor&quot;:null,&quot;result&quot;:false,&quot;valor_classdanger&quot;:&quot;&quot;,&quot;notaActual&quot;:null},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;bd31ddb1b443f3a70e4a55dd3f6bd84f043f818f75a79774a8c98c600aa724ca&quot;}}">
+<form wire:submit.prevent="submit">
+	<input type="number" wire:model="valor" class="form-control  input-nota" step="0.5" min="0" max="20" >
+	</form>
+</div>											<div style="display: none;">
+						                	
+											</div>
+						                </div>
+									</div>
+								</td>
+																																
+																									
+																									
+																									
+																									
+																									
+																									
+																							</tr>
+									<tr>
+						<td class="nombre-fijo">
+							<b>Salcido Téllez </b>Mateo Santino 
+						</td>
+																									
+																									<td class="border-left text-center">
+								<div wire:id="2HnizvTSVJHoTp1tU0hl" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;2HnizvTSVJHoTp1tU0hl&quot;,&quot;name&quot;:&quot;admin.unidad-nota-show&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[&quot;show-promedio38&quot;]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;18c18812&quot;,&quot;data&quot;:{&quot;alumnoUnidade_id&quot;:38,&quot;alumnoUnidad&quot;:[],&quot;icon_comment&quot;:&quot;fa-comment-dots&quot;,&quot;open_modalComentario&quot;:false,&quot;comentario&quot;:&quot;&quot;},&quot;dataMeta&quot;:{&quot;models&quot;:{&quot;alumnoUnidad&quot;:{&quot;class&quot;:&quot;App\\Models\\Alumno_unidade&quot;,&quot;id&quot;:38,&quot;relations&quot;:[&quot;matricula&quot;,&quot;matricula.alumno&quot;,&quot;matricula.alumno.user&quot;],&quot;connection&quot;:&quot;mysql&quot;}}},&quot;checksum&quot;:&quot;52ca1dbeee70cc80f06e6ccc1e3af6251fd34c6738f4af5da075d4113ca8c8de&quot;}}">
+    <b class="">0</b>
+    <i class="fas fa-comment-dots text-green-400 cursor-pointer" wire:click="openModalComentario"></i>
+    <div
+    x-data="{
+        show: window.Livewire.find('2HnizvTSVJHoTp1tU0hl').entangle('open_modalComentario') .defer,
+        focusables() {
+            // All focusable element types...
+            let selector = 'a, button, input, textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
+
+            return [...$el.querySelectorAll(selector)]
+                // All non-disabled elements...
+                .filter(el => ! el.hasAttribute('disabled'))
+        },
+        firstFocusable() { return this.focusables()[0] },
+        lastFocusable() { return this.focusables().slice(-1)[0] },
+        nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
+        prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
+        nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
+        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
+    }"
+    x-init="$watch('show', value => {
+        if (value) {
+            document.body.classList.add('overflow-y-hidden');
+        } else {
+            document.body.classList.remove('overflow-y-hidden');
+        }
+    })"
+    x-on:close.stop="show = false"
+    x-on:keydown.escape.window="show = false"
+    x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
+    x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
+    x-show="show"
+    id="eaf1d6a4fbf4295d6b0021261b9d7e79"
+    class="jetstream-modal fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50"
+    style="display: none;"
+>
+    <div x-show="show" class="fixed inset-0 transform transition-all" x-on:click="show = false" x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0">
+        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+
+    <div x-show="show" class="mb-6 mt-5 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:max-w-2xl sm:mx-auto"
+                    x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+        <div class="px-6 py-4">
+        <div class="text-lg">
+            Agregar Comentario
+        </div>
+
+        <div class="mt-4">
+            <div class="mb-4 text-left">
+                <label class="block font-medium text-sm text-gray-700">
+    Alumno
+</label>
+                <input type="text" class="w-full form-control" value="Mateo Santino Salcido Téllez" disabled>
+            </div>
+            <div class="mb-4 text-left">
+                <label class="block font-medium text-sm text-gray-700">
+    Comentario
+</label>
+                <div class="input-group">
+                    <textarea name="comentario" class="form-control w-full" id="" cols="30" rows="10" wire:model="comentario"></textarea>
+                </div>
+                            </div>
+        </div>
+    </div>
+
+    <div class="px-6 py-4 bg-gray-100 text-right">
+        <button type="button" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150" wire:click="$set('open_modalComentario', false)">
+    Cancelar
+</button>
+            <button type="button" class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150 disabled:opacity-25" wire:click="saveComentario" wire:loading.attr="disabled" wire.target="saveComentario">
+    Guardar
+</button>
+    </div>
+    </div>
+</div>
+</div>
+	                		
+							</td>
+															<td>
+									<div class="form-row align-items-center una-fila">
+						                <div class="col-auto my-1 mx-2">
+						                	<div wire:id="Equ8cPibWvZmoorNMYJP" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;Equ8cPibWvZmoorNMYJP&quot;,&quot;name&quot;:&quot;admin.create-nota&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5c692485&quot;,&quot;data&quot;:{&quot;nota_id&quot;:691,&quot;alumno_unidade_id&quot;:38,&quot;valor&quot;:null,&quot;result&quot;:false,&quot;valor_classdanger&quot;:&quot;&quot;,&quot;notaActual&quot;:null},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;a5edb1123c627301545a24b32173294789fde1bf40b3c171a0109df47daf78e9&quot;}}">
+<form wire:submit.prevent="submit">
+	<input type="number" wire:model="valor" class="form-control  input-nota" step="0.5" min="0" max="20" >
+	</form>
+</div>											<div style="display: none;">
+						                	
+											</div>
+						                </div>
+									</div>
+								</td>
+															<td>
+									<div class="form-row align-items-center una-fila">
+						                <div class="col-auto my-1 mx-2">
+						                	<div wire:id="5PYkhyFH3BOW9F42Y3Ur" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;5PYkhyFH3BOW9F42Y3Ur&quot;,&quot;name&quot;:&quot;admin.create-nota&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5c692485&quot;,&quot;data&quot;:{&quot;nota_id&quot;:692,&quot;alumno_unidade_id&quot;:38,&quot;valor&quot;:null,&quot;result&quot;:false,&quot;valor_classdanger&quot;:&quot;&quot;,&quot;notaActual&quot;:null},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;03089692e61c6aac306fbec000f9443167a1bee892e18c9f59e96b411fc92f17&quot;}}">
+<form wire:submit.prevent="submit">
+	<input type="number" wire:model="valor" class="form-control  input-nota" step="0.5" min="0" max="20" >
+	</form>
+</div>											<div style="display: none;">
+						                	
+											</div>
+						                </div>
+									</div>
+								</td>
+															<td>
+									<div class="form-row align-items-center una-fila">
+						                <div class="col-auto my-1 mx-2">
+						                	<div wire:id="z9MF5eJrCszS8sVpzKxW" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;z9MF5eJrCszS8sVpzKxW&quot;,&quot;name&quot;:&quot;admin.create-nota&quot;,&quot;locale&quot;:&quot;es&quot;,&quot;path&quot;:&quot;admin\/report-alumnos-grupo\/46&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;5c692485&quot;,&quot;data&quot;:{&quot;nota_id&quot;:693,&quot;alumno_unidade_id&quot;:38,&quot;valor&quot;:null,&quot;result&quot;:false,&quot;valor_classdanger&quot;:&quot;&quot;,&quot;notaActual&quot;:null},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;e91ec5b797d6ed8314b2e96df3783d1e680afebc6c1270cb6875f744a2742cfb&quot;}}">
+<form wire:submit.prevent="submit">
+	<input type="number" wire:model="valor" class="form-control  input-nota" step="0.5" min="0" max="20" >
+	</form>
+</div>											<div style="display: none;">
+						                	
+											</div>
+						                </div>
+									</div>
+								</td>
+																																
+																									
+																									
+																									
+																									
+																									
+																									
+																							</tr>
+							</tbody>
+		</table>
+	</div>
+</div>

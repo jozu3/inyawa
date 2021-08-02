@@ -8,18 +8,17 @@
 				<tr>
 					<th class="nombre-fijo">Nombre</th>
 					@foreach($grupo->unidads as $unidad)
-						@if (auth()->user()->can('admin.grupos.viewList'))
-
+						@if (auth()->user()->can('admin.grupos.viewList') or (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id))
 							<th colspan="{{ $unidad->notas->count() + 1}}" class="border-left">
 								<center>{{ $unidad->descripcion }}</center>
 							</th>
 						@else
-							@if (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id)
+							{{-- @if ()
 								<th colspan="{{ $unidad->notas->count() + 1}}" class="border-left">
 								<center>{{ $unidad->descripcion }}</center>
 							</th>
 							@else
-							@endif
+							@endif --}}
 						@endif
 					@endforeach
 				</tr>
@@ -29,7 +28,7 @@
 					<td class="nombre-fijo">
 					</td>
 					@foreach($grupo->unidads as $unidad)
-						@if (auth()->user()->can('admin.grupos.viewList'))
+						@if (auth()->user()->can('admin.grupos.viewList') or (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id))
 							<td>Promedio</td>
 							@foreach($unidad->notas as $nota)
 								<td width="100">	
@@ -39,7 +38,7 @@
 								</td>
 							@endforeach
 						@else
-							@if (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id)
+							{{-- @if ()
 								<td>Promedio</td>
 								@foreach($unidad->notas as $nota)
 								<td width="100">	
@@ -49,7 +48,7 @@
 								</td>
 								@endforeach
 							@else
-							@endif
+							@endif --}}
 						@endif
 					@endforeach
 				</tr>
@@ -60,28 +59,33 @@
 						</td>
 						@if ($matricula->alumnoUnidades->count())
 						@foreach($matricula->alumnoUnidades as $alumnoUnidade)
-						@if (auth()->user()->can('admin.grupos.viewList'))
+						@if (auth()->user()->can('admin.grupos.viewList') or (auth()->user()->hasRole('Profesor') && $alumnoUnidade->unidad->profesore_id == auth()->user()->profesore->id))
 							<td class="border-left text-center">
-								@livewire('admin.unidad-nota-show', ['alumnoUnidade_id' => $alumnoUnidade->id])
+								@if (!isset($is_report))
+			                		{{ $is_report = false }}
+			                	@endif
+								@livewire('admin.unidad-nota-show', [
+									'alumnoUnidade_id' => $alumnoUnidade->id,
+									'is_report' => $is_report
+									])	                		
 							</td>
 							@foreach($alumnoUnidade->alumnoNotas as $alumnoNota)
 								<td>
 									<div class="form-row align-items-center una-fila">
 						                <div class="col-auto my-1 mx-2">
-						                	
 						                	@livewire('admin.create-nota', [
 						                		'nota_id' => $alumnoNota->nota->id,
 						                		'alumno_unidade_id' => $alumnoNota->alumnoUnidade->id,
 						                		])
 											<div style="display: none;">
 						                	{{ $alumnoNota->valor }}
-											</div>						                		
+											</div>
 						                </div>
 									</div>
 								</td>
 							@endforeach
 						@else
-							@if (auth()->user()->hasRole('Profesor') && $alumnoUnidade->unidad->profesore_id == auth()->user()->profesore->id)
+							{{-- @if ()
 							<td class="border-left text-center">
 								@livewire('admin.unidad-nota-show', ['alumnoUnidade_id' => $alumnoUnidade->id])
 							</td>
@@ -101,7 +105,7 @@
 								</td>
 							@endforeach
 							@else
-							@endif
+							@endif --}}
 						@endif
 						@endforeach
 						@else

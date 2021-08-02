@@ -17,7 +17,8 @@ class NotasGrupoSheet implements FromView, WithTitle
     
     public function view():View{
         return view('admin.grupos.partials.register-notas', [
-            'grupo' => Grupo::find($this->grupo)
+            'grupo' => Grupo::find($this->grupo),
+            'is_report' => true
         ]);
     }
 

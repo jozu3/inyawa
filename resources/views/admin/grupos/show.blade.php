@@ -6,9 +6,9 @@
 	@can('admin.grupos.edit')
 		<a href="{{ route('admin.grupos.edit', $grupo) }}" class="btn btn-success btn-sm float-right">Editar grupo</a>
 	@endcan
-		<a href="{{ route('admin.excel.alumnosGrupo', $grupo) }}" class="btn btn-success btn-sm float-right mr-3"><i class="far fa-file-excel"></i> Registro de alumnos</a>
+	<a href="{{ route('admin.excel.alumnosGrupo', $grupo) }}" class="btn btn-success btn-sm float-right mr-3"><i class="far fa-file-excel"></i> Registro de alumnos</a>
 
-    <h1>Grupo: {{ $grupo->curso->nombre.' '.$grupo->fecha }}</h1>
+    <h1>Grupo: {{ $grupo->curso->nombre.' '.date('d/m/Y', strtotime($grupo->fecha)) }}</h1>
 @stop
 
 @section('content')
@@ -110,10 +110,11 @@
     		top: 150px;
     		right:5px;
     	}
-        .form-control{
+        .input-nota{
             width:80px!important;
         }
     </style>
+    <link rel="stylesheet" href="{{ config('app.url') }}/css/app.css">
 @stop
 
 @section('js')
@@ -156,4 +157,5 @@
 		});*/
 
     </script>
+    <script type="text/javascript" src="{{ config('app.url') }}/js/app.js"></script>
 @stop
