@@ -87,11 +87,16 @@
     	.una-fila{
     		flex-wrap:nowrap;
     	}
-    	.nombre-fijo{
+    	.apellido-fijo{
 		  position:absolute;
 		    width:11em;
 		    left:0;
 
+    	}
+    	.nombre-fijo{
+			position:absolute;
+		    width:11em;
+		    left:11em;    		
     	}
     	.card-body-2{
     		padding-left:0
@@ -99,7 +104,7 @@
 
     	.cont-table-div {
 		  overflow-x:scroll;  
-		  margin-left:11em;
+		  margin-left:22em;
 		    }
 		.alturatd-dis {
 			height:4em;

@@ -6,56 +6,47 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th class="nombre-fijo">Nombre</th>
+					<th class="apellido-fijo">Apellidos</th>
+					<th class="nombre-fijo">Nombres</th>
 					@foreach($grupo->unidads as $unidad)
 						@if (auth()->user()->can('admin.grupos.viewList') or (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id))
 							<th colspan="{{ $unidad->notas->count() + 1}}" class="border-left">
 								<center>{{ $unidad->descripcion }}</center>
 							</th>
 						@else
-							{{-- @if ()
-								<th colspan="{{ $unidad->notas->count() + 1}}" class="border-left">
-								<center>{{ $unidad->descripcion }}</center>
-							</th>
-							@else
-							@endif --}}
 						@endif
 					@endforeach
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
+					<td class="apellido-fijo">
+					</td>
 					<td class="nombre-fijo">
 					</td>
 					@foreach($grupo->unidads as $unidad)
 						@if (auth()->user()->can('admin.grupos.viewList') or (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id))
-							<td>Promedio</td>
+							<td>
+								<b>Promedio</b>
+							</td>
 							@foreach($unidad->notas as $nota)
 								<td width="100">	
-									<b>{{ $nota->descripcion }}@if ($nota->tipo == 1)
+									{{ $nota->descripcion }}@if ($nota->tipo == 1)
 										{{ '(Nota recuperatoria)' }}
-									@endif()</b>
+									@endif()
 								</td>
 							@endforeach
 						@else
-							{{-- @if ()
-								<td>Promedio</td>
-								@foreach($unidad->notas as $nota)
-								<td width="100">	
-									<b>{{ $nota->descripcion }}@if ($nota->tipo == 1)
-										{{ '(Nota recuperatoria)' }}
-									@endif()</b>
-								</td>
-								@endforeach
-							@else
-							@endif --}}
 						@endif
 					@endforeach
 				</tr>
 				@foreach($grupo->matriculasEstado([0,2]) as $matricula)
 					<tr>
-						<td class="nombre-fijo">
-							<b>{{$matricula->alumno->contacto->apellidos.' ' }}</b>{{ $matricula->alumno->contacto->nombres }} 
+						<td class="apellido-fijo">
+							<b>{{$matricula->alumno->contacto->apellidos.' ' }}</b>
+						</td>
+						<td class="nombre-fijo">	
+						{{ $matricula->alumno->contacto->nombres }} 
 						</td>
 						@if ($matricula->alumnoUnidades->count())
 						@foreach($matricula->alumnoUnidades as $alumnoUnidade)
@@ -85,27 +76,6 @@
 								</td>
 							@endforeach
 						@else
-							{{-- @if ()
-							<td class="border-left text-center">
-								@livewire('admin.unidad-nota-show', ['alumnoUnidade_id' => $alumnoUnidade->id])
-							</td>
-							@foreach($alumnoUnidade->alumnoNotas as $alumnoNota)
-								<td>
-									<div class="form-row align-items-center una-fila">
-						                <div class="col-auto my-1 mx-2">
-						                	@livewire('admin.create-nota', [
-						                		'nota_id' => $alumnoNota->nota->id,
-						                		'alumno_unidade_id' => $alumnoNota->alumnoUnidade->id,
-						                		])
-						                	<div style="display: none;">
-						                	{{ $alumnoNota->valor }}
-											</div>	
-						                </div>
-									</div>
-								</td>
-							@endforeach
-							@else
-							@endif --}}
 						@endif
 						@endforeach
 						@else
