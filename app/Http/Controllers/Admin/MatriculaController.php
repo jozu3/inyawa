@@ -14,6 +14,7 @@ use App\Models\Matricula;
 use App\Models\Pago;
 use App\Models\Obligacione;
 use DB;
+use App\Notifications\MatriculaNotification;
 
 class MatriculaController extends Controller
 {
@@ -126,7 +127,11 @@ class MatriculaController extends Controller
         //registrar la matrícula
         $matricula = Matricula::create($request->all());
 
-        //generar las obligaciones por pagar MatriculaObserver
+        //generar las obligaciones por pagar -> MatriculaObserver
+
+        //enviar notification de matricula al alumno
+        $user = $alumno->user;
+        $user->notify(new MatriculaNotification($matricula));
         
         return redirect()->route('admin.matriculas.show', $matricula)->with('info', 'Matrícula registrada correctamente.');
     }

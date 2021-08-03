@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactanosMailable;
+use App\Notifications\MatriculaNotification;
+use App\Models\User;
+use App\Models\Matricula;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,9 +25,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/email', function () {
-    $correo = new ContactanosMailable;
-    Mail::to('josue.vitate@gmail.com')->send($correo);
-
-    return 'mensaje enviado';
+Route::get('/notification', function () {
+    $user = User::find(2);
+    $matricula = Matricula::find(1);
+    $user->notify(new MatriculaNotification($matricula));
+    return 'asdsad';
 });
