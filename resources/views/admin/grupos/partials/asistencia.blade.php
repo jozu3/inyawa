@@ -49,6 +49,9 @@
 							</td>
 							@endforeach
 						@else
+						<td>
+							<br>
+						</td>
 						@endif
 					@empty
 						<td></td>
@@ -91,39 +94,48 @@
 						</td>
 	                	@endif
 	                	@if (count($matricula->grupo->unidads))
-						@if ($matricula->grupo->unidads[0]->clases->count())
-							@forelse($matricula->grupo->unidads as $unidad)
-								@if (auth()->user()->can('admin.grupos.viewList') || (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id))
-									@foreach($unidad->clases as $clase)
-										<td class="border-left">
-											<div class="form-row align-items-center una-fila">
-								                <div class="col-auto my-1 mx-2">
-								                	@if (!isset($is_report))
-								                		{{ $is_report = false }}
-								                	@endif
-								                	{!! Form::model($matricula->asistenciaClase($clase)) !!}
-								                	@livewire('admin.create-asistencia', [
-								                		'clase_id' => $clase->id,
-								                		'matricula_id' => $matricula->id,
-								                		'is_report' => $is_report
-								                		//'asistencia' => $matricula->asistenciaClase($clase)
-								                		])
-								                	{!! Form::close() !!}
-								                </div>
-											</div>
-										</td>
-									@endforeach
-								@else
-								@endif
-							@empty
-							<td></td>
-							@endforelse
+							@if ($matricula->grupo->unidads[0]->clases->count())
+								@forelse($matricula->grupo->unidads as $unidad)
+									@if (auth()->user()->can('admin.grupos.viewList') || (auth()->user()->hasRole('Profesor') && $unidad->profesore_id == auth()->user()->profesore->id))
+										@foreach($unidad->clases as $clase)
+											<td class="border-left">
+												<div class="form-row align-items-center una-fila">
+									                <div class="col-auto my-1 mx-2">
+									                	@if (!isset($is_report))
+									                		{{ $is_report = false }}
+									                	@endif
+									                	{!! Form::model($matricula->asistenciaClase($clase)) !!}
+									                	@livewire('admin.create-asistencia', [
+									                		'clase_id' => $clase->id,
+									                		'matricula_id' => $matricula->id,
+									                		'is_report' => $is_report
+									                		//'asistencia' => $matricula->asistenciaClase($clase)
+									                		])
+									                	{!! Form::close() !!}
+									                </div>
+												</div>
+											</td>
+										@endforeach
+									@else
+									<td>
+										<br>
+									</td>
+									@endif
+								@empty
+								<td>
+									<br>
+								</td>
+								@endforelse
+							@else
+								<td colspan="100%" class="alert-light alturatd-dis">
+									{{ 'No se han generado las clases para los alumnos' }}
+								</td>
+							@endif
 						@else
-							<td colspan="100%" class="alert-light alturatd-dis">
-								{{ 'No se han generado las clases para los alumnos' }}
-							</td>
-						@endif
 	                	@endif
+	                	<td>
+	                		<br>
+	                		<br></td>
 					</tr>
 				@endforeach
 			</tbody>

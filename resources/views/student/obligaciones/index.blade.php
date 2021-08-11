@@ -8,7 +8,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="mt-4 text-2xl">
-                       <b>{{ $matricula->grupo->curso->nombre.' - '.$matricula->grupo->fecha }}</b>
+                       <b>{{ $matricula->grupo->curso->nombre.' - '.date('d/m/Y', strtotime($matricula->grupo->fecha)) }}</b>
                     </div>
                 </div>
                 <div class="p-6">
@@ -57,12 +57,11 @@
                                     </td>
                                   <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
-                                      
                                       <div class="ml-4">
                                         <div class="text-2xl font-medium text-gray-900">
                                         </div>
                                         <div class="text-sm text-gray-500">
-                                          {{ date('d/m/Y', strtotime($obligacione->fechalimite)) }}                                
+                                          {{ date('d/m/Y', strtotime($obligacione->fechalimite)) }}
                                         </div>
                                       </div>
                                     </div>
@@ -85,9 +84,6 @@
                                             @endif
                                             @break
                                     @endswitch
-                                    <span class="px-2 inline-flex text-md leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-
-                                    </span>
                                   </td>
                                   <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900">
@@ -99,10 +95,6 @@
                                         {{ $obligacione->montofinal }}
                                     </div>
                                   </td>
-                                  <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    </span>
-                                  </td>
                                 </tr>
                             @endforeach
                           </tbody>
@@ -111,9 +103,7 @@
                     </div>
                   </div>
                 </div>
-
             </div>
-
             </div>
         </div>
     </div>

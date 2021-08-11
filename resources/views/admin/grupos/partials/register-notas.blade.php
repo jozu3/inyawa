@@ -37,6 +37,9 @@
 								</td>
 							@endforeach
 						@else
+						<td>
+							<br>
+						</td>
 						@endif
 					@endforeach
 				</tr>
@@ -83,6 +86,9 @@
 								{{ 'No se han generado las notas' }}
 							</td>
 						@endif
+						<td>
+							<br><br>
+						</td>
 					</tr>
 				@endforeach
 			</tbody>
