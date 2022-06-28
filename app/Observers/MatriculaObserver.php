@@ -60,30 +60,31 @@ class MatriculaObserver
         for ($i = 1; $i <= $matricula->grupo->ncuotas; $i++) {
 
             $meses = $i -1 ;
-            $mes = date('m', strtotime( '+'.$meses.'month', strtotime($matricula->grupo->fecha)));
             $dia = date('d', strtotime($matricula->grupo->fecha));
-
+            $mes = date('m', strtotime( '+'.$meses.'month', strtotime(date('Y-m', strtotime($matricula->grupo->fecha)))));
+            
+            // $mes = date('m', strtotime($matricula->grupo->fecha)) + $meses;
+            
             if ($dia >= 1 && $dia <= 7) {
                 $dia_vencimiento = 8;
             }
-
+            
             if ($dia >= 8 && $dia <= 20) {
                 $dia_vencimiento = 12;
             }
 
             if ($dia >= 21 && $dia <=31) {
-                if ($mes == '02') {
+                if ($mes == 2) {
                     $dia_vencimiento = 28;
                 } else {
                     $dia_vencimiento = 30;
                 }
             }
-
+            
             if ($i == 1) {//cuota 1
                 $date = date('Y-m-d', strtotime( '+'.'2'.'day', strtotime($matricula->grupo->fecha)));
             } else {//cuota2 en adelante
-
-                $date = date('Y-m', strtotime( '+'.$meses.'month', strtotime($matricula->grupo->fecha))).'-'.$dia_vencimiento;
+                $date = date('Y-m', strtotime( '+'.$meses.'month', strtotime(date('Y-m', strtotime($matricula->grupo->fecha))))).'-'.$dia_vencimiento;
             }
 
             Obligacione::create([

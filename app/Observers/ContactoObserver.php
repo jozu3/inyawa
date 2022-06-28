@@ -27,9 +27,13 @@ class ContactoObserver
      * @param  \App\Models\Contacto  $contacto
      * @return void
      */
-    public function updating(Contacto $contacto)
+    public function updated(Contacto $contacto)
     {
-        
+        if(isset($contacto->alumno->user)){
+            $contacto->alumno->user->update([
+                'name' => $contacto->nombres . ' '. $contacto->apellidos
+            ]);
+        }
     }
 
     /**
